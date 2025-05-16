@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Firebase;
 using UnityEngine;
 using Firebase.Firestore;
 using Firebase.Extensions;
 
-public class FireBaseManager : MonoBehaviour
+public class FirebaseManager : MonoBehaviour
 {
     void Start()
     {
