@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e7952a-5f1a-45c1-ab80-c7e467493f07" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Layer Lab/GUI Pro-CasualGame/Scenes/DemoScene_CasualGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Layer Lab/GUI Pro-CasualGame/Scenes/DemoScene_CasualGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LoadingScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +105,7 @@
       <workItem from="1747362237202" duration="684000" />
       <workItem from="1747376300368" duration="144000" />
       <workItem from="1747376455525" duration="1744000" />
-      <workItem from="1747380723103" duration="4093000" />
+      <workItem from="1747380723103" duration="4780000" />
     </task>
     <servers />
   </component>

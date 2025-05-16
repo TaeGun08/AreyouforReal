@@ -38,4 +38,9 @@ public class TouchManager : MonoBehaviour
             }
         }
     }
+
+    private void OnMouseDown()
+    {
+        throw new NotImplementedException();
+    }
 }
