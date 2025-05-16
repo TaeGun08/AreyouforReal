@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5e7952a-5f1a-45c1-ab80-c7e467493f07" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity" afterDir="false" />
-    </list>
+    <list default="true" id="c5e7952a-5f1a-45c1-ab80-c7e467493f07" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +95,7 @@
       <workItem from="1747298643665" duration="900000" />
       <workItem from="1747356337934" duration="1680000" />
       <workItem from="1747358271530" duration="224000" />
-      <workItem from="1747362237202" duration="682000" />
+      <workItem from="1747362237202" duration="684000" />
     </task>
     <servers />
   </component>
