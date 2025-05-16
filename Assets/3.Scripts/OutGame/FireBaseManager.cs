@@ -11,7 +11,7 @@ public class FirebaseManager : MonoBehaviour
     {
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         
-        DocumentReference docRef = db.Collection("cities").Document("LA");
+        DocumentReference docRef = db.Collection("Test").Document("Test");
         Dictionary<string, object> city = new Dictionary<string, object>
         {
             { "Name", "Los Angeles" },
@@ -19,7 +19,7 @@ public class FirebaseManager : MonoBehaviour
             { "Country", "USA" }
         };
         docRef.SetAsync(city).ContinueWithOnMainThread(task => {
-            Debug.Log("Added data to the LA document in the cities collection.");
+            Debug.Log("Added data to the Test document in the cities collection.");
         });
     }
 }
