@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e7952a-5f1a-45c1-ab80-c7e467493f07" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Samples/Assets/Capsules.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Samples/Assets/Capsules.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Samples/Assets/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Samples/Assets/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Shapes/Textures/Inconsolata/Inconsolata-SemiBold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Layer Lab/GUI Pro-CasualGame/Scenes/DemoScene_CasualGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/OutGame/Layer Lab/GUI Pro-CasualGame/Scenes/DemoScene_CasualGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LoadingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37cc348edc804f4cb176b63962c716e7177200/e6/51179dc6/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e35f1b2769b6499aa0f83a53f65df1367c00/84/fc522019/Touch.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.14.0/InputSystem/Devices/Touchscreen.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Test/Assets/3.Script/Test4/Test4.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -103,6 +109,7 @@
       <workItem from="1747362237202" duration="684000" />
       <workItem from="1747376300368" duration="144000" />
       <workItem from="1747376455525" duration="1744000" />
+      <workItem from="1747380723103" duration="4093000" />
     </task>
     <servers />
   </component>
