@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://console.firebase.google.com/project/areyouforreal-cb6d0/firestore/databases/-default-/data/~2Fcities~2FLA?hl=ko</string>
+  <string name="gcm_defaultSenderId" translatable="false">1096413087019</string>
+  <string name="google_storage_bucket" translatable="false">areyouforreal-cb6d0.firebasestorage.app</string>
+  <string name="project_id" translatable="false">areyouforreal-cb6d0</string>
+  <string name="google_api_key" translatable="false">AIzaSyBjbjPahZetP6cYE9PI5IJc6DccphVmOoA</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBjbjPahZetP6cYE9PI5IJc6DccphVmOoA</string>
+  <string name="google_app_id" translatable="false">1:1096413087019:android:bef013f5cf9cf1f5e6f16e</string>
+  <string name="default_web_client_id" translatable="false">1096413087019-d7uhhmrs57cr9radgasq6rnh5qgdv37p.apps.googleusercontent.com</string>
+</resources>
