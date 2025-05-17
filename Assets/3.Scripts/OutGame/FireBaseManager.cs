@@ -14,7 +14,7 @@ public class FirebaseManager : MonoBehaviour
         DocumentReference docRef = db.Collection("Test").Document("Test");
         Dictionary<string, object> city = new Dictionary<string, object>
         {
-            { "Name", "Los Angeles" },
+            { "Test", "Los Angeles" },
             { "State", "CA" },
             { "Country", "USA" }
         };
