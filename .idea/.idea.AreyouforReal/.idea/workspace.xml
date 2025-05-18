@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9f73d15a-5583-4a63-a8f5-ce200782e908" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/LoadingProgressBar.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/LoadingProgressBar.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchTest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchTest.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,10 +29,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2xD4lS0W8tsE8zmISrGCDGFDIVt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +44,12 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Develop__OutGame",
     "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.EditorConfig",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -86,6 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1747459460681</updated>
       <workItem from="1747459461994" duration="241000" />
+      <workItem from="1747576127536" duration="5845000" />
     </task>
     <servers />
   </component>
@@ -99,4 +120,8 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>
