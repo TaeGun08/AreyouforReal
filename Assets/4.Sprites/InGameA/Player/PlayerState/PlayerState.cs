@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class PlayerState : MonoBehaviour
+{
+    public enum State
+    {
+        Idle,
+        Walk,
+        Run,
+        Attack,
+        Knockout,
+        
+    }
+    
+    protected PlayerController playerController;
+
+    public abstract State CurrentState { get; }
+
+    public abstract void StateEnter(PlayerController playerController);
+    public abstract void StateUpdate();
+    public abstract void StateExit();
+}
