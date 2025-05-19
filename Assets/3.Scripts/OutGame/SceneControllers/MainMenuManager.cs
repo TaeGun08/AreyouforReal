@@ -1,23 +1,24 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    private void Start()
-    {
-        TouchManager.Instance.OnTouchEnd += LoadLobbyScene;
-    }
+    private InputAction testAction;
+    private TMP_InputField emailInputField;
+    private TMP_InputField passwordInputField;
+    private TMP_InputField LoginInputField;
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            LoadLobbyScene();
-        }
+        testAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/space");
+        testAction.Enable();
+        testAction.performed += LoadLobbyScene;
     }
-
-    public void LoadLobbyScene()
+    
+    public void LoadLobbyScene(InputAction.CallbackContext context)
     {
         LoadingSceneManager.LoadScene("LobbyScene");
     }
