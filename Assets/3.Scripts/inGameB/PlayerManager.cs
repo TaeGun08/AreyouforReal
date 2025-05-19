@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     public List<NetworkObject> players = new List<NetworkObject>();
     private NetworkRunner runner;
 
+    private const int maxPlayers = 10;
+    private const int aiCount = 20;
     private void Awake()
     {
         if (Instance == null)
@@ -48,9 +50,11 @@ public class PlayerManager : MonoBehaviour
     }
 
     // 플레이어와 AI 생성
-    public void CreatePlayers(int playerCount, int aiCount)
+    public void CreatePlayers(int playerCount)
     {
-        for (int i = 0; i < playerCount; i++)
+        int createCount = Mathf.Min(playerCount, maxPlayers);
+        
+        for (int i = 0; i < createCount; i++)
         {
             var newPlayer = runner.Spawn(playerPrefab, GetRandomPosition(), Quaternion.identity);
             if (newPlayer != null)
@@ -64,6 +68,13 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if (playerCount > maxPlayers)
+        {
+            Debug.LogWarning($"플레이어 수가 최대치를 초과했습니다. 최대 {maxPlayers}명으로 제한합니다.");
+        }
+    }
+    public void CreateAIs()
+    {
         for (int j = 0; j < aiCount; j++)
         {
             var newAI = runner.Spawn(aiPrefab, GetRandomPosition(), Quaternion.identity);
