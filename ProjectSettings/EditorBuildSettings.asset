@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: Assets/1.Scenes/OutGame/GameStartScene.unity
@@ -23,4 +24,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scenes/Network/TestScene_Network_InGame.unity
     guid: d82aa733399e2be418593b0081f5dffc
+=======
+  m_Scenes: []
+>>>>>>> Develop_InGameA
   m_configObjects: {}
