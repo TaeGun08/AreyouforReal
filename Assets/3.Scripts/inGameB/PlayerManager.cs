@@ -104,6 +104,7 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
+        // y좌표는 고정 x/z는 맵에 따라 조절 필요
         return new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
     }
 }
