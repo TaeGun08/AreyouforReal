@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     private InputAction testAction;
-    private TMP_InputField emailInputField;
-    private TMP_InputField passwordInputField;
-    private TMP_InputField LoginInputField;
+
 
     private void OnEnable()
     {

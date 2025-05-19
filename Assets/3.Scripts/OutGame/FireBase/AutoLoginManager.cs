@@ -15,8 +15,7 @@ public class AutoLoginManager : MonoBehaviour
     void Start()
     {
         loginButton.onClick.AddListener(OnLoginButtonClicked);
-
-        // 플레이어프리퍼런스에 저장된 값이 있으면 자동 입력
+        
         if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
         {
             string savedEmail = PlayerPrefs.GetString(EmailKey);
@@ -37,25 +36,23 @@ public class AutoLoginManager : MonoBehaviour
 
         if (rememberMeToggle.isOn)
         {
-            // 이메일과 비밀번호 저장
             PlayerPrefs.SetString(EmailKey, email);
             PlayerPrefs.SetString(PasswordKey, password);
             PlayerPrefs.Save();
         }
         else
         {
-            // 저장된 정보 삭제
             PlayerPrefs.DeleteKey(EmailKey);
             PlayerPrefs.DeleteKey(PasswordKey);
         }
-
-        // 실제 로그인 처리
+        
         PerformLogin(email, password);
     }
 
     void AutoLogin(string email, string password)
     {
         Debug.Log($"자동 로그인 시도: {email}");
+        //FirebaseManager로 처리
         PerformLogin(email, password);
     }
 
@@ -63,6 +60,7 @@ public class AutoLoginManager : MonoBehaviour
     {
         // 여기에 실제 로그인 로직 작성
         // 예시: 서버 요청 or 로컬 인증 등
-        Debug.Log($"로그인 성공: {email}");
+        // Debug.Log($"로그인 성공: {email}");
+        //FirebaseManager로 처리
     }
 }
