@@ -26,10 +26,13 @@ public class Player : NetworkBehaviour
     
     protected void Awake()
     {
-        joystick = Joystick.Instance;
-        
         characterController = GetComponent<NetworkCharacterController>();
         characterControllerTest = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+    }
+
+    protected virtual void Start()
+    {
+        joystick = Joystick.Instance;
     }
 }
