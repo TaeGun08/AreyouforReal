@@ -1,17 +1,21 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    /*private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadingSceneManager.LoadScene("LobbyScene");
-        }
+        TouchManager.Instance.OnTouchEnd += LoadLobbyScene;
+    }
 
-        startButton.onClick.AddListener(LoadLobbyScene);
-    }*/
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            LoadLobbyScene();
+        }
+    }
 
     public void LoadLobbyScene()
     {

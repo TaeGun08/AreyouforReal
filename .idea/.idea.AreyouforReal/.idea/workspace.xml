@@ -6,20 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="9f73d15a-5583-4a63-a8f5-ce200782e908" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AreyouforReal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/TestScene_OutGame.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/LoadingProgressBar.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/LoadingProgressBar.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/TouchTest.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/0. ExternalAssets/DevelopMerge/3D Casual Character/3D Characters Pro - Casual/Material/ColorA.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/0. ExternalAssets/DevelopMerge/3D Casual Character/3D Characters Pro - Casual/Material/ColorA.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/GameStartScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/GameStartScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LobbyScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/OutGame/LobbyScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/Other/TouchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/Other/TouchManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/Other/TouchTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/Other/TouchTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/SceneControllers/MainMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/SceneControllers/MainMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/arm64-v8a/libnanosockets.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/arm64-v8a/libnanosockets.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/armeabi-v7a/libnanosockets.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/armeabi-v7a/libnanosockets.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/x86/libnanosockets.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/x86/libnanosockets.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/x86_64/libnanosockets.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Android/x86_64/libnanosockets.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Linux/libnanosockets.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Linux/libnanosockets.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/ARM/libnanosockets.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/ARM/libnanosockets.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/ARM64/libnanosockets.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/ARM64/libnanosockets.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/x64/libnanosockets.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/x64/libnanosockets.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/x86/libnanosockets.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/Metro/x86/libnanosockets.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/iOS/libnanosockets.a.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/iOS/libnanosockets.a.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/macOS/libnanosockets.dylib.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/macOS/libnanosockets.dylib.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/tvOS/libnanosockets.a.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/tvOS/libnanosockets.a.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/visionOS/libnanosockets.a.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Plugins/NanoSockets/visionOS/libnanosockets.a.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Android/mainTemplate.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Android/mainTemplate.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/CommonBurstAotSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/CommonBurstAotSettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,21 +50,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Develop__OutGame",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.EditorConfig",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Develop__OutGame&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.EditorConfig&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Unity.exe" />
@@ -107,6 +119,8 @@
       <updated>1747459460681</updated>
       <workItem from="1747459461994" duration="241000" />
       <workItem from="1747576127536" duration="5845000" />
+      <workItem from="1747621202118" duration="1739000" />
+      <workItem from="1747630246075" duration="839000" />
     </task>
     <servers />
   </component>
