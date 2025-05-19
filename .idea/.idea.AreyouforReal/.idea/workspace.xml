@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f73d15a-5583-4a63-a8f5-ce200782e908" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/OutGame/FireBaseManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1.Scenes/inGameB/TestScene_InGameB.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1.Scenes/inGameB/TestScene_InGameB.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3.Scripts/inGameB/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3.Scripts/inGameB/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/6.Materials/inGameB/Cylinder.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/6.Materials/inGameB/Cylinder.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +17,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/4.Sprites/InGameA/Player/PlayerState/IPlayerState.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+=======
+>>>>>>> Develop_InGameB
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -33,7 +36,11 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;&lt;알 수 없음&gt;&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;Develop__InGameB&quot;,
+>>>>>>> Develop_InGameB
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -96,11 +103,16 @@
       <option name="presentableId" value="Default" />
       <updated>1747459460681</updated>
       <workItem from="1747459461994" duration="241000" />
+<<<<<<< HEAD
       <workItem from="1747548982711" duration="15607000" />
       <workItem from="1747574252310" duration="13000" />
       <workItem from="1747617262408" duration="181000" />
       <workItem from="1747617512490" duration="495000" />
       <workItem from="1747629650418" duration="1001000" />
+=======
+      <workItem from="1747616881539" duration="3055000" />
+      <workItem from="1747629100059" duration="5200000" />
+>>>>>>> Develop_InGameB
     </task>
     <servers />
   </component>
