@@ -37899,6 +37899,7 @@ GameObject:
   - component: {fileID: 3146149732591216685}
   - component: {fileID: 6708105732894956020}
   - component: {fileID: 2146824692807517563}
+  - component: {fileID: 9124484678336329888}
   - component: {fileID: 7743242317217729023}
   - component: {fileID: 7668169826086334591}
   m_Layer: 3
@@ -38011,8 +38012,28 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6708105732894956020}
+  - {fileID: 9124484678336329888}
   - {fileID: 7743242317217729023}
+  - {fileID: 7668169826086334591}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &9124484678336329888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492875928647063149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 8159747390313216368}
+  ApplyTiming: 2
+  SyncSettings: 127
+  StateHashes: 000000006bd5a32d398fdc0420e23b685928a8ce09fdb7c14a5384c24bd0c3d4087ef0d72b1a167c794069550d286c404e865f43f142e047ebd3daad
+  TriggerHashes: 000000002b1a167c6bd5a32d20e23b680d286c40f142e047
+  TotalWords: 5
 --- !u!114 &7743242317217729023
 MonoBehaviour:
   m_ObjectHideFlags: 0

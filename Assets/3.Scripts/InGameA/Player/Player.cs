@@ -14,6 +14,7 @@ public class Player : NetworkBehaviour
     protected Animator animator;
     
     protected ChangeDetector changeDetector;
+    //public Chan
 
     [System.Serializable]
     public class PlayerStats
