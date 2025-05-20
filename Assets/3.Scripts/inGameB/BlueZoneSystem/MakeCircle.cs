@@ -3,13 +3,16 @@ using UnityEngine;
 public class MakeCircle : MonoBehaviour
 {
     [Header("Circle Settings")]
-    public float initialRadius = 50f;
-    public float reduceFactor = 0.8f; // 반지름 감소 비율
+    public float initialRadius = 100f;
+    public float reduceFactor = 0.75f; // 반지름 감소 비율
     public float mapRange = 100f;     // 첫 번째 원 랜덤 생성 범위
 
     private Vector3[] centers = new Vector3[3];
     private float[] radii = new float[3];
-
+    
+    public int CircleCount => radii.Length;
+    public Vector3 GetCenter(int idx) => centers[idx];
+    public float   GetRadius(int idx) => radii[idx];
     private void Start()
     {
         // 3개의 원 생성
@@ -39,7 +42,7 @@ public class MakeCircle : MonoBehaviour
         }
     }
 
-    // 첫 번째 원 랜덤 위치 생성 나중에 맵마다 조절
+    // 첫 번째 원 랜덤 위치 생성 (맵 범위 내)
     private Vector3 GetRandomPosition(float range)
     {
         float x = Random.Range(-range, range);
@@ -48,26 +51,28 @@ public class MakeCircle : MonoBehaviour
     }
 
     // 이전 원 내부에서 새로운 중심 설정
-    private Vector3 GetRandomPositionWithinCircle(Vector3 origin, float radius)
+    private Vector3 GetRandomPositionWithinCircle(Vector3 origin, float radius, float maxDistanceFactor = 0.25f)
     {
         float angle = Random.Range(0, Mathf.PI * 2);
-        float distance = Random.Range(0, radius);  // 내부에서만 생성
+        // 중심 근처 확률을 높이기 위한 거리 계산
+        float distance = Mathf.Sqrt(Random.Range(0f, 1f)) * radius * maxDistanceFactor;
         float x = origin.x + Mathf.Cos(angle) * distance;
         float z = origin.z + Mathf.Sin(angle) * distance;
         return new Vector3(x, 0, z);
     }
 
+
     // Gizmo로 원 시각화
-    private void OnDrawGizmos()
-    {
-        if (centers == null || radii == null) return;
-
-        Color[] colors = { Color.blue, Color.green, Color.red };
-
-        for (int i = 0; i < 3; i++)
-        {
-            Gizmos.color = colors[i];
-            Gizmos.DrawWireSphere(centers[i], radii[i]);
-        }
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     if (centers == null || radii == null) return;
+    
+    //     Color[] colors = { Color.blue, Color.green, Color.red };
+    
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         Gizmos.color = colors[i];
+    //         Gizmos.DrawWireSphere(centers[i], radii[i]);
+    //     }
+    // }
 }
