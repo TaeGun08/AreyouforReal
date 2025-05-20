@@ -8,5 +8,6 @@ public struct NetworkInputData : INetworkInput
     public float Horizontal;
     public float Vertical;
     
-    public bool IsRunning; 
+    public bool IsRun;
+    public bool IsAttack;
 }

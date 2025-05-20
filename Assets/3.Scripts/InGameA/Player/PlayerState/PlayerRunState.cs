@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState
+public class PlayerRunState : PlayerState
 {
-    public override State CurrentState => State.Idle;
-
+    public override State CurrentState => State.Run;
+    
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
@@ -22,21 +22,23 @@ public class PlayerIdleState : PlayerState
                 return;
             }
             
+            float speed = playerController.LocalPlayer.Stats.RunSpeed;
             Vector3 dir = new Vector3(input.Horizontal, 0, input.Vertical).normalized;
-            playerController.CharacterController.Move(dir * 1f * Runner.DeltaTime);
-
-            if (input.IsRun)
+            playerController.CharacterController.Move(dir * speed * Runner.DeltaTime);
+            
+            if (input.IsRun == false)
             {
-                playerController.ChangeState(State.Run);
+                playerController.ChangeState(State.Walk);
                 return;
             }
             
             if (input.Horizontal != 0 || input.Vertical != 0)
-                playerController.ChangeState(State.Walk);
+                playerController.ChangeState(State.Idle);
         }
     }
 
     public override void StateExit()
     {
+
     }
 }

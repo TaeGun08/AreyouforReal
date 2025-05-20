@@ -23,6 +23,8 @@ public class NetworkStartBridge : MonoBehaviour
     
     private NetworkRunner runner;
 
+    [SerializeField] private int sceneIndex;
+    
     private void Awake()
     {
         Instance = this;
@@ -59,7 +61,7 @@ public class NetworkStartBridge : MonoBehaviour
         {
             GameMode = mode,
             SessionName = roomCode,
-            Scene = SceneRef.FromIndex(4),
+            Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
         });
 

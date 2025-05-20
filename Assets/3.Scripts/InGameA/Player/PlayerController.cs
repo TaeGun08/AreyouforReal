@@ -9,6 +9,9 @@ public class PlayerController : NetworkBehaviour
     private LocalPlayer localPlayer;
     public LocalPlayer LocalPlayer => localPlayer;
 
+    private NetworkCharacterController characterController;
+    public NetworkCharacterController CharacterController => characterController;
+    
     private Animator animator;
     
     [SerializeField] private PlayerState[] playerStates;
@@ -20,6 +23,7 @@ public class PlayerController : NetworkBehaviour
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();
+        characterController = GetComponent<NetworkCharacterController>();
         animator = GetComponent<Animator>();
 
         for (int i = 0; i < playerStates.Length; i++)
@@ -34,15 +38,6 @@ public class PlayerController : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData input))
-        {
-            currentState?.StateUpdate();
-        }
-    }
-    
-    private void Update()
-    {
-        Debug.Log("확인");
         currentState?.StateUpdate();
     }
 
@@ -56,6 +51,7 @@ public class PlayerController : NetworkBehaviour
         if (currentState != null)
             if (currentState.CurrentState.Equals(newState)) return;
         
+        animator.ResetTrigger(playerAnimDic[newState]);
         currentState?.StateExit();
         currentState = playerStateDic[newState];
         currentState.StateEnter(this);
