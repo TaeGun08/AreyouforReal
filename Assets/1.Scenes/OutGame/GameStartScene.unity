@@ -2692,8 +2692,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f8c1fb54a0d2429917e14f5cbf88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailInputField: {fileID: 0}
-  passwordInputField: {fileID: 0}
+  emailInputField: {fileID: 1175759514}
+  passwordInputField: {fileID: 446179293}
+  rememberToggle: {fileID: 379520881}
 --- !u!1 &274407028
 GameObject:
   m_ObjectHideFlags: 0

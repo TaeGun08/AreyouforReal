@@ -20,6 +20,7 @@ public class NetworkStartBridge : MonoBehaviour
     
     [Header("임시용")]
     private string roomCode;
+    
     private NetworkRunner runner;
 
     private void Awake()
@@ -41,8 +42,7 @@ public class NetworkStartBridge : MonoBehaviour
         
         runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
         
-        // 2번씬 로드 ingame
-        SceneRef scene = SceneRef.FromIndex(2);
+        SceneRef scene = SceneRef.FromPath("TestScene_Network_InGame");
         NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
         
         if (scene.IsValid) 
@@ -59,7 +59,7 @@ public class NetworkStartBridge : MonoBehaviour
         {
             GameMode = mode,
             SessionName = roomCode,
-            Scene = scene,
+            Scene = SceneRef.FromIndex(1),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
         });
 
