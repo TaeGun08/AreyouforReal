@@ -14,7 +14,7 @@ public class SampleUser
 
 public class MainSystem : MonoBehaviour
 {
-    public static MainSystem Instance;
+    public static MainSystem Instance { get; private set; }
 
     public SampleUser SampleUser { get; private set; }
     
