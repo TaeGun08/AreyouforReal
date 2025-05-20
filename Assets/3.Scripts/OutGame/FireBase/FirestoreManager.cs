@@ -6,13 +6,13 @@ using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine;
 
-public class FirebaseManager : MonoBehaviour
+public class FirestoreManager : MonoBehaviour
 {
-    private FirebaseFirestore _firestore;
-    private bool _isInitialized = false;
+    private FirebaseFirestore firestore;
+    private bool isInitialized = false;
 
     // 싱글톤 구현
-    public static FirebaseManager Instance { get; private set; }
+    public static FirestoreManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -34,8 +34,8 @@ public class FirebaseManager : MonoBehaviour
         {
             if (task.Result == DependencyStatus.Available)
             {
-                _firestore = FirebaseFirestore.DefaultInstance;
-                _isInitialized = true;
+                firestore = FirebaseFirestore.DefaultInstance;
+                isInitialized = true;
                 Debug.Log("Firebase Firestore Initialized Successfully");
             }
             else
@@ -48,7 +48,7 @@ public class FirebaseManager : MonoBehaviour
     // 데이터 쓰기 (Collection과 Key 기반)
     public async Task WriteDataAsync<T>(string collection, string key, T data)
     {
-        if (!_isInitialized)
+        if (!isInitialized)
         {
             Debug.LogError("Firebase is not initialized.");
             return;
@@ -56,7 +56,7 @@ public class FirebaseManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
         }
@@ -69,7 +69,7 @@ public class FirebaseManager : MonoBehaviour
     // 데이터 읽기 (Collection과 Key 기반)
     public async Task<T> ReadDataAsync<T>(string collection, string key) where T : class
     {
-        if (!_isInitialized)
+        if (!isInitialized)
         {
             Debug.LogError("Firebase is not initialized.");
             return null;
@@ -77,7 +77,7 @@ public class FirebaseManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection).Document(key);
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
             if (snapshot.Exists)
             {
@@ -99,7 +99,7 @@ public class FirebaseManager : MonoBehaviour
     // 데이터 업데이트 (Collection과 Key 기반)
     public async Task UpdateDataAsync(string collection, string key, Dictionary<string, object> updates)
     {
-        if (!_isInitialized)
+        if (!isInitialized)
         {
             Debug.LogError("Firebase is not initialized.");
             return;
@@ -107,7 +107,7 @@ public class FirebaseManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection).Document(key);
             await docRef.UpdateAsync(updates);
             Debug.Log($"Data updated at {collection}/{key}");
         }
@@ -120,7 +120,7 @@ public class FirebaseManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(string collection, string key)
     {
-        if (!_isInitialized)
+        if (!isInitialized)
         {
             Debug.LogError("Firebase is not initialized.");
             return;
@@ -128,7 +128,7 @@ public class FirebaseManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection).Document(key);
             await docRef.DeleteAsync();
             Debug.Log($"Data deleted from {collection}/{key}");
         }
