@@ -30,7 +30,7 @@ public class PlayerObject : NetworkBehaviour
         // Host처리
         if (Object.HasStateAuthority)
         {
-            PlayerRegistry.Instance.AddPlayer(Runner, Object.InputAuthority, this);
+            //PlayerRegistry.Instance.AddPlayer(Runner, Object.InputAuthority, this);
         }
         
         // Client처리

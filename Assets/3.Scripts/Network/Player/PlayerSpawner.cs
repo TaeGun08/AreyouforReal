@@ -34,7 +34,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (runner.IsServer)
         {
-            PlayerObject leftPlayer = PlayerRegistry.Instance.GetPlayerOrNull(player);
+            LocalPlayer leftPlayer = PlayerRegistry.Instance.GetPlayerOrNull(player);
             
             if (leftPlayer != null)
             {

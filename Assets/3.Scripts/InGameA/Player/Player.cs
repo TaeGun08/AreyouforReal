@@ -11,8 +11,9 @@ public class Player : NetworkBehaviour
     protected Joystick joystick;
     
     protected NetworkCharacterController characterController;
-    protected CharacterController characterControllerTest;
     protected Animator animator;
+    
+    protected ChangeDetector changeDetector;
 
     [System.Serializable]
     public class PlayerStats
@@ -27,7 +28,6 @@ public class Player : NetworkBehaviour
     protected void Awake()
     {
         characterController = GetComponent<NetworkCharacterController>();
-        characterControllerTest = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
 

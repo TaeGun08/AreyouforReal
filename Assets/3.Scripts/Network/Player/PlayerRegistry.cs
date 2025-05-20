@@ -18,7 +18,7 @@ namespace DefaultNamespace
         // UnitySerializeField인스펙터에서 보이게
         [Networked, Capacity(CAPACITY)]
         [UnitySerializeField]
-        private NetworkDictionary<PlayerRef, PlayerObject> playerDic { get; }
+        private NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
 
         public override void Spawned()
         {
@@ -32,7 +32,7 @@ namespace DefaultNamespace
             runner.RemoveCallbacks(this);
         }
 
-        public PlayerObject GetPlayerOrNull(PlayerRef pRef)
+        public LocalPlayer GetPlayerOrNull(PlayerRef pRef)
         {
             if (playerDic.ContainsKey(pRef))
             {
@@ -48,13 +48,13 @@ namespace DefaultNamespace
         /// <param name="runner"></param>
         /// <param name="pRef"></param>
         /// <param name="playerObject"></param>
-        public void AddPlayer(NetworkRunner runner, PlayerRef pRef, PlayerObject playerObject)
+        public void AddPlayer(NetworkRunner runner, PlayerRef pRef, LocalPlayer localPlayer)
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
             Debug.Assert(runner.IsServer);
             
             // TODO : 유효성 검사
-            playerDic.Add(pRef, playerObject);
+            playerDic.Add(pRef, localPlayer);
 
             // foreach (var p in playerDic)
             // {

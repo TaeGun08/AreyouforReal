@@ -13,6 +13,8 @@ public class PlayerInputBehaviour : SimulationBehaviour
 {
     public static PlayerInputBehaviour Instance { get; private set; }
     private bool attackButton;
+
+    private Joystick joystick;
     
     private void Awake()
     {
@@ -23,7 +25,15 @@ public class PlayerInputBehaviour : SimulationBehaviour
     {
         attackButton |= Input.GetMouseButton(0);
     }
-    
+
+    private void LateUpdate()
+    {
+        if (joystick == null)
+        {
+            joystick = Joystick.Instance;
+        }
+    }
+
     private void OnDestroy()
     {
         Instance = null;
@@ -31,22 +41,11 @@ public class PlayerInputBehaviour : SimulationBehaviour
     
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        PlayerInputData data = new PlayerInputData();
+        NetworkInputData data = new NetworkInputData();
 
-        if (Input.GetKey(KeyCode.W))
-            data.Direction += Vector3.forward;
-
-        if (Input.GetKey(KeyCode.S))
-            data.Direction += Vector3.back;
-
-        if (Input.GetKey(KeyCode.A))
-            data.Direction += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.Direction += Vector3.right;
-
-        data.Buttons.Set(PlayerInputData.ATTACK_BUTTON, attackButton);
-        attackButton = false;
+        if (joystick == null) return; 
+        data.Horizontal += joystick.Horizontal;
+        data.Vertical += joystick.Vertical;
         
         input.Set(data);
     }
