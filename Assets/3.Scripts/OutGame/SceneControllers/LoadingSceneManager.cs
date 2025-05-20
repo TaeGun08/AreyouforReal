@@ -22,7 +22,7 @@ public class LoadingSceneManager : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene("OutGame_LoadingScene");
     }
 
     private async void LoadSceneAsync()

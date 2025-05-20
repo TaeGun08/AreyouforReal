@@ -759,8 +759,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Password
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -969,8 +969,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Email
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1332,7 +1332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 412.20755, y: -224.11461}
+  m_AnchoredPosition: {x: 412.20755, y: -383.91766}
   m_SizeDelta: {x: 824.4151, y: 128.62308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53248663
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -2033,8 +2033,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nick Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2658,7 +2658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269423159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2695,6 +2695,8 @@ MonoBehaviour:
   emailInputField: {fileID: 1175759514}
   passwordInputField: {fileID: 446179293}
   rememberToggle: {fileID: 379520881}
+  popupSignUp: {fileID: 515986733}
+  popupChecking: {fileID: 2121131534}
 --- !u!1 &274407028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2779,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 274407031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515986733}
+        m_TargetAssemblyTypeName: BaseWindow, Assembly-CSharp
+        m_MethodName: OnClickedExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &274407031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2898,7 +2912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 306461815}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2121131536}
+        m_TargetAssemblyTypeName: BaseWindow, Assembly-CSharp
+        m_MethodName: OnClickedExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &306461815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3426,6 +3452,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379520879}
   m_CullTransparentMesh: 0
+--- !u!1 &386402795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386402797}
+  - component: {fileID: 386402796}
+  m_Layer: 0
+  m_Name: FirebaseAccountManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &386402796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386402795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfe4d2160dafe441ac22a3fd471ad11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &386402797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386402795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,7 +3745,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -4028,8 +4098,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4248,6 +4318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 515986732}
+  - component: {fileID: 515986733}
   m_Layer: 5
   m_Name: Popup_Signup
   m_TagString: Untagged
@@ -4276,6 +4347,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &515986733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515986731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be7b715957545f4e8689ac7b4d1407b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emailInputField: {fileID: 619738128}
+  passwordInputField: {fileID: 783886207}
+  nickNameInputField: {fileID: 53248663}
+  login_EmailInputField: {fileID: 1175759514}
+  login_PasswordInputField: {fileID: 446179293}
+  popupChecking: {fileID: 2121131534}
 --- !u!1 &517589472
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,7 +4447,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 517589475}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 269423160}
+        m_TargetAssemblyTypeName: Popup_Login, Assembly-CSharp
+        m_MethodName: OnClickedLoginButtonWrapper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &517589475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4456,8 +4557,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Password
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4688,7 +4789,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 562158713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 269423160}
+        m_TargetAssemblyTypeName: Popup_Login, Assembly-CSharp
+        m_MethodName: OnClickedSignUpButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &562158713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5174,7 +5287,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -5620,8 +5733,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 619738127}
-  - {fileID: 53248662}
   - {fileID: 783886206}
+  - {fileID: 53248662}
   m_Father: {fileID: 1397192942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5728,8 +5841,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Email
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5949,7 +6062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 743163495}
   m_Layer: 0
-  m_Name: ------------------------------------ (1)
+  m_Name: ------------------------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6082,7 +6195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 412.20755, y: -383.91766}
+  m_AnchoredPosition: {x: 412.20755, y: -224.11461}
   m_SizeDelta: {x: 824.4151, y: 128.62308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &783886207
@@ -6176,7 +6289,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -6698,6 +6811,50 @@ RectTransform:
   m_AnchoredPosition: {x: 35.5, y: -4.01001}
   m_SizeDelta: {x: -168.9815, y: -46.363167}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &884189631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884189633}
+  - component: {fileID: 884189632}
+  m_Layer: 0
+  m_Name: MainSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &884189632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884189631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cee97ca85284544a972fc138515c8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &884189633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884189631}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891743086
 GameObject:
   m_ObjectHideFlags: 0
@@ -7347,7 +7504,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 949542046}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515986733}
+        m_TargetAssemblyTypeName: Popup_SignUp, Assembly-CSharp
+        m_MethodName: OnClickedSignUpButtonWrapper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &949542046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7617,7 +7786,7 @@ MonoBehaviour:
   _effectGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.2941177, b: 1, a: 1}
-    key1: {r: 0.6745283, g: 0.8003035, b: 1, a: 1}
+    key1: {r: 0.28773582, g: 0.56234354, b: 1, a: 1}
     key2: {r: 0, g: 0.11449814, b: 1, a: 0}
     key3: {r: 0, g: 0.11449814, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -7625,7 +7794,7 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 46838
+    ctime1: 47802
     ctime2: 65535
     ctime3: 65535
     ctime4: 0
@@ -7740,7 +7909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1013366609
 Transform:
   m_ObjectHideFlags: 0
@@ -7750,7 +7919,7 @@ Transform:
   m_GameObject: {fileID: 1013366608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2848084, y: -22.34081, z: 13.744846}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12790,7 +12959,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -12969,8 +13138,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13255,7 +13424,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1231639977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 269423160}
+        m_TargetAssemblyTypeName: Popup_Login, Assembly-CSharp
+        m_MethodName: OnClickedForgotPasswordButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1231639977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13503,8 +13684,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14400,8 +14581,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1489876045}
   - component: {fileID: 1489876044}
+  - component: {fileID: 1489876046}
   m_Layer: 0
-  m_Name: FirebaseManager
+  m_Name: FirestoreManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14434,6 +14616,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1489876046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489876043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f269398c43f678245a057d5225f0a9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1491616660
 GameObject:
   m_ObjectHideFlags: 0
@@ -15207,8 +15401,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15772,6 +15966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d1f4a57489b9f4baeeeee321f2b25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupLogin: {fileID: 269423160}
 --- !u!4 &1751013369
 Transform:
   m_ObjectHideFlags: 0
@@ -16276,6 +16471,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810191081}
   m_CullTransparentMesh: 0
+--- !u!1 &1823825033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1823825034}
+  m_Layer: 0
+  m_Name: ------------------------------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823825034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823825033}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861210835
 GameObject:
   m_ObjectHideFlags: 0
@@ -16695,7 +16921,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2051853912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2121131536}
+        m_TargetAssemblyTypeName: BaseWindow, Assembly-CSharp
+        m_MethodName: OnClickedExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2051853912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16793,8 +17031,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
-  m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
+  m_fontAsset: {fileID: 11400000, guid: b68ef8ac2bf999849ade7eb49ec0de58, type: 2}
+  m_sharedMaterial: {fileID: 995687124847868080, guid: b68ef8ac2bf999849ade7eb49ec0de58,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16941,6 +17179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2121131535}
+  - component: {fileID: 2121131536}
   m_Layer: 5
   m_Name: Popup_Checking
   m_TagString: Untagged
@@ -16969,6 +17208,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2121131536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121131534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f713909b92f764da383c635eb9b569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -16981,6 +17232,9 @@ SceneRoots:
   - {fileID: 1197706520}
   - {fileID: 743163495}
   - {fileID: 1751013369}
-  - {fileID: 1013366609}
-  - {fileID: 1489876045}
   - {fileID: 1991468291}
+  - {fileID: 1013366609}
+  - {fileID: 1823825034}
+  - {fileID: 386402797}
+  - {fileID: 1489876045}
+  - {fileID: 884189633}

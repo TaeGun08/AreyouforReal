@@ -723,7 +723,6 @@ GameObject:
   - component: {fileID: 846721334}
   - component: {fileID: 846721333}
   - component: {fileID: 846721332}
-  - component: {fileID: 846721331}
   m_Layer: 5
   m_Name: Slider_LoadingBar
   m_TagString: Untagged
@@ -752,21 +751,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.9, y: -608.19}
   m_SizeDelta: {x: 1670.9839, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &846721331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846721329}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32715f20d878e140bfc0d9a834edbe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 846721332}
-  progressText: {fileID: 546486626}
-  loadDuration: 1.5
 --- !u!114 &846721332
 MonoBehaviour:
   m_ObjectHideFlags: 0
