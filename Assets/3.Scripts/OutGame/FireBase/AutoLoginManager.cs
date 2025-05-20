@@ -46,21 +46,13 @@ public class AutoLoginManager : MonoBehaviour
             PlayerPrefs.DeleteKey(PasswordKey);
         }
         
-        PerformLogin(email, password);
+        //AutoLogin
+        FirebaseAccountManager.Instance.SignIn(email, password);
     }
 
     void AutoLogin(string email, string password)
     {
         Debug.Log($"자동 로그인 시도: {email}");
-        //FirebaseManager로 처리
-        PerformLogin(email, password);
-    }
-
-    void PerformLogin(string email, string password)
-    {
-        // 여기에 실제 로그인 로직 작성
-        // 예시: 서버 요청 or 로컬 인증 등
-        // Debug.Log($"로그인 성공: {email}");
-        //FirebaseManager로 처리
+        FirebaseAccountManager.Instance.SignIn(email, password);
     }
 }

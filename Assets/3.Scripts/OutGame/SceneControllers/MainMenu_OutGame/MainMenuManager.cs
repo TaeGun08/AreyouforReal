@@ -6,18 +6,29 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    MainMenuManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private InputAction testAction;
 
-
-    private void OnEnable()
+    [System.Serializable]
+    public class Popups
     {
-        testAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/space");
-        testAction.Enable();
-        testAction.performed += LoadLobbyScene;
+        public Popup_Login logInPopup;
+        // public GameObject signupPopup;
     }
     
-    public void LoadLobbyScene(InputAction.CallbackContext context)
+    public Popups popups;
+    
+    private void Update()
     {
-        LoadingSceneManager.LoadScene("LobbyScene");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadingSceneManager.LoadScene("LobbyScene");
+        }
     }
 }

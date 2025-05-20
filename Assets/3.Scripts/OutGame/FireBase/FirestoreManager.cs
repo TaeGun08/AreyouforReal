@@ -10,8 +10,7 @@ public class FirestoreManager : MonoBehaviour
 {
     private FirebaseFirestore firestore;
     private bool isInitialized = false;
-
-    // 싱글톤 구현
+    
     public static FirestoreManager Instance { get; private set; }
 
     private void Awake()
@@ -25,6 +24,11 @@ public class FirestoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        InitializeFirebase();
     }
 
     // Firebase 초기화
@@ -46,7 +50,7 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 쓰기 (Collection과 Key 기반)
-    public async Task WriteDataAsync<T>(string collection, string key, T data)
+    public async Task WriteDataAsync<T>(FirebaseCollections collection, string key, T data)
     {
         if (!isInitialized)
         {
@@ -56,7 +60,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
         }
@@ -67,7 +71,7 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 읽기 (Collection과 Key 기반)
-    public async Task<T> ReadDataAsync<T>(string collection, string key) where T : class
+    public async Task<T> ReadDataAsync<T>(FirebaseCollections collection, string key) where T : class
     {
         if (!isInitialized)
         {
@@ -77,7 +81,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
             if (snapshot.Exists)
             {
@@ -97,7 +101,7 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 업데이트 (Collection과 Key 기반)
-    public async Task UpdateDataAsync(string collection, string key, Dictionary<string, object> updates)
+    public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
         if (!isInitialized)
         {
@@ -107,7 +111,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.UpdateAsync(updates);
             Debug.Log($"Data updated at {collection}/{key}");
         }
@@ -118,7 +122,7 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 삭제 (Collection과 Key 기반)
-    public async Task DeleteDataAsync(string collection, string key)
+    public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
         if (!isInitialized)
         {
@@ -128,7 +132,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.DeleteAsync();
             Debug.Log($"Data deleted from {collection}/{key}");
         }
