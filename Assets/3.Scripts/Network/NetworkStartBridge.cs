@@ -59,7 +59,7 @@ public class NetworkStartBridge : MonoBehaviour
         {
             GameMode = mode,
             SessionName = roomCode,
-            Scene = SceneRef.FromIndex(1),
+            Scene = SceneRef.FromIndex(4),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
         });
 
