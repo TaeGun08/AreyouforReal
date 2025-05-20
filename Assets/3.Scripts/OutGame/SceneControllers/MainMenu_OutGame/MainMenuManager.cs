@@ -4,26 +4,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
+public enum PlayerPrefsKey
+{
+    UserEmail,
+    UserPassword,
+}
+
 public class MainMenuManager : MonoBehaviour
 {
-    MainMenuManager Instance;
-
-    private void Awake()
+    
+    [SerializeField] private Popup_Login popups;
+    [SerializeField] private AutoLoginManager autoLogin;
+    
+    //PlayerPrefs Keys
+    private const string EmailKey = "UserEmail";
+    private const string PasswordKey = "UserPassword";
+    
+    private void Start()
     {
-        Instance = this;
+        if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
+        {
+            string savedEmail = PlayerPrefs.GetString(EmailKey);
+            string savedPassword = PlayerPrefs.GetString(PasswordKey);
+
+            // 자동 로그인 시도
+            autoLogin.AutoLogin(savedEmail, savedPassword);
+        }
+
     }
 
-    private InputAction testAction;
-
-    [System.Serializable]
-    public class Popups
-    {
-        public Popup_Login logInPopup;
-        // public GameObject signupPopup;
-    }
-    
-    public Popups popups;
-    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

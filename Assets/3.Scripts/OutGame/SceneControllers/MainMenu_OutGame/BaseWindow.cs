@@ -13,7 +13,7 @@ public class BaseWindow : MonoBehaviour
     //     gameObject.SetActive(false);
     // }
     
-    protected virtual void OnClickedExitButton()
+    public virtual void OnClickedExitButton()
     {
         gameObject.SetActive(false);
     }

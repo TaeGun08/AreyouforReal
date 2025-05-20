@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Popup_Login : BaseWindow
@@ -14,11 +15,10 @@ public class Popup_Login : BaseWindow
     [Header("Auto Login Toggle")]
     [SerializeField] private Toggle rememberToggle;
     
-    //PopUp
     [Space]
     [Header("PopUp Panel")]
-    [SerializeField] private SignUpPopUp signUpPopUp;
-    //[SerializeField] private SignUpPopUp signUpPopUp;
+    [SerializeField] private Popup_SignUp signUpPopUp;
+    [SerializeField] private GameObject popupChecking;
     
     //PlayerPrefs Keys
     private const string EmailKey = "UserEmail";
@@ -61,24 +61,17 @@ public class Popup_Login : BaseWindow
         else
         {
             //로그인 실패
-            //로그인 실패 창 띄우기
+            popupChecking.SetActive(true);
         }
-
-
     }
     
     public void OnClickedSignUpButton()
     {
-        
+        signUpPopUp.gameObject.SetActive(true);
     }
     
     public void OnClickedForgotPasswordButton()
     {
         //later...
     }
-    
-    // protected override void OnClickedExitButton()
-    // {
-    //     base.OnClickedExitButton();
-    // }
 }
