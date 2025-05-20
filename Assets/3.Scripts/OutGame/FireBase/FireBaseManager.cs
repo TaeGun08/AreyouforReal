@@ -1,25 +1,140 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Firebase;
-using UnityEngine;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using UnityEngine;
 
 public class FirebaseManager : MonoBehaviour
 {
-    void Start()
+    private FirebaseFirestore _firestore;
+    private bool _isInitialized = false;
+
+    // 싱글톤 구현
+    public static FirebaseManager Instance { get; private set; }
+
+    private void Awake()
     {
-        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        
-        DocumentReference docRef = db.Collection("Test").Document("Test");
-        Dictionary<string, object> city = new Dictionary<string, object>
+        if (Instance == null)
         {
-            { "Test", "Los Angeles" },
-            { "State", "CA" },
-            { "Country", "USA" }
-        };
-        docRef.SetAsync(city).ContinueWithOnMainThread(task => {
-            Debug.Log("Added data to the Test document in the cities collection.");
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // Firebase 초기화
+    public void InitializeFirebase()
+    {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.Result == DependencyStatus.Available)
+            {
+                _firestore = FirebaseFirestore.DefaultInstance;
+                _isInitialized = true;
+                Debug.Log("Firebase Firestore Initialized Successfully");
+            }
+            else
+            {
+                Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
+            }
         });
+    }
+
+    // 데이터 쓰기 (Collection과 Key 기반)
+    public async Task WriteDataAsync<T>(string collection, string key, T data)
+    {
+        if (!_isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return;
+        }
+
+        try
+        {
+            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            await docRef.SetAsync(data);
+            Debug.Log($"Data written to {collection}/{key}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to write data: {e.Message}");
+        }
+    }
+
+    // 데이터 읽기 (Collection과 Key 기반)
+    public async Task<T> ReadDataAsync<T>(string collection, string key) where T : class
+    {
+        if (!_isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return null;
+        }
+
+        try
+        {
+            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+            if (snapshot.Exists)
+            {
+                return snapshot.ConvertTo<T>();
+            }
+            else
+            {
+                Debug.Log($"No data found at {collection}/{key}");
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to read data: {e.Message}");
+            return null;
+        }
+    }
+
+    // 데이터 업데이트 (Collection과 Key 기반)
+    public async Task UpdateDataAsync(string collection, string key, Dictionary<string, object> updates)
+    {
+        if (!_isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return;
+        }
+
+        try
+        {
+            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            await docRef.UpdateAsync(updates);
+            Debug.Log($"Data updated at {collection}/{key}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to update data: {e.Message}");
+        }
+    }
+
+    // 데이터 삭제 (Collection과 Key 기반)
+    public async Task DeleteDataAsync(string collection, string key)
+    {
+        if (!_isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return;
+        }
+
+        try
+        {
+            DocumentReference docRef = _firestore.Collection(collection).Document(key);
+            await docRef.DeleteAsync();
+            Debug.Log($"Data deleted from {collection}/{key}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to delete data: {e.Message}");
+        }
     }
 }
