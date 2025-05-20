@@ -36,6 +36,4 @@ public class MainSystem : MonoBehaviour
     // {
     //     SampleUser.FusionPlayerRef = playerRef;
     // }
-    
-    
 }
