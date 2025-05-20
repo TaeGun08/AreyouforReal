@@ -6,6 +6,12 @@ using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine;
 
+public enum FirebaseCollections
+{
+    Players,
+    Rooms,
+}
+
 public class FirestoreManager : MonoBehaviour
 {
     private FirebaseFirestore firestore;
@@ -15,15 +21,7 @@ public class FirestoreManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     private void Start()
@@ -50,12 +48,12 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 쓰기 (Collection과 Key 기반)
-    public async Task WriteDataAsync<T>(FirebaseCollections collection, string key, T data)
+    public async Task<bool> WriteDataAsync<T>(FirebaseCollections collection, string key, T data)
     {
-        if (!isInitialized)
+        if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
-            return;
+            return false;
         }
 
         try
@@ -63,17 +61,19 @@ public class FirestoreManager : MonoBehaviour
             DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
+            return true;
         }
         catch (Exception e)
         {
             Debug.LogError($"Failed to write data: {e.Message}");
+            return false;
         }
     }
 
     // 데이터 읽기 (Collection과 Key 기반)
     public async Task<T> ReadDataAsync<T>(FirebaseCollections collection, string key) where T : class
     {
-        if (!isInitialized)
+        if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
             return null;
@@ -103,7 +103,7 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 업데이트 (Collection과 Key 기반)
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
-        if (!isInitialized)
+        if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
             return;
@@ -124,7 +124,7 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
-        if (!isInitialized)
+        if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
             return;

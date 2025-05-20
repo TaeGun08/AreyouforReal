@@ -14,8 +14,26 @@ public class PlayerIdleState : PlayerState
 
     public override void StateUpdate()
     {
-        if (playerController.LocalPlayer.InputJoystick())
-            playerController.ChangeState(State.Walk);
+        if (GetInput(out NetworkInputData input))
+        {
+            if (input.IsAttack)
+            {
+                playerController.ChangeState(State.Attack);
+                return;
+            }
+            
+            Vector3 dir = new Vector3(input.Horizontal, 0, input.Vertical).normalized;
+            playerController.CharacterController.Move(dir * 1f * Runner.DeltaTime);
+
+            if (input.IsRun)
+            {
+                playerController.ChangeState(State.Run);
+                return;
+            }
+            
+            if (input.Horizontal != 0 || input.Vertical != 0)
+                playerController.ChangeState(State.Walk);
+        }
     }
 
     public override void StateExit()

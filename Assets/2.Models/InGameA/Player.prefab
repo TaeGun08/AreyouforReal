@@ -31218,6 +31218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2260716382537420035}
+  - component: {fileID: 8269359158420431952}
   m_Layer: 3
   m_Name: PlayerAttackState
   m_TagString: Untagged
@@ -31240,6 +31241,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5279777517284383425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8269359158420431952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772879583449877057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a569d24e0ca6d40a54ed29c7f3236d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2776768692500489684
 GameObject:
   m_ObjectHideFlags: 0
@@ -35425,6 +35438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4917217734170515698}
+  - component: {fileID: 4428494434397144654}
   m_Layer: 3
   m_Name: PlayerRunState
   m_TagString: Untagged
@@ -35447,6 +35461,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5279777517284383425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4428494434397144654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229168038801361662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2762a85d4f9dc2b498760aafaf0c6dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3236719098484200554
 GameObject:
   m_ObjectHideFlags: 0
@@ -38015,6 +38041,10 @@ MonoBehaviour:
   - {fileID: 9124484678336329888}
   - {fileID: 7743242317217729023}
   - {fileID: 7668169826086334591}
+  - {fileID: 6577950570813430658}
+  - {fileID: 411585117142532709}
+  - {fileID: 4428494434397144654}
+  - {fileID: 8269359158420431952}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &9124484678336329888
 MonoBehaviour:
@@ -38064,6 +38094,8 @@ MonoBehaviour:
   playerStates:
   - {fileID: 6577950570813430658}
   - {fileID: 411585117142532709}
+  - {fileID: 4428494434397144654}
+  - {fileID: 8269359158420431952}
 --- !u!1 &3503386635920396123
 GameObject:
   m_ObjectHideFlags: 0
