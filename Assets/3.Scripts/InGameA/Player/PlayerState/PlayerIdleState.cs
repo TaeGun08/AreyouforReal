@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerState
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
-        this.playerController.ChangeAnimation(CurrentState);
+        this.playerController.CurrentState = CurrentState;
     }
 
     public override void StateUpdate()
