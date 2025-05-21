@@ -21,8 +21,8 @@ public class RoomData
     [FirestoreProperty] public int MembersCount { get; set; }
     [FirestoreProperty] public bool IsGameStarted { get; set; }
 }
-
-public class FirebaseDataSheet : MonoBehaviour
-{
-    
-}
+//
+// public class FirebaseDataSheet : MonoBehaviour
+// {
+//     
+// }
