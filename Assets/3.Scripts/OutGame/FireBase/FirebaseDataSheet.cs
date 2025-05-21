@@ -18,10 +18,12 @@ public class PlayerData
 public class RoomData
 {
     [FirestoreProperty] public string RoomName { get; set; }
+    [FirestoreProperty] public string RoomInfo { get; set; }
     [FirestoreProperty] public string RoomCode { get; set; }
     [FirestoreProperty] public int MembersCount { get; set; }
     [FirestoreProperty] public Timestamp CreatedAt { get; set; }
     [FirestoreProperty] public bool IsGameStarted { get; set; }
+    [FirestoreProperty] public bool IsGameOver { get; set; }
 }
 //
 // public class FirebaseDataSheet : MonoBehaviour
