@@ -101,6 +101,18 @@ public class FirestoreManager : MonoBehaviour
     }
 
     // 데이터 업데이트 (Collection과 Key 기반)
+    #region 사용설명서
+    // public async Task Sample()
+    // {
+    //     var sampleDic = new Dictionary<string, object> //전달할 딕셔너리
+    //     {
+    //          변경할 위치        변경할 값
+    //         {"SampleField",  "SampleValue"} // 필드, 값 형태로 전달시 일치하는 필드의 값을 변경
+    //     };
+    //         
+    //     await UpdateDataAsync(FirebaseCollections.Rooms, "Key", sampleDic); //실행
+    // }
+    #endregion
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
         if (isInitialized.Equals(false))
@@ -139,6 +151,39 @@ public class FirestoreManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Failed to delete data: {e.Message}");
+        }
+    }
+    
+    //콜렉션 내의 모든 문서 읽어오기
+    public async Task<List<T>> GetAllDocumentsAsync<T>(FirebaseCollections collection) where T : class
+    {
+        if (isInitialized.Equals(false))
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return null;
+        }
+
+        try
+        {
+            CollectionReference colRef = firestore.Collection(collection.ToString());
+            QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
+
+            List<T> allDocs = new List<T>();
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                if (doc.Exists)
+                {
+                    allDocs.Add(doc.ConvertTo<T>());
+                }
+            }
+
+            Debug.Log($"Fetched {allDocs.Count} documents from {collection}");
+            return allDocs;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to read all documents: {e.Message}");
+            return null;
         }
     }
 }
