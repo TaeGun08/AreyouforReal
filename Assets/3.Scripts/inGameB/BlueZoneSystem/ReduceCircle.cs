@@ -11,7 +11,7 @@ public class ReduceCircle : MonoBehaviour
     public float waitTime = 45f;
 
     private MakeCircle makeCircle;
-    private CircleData currentZone;
+    public CircleData currentZone;
 
     private void Start()
     {
@@ -39,7 +39,6 @@ public class ReduceCircle : MonoBehaviour
             // 다음 Zone 정보(대상) 꺼내기
             var nextZone = makeCircle.DequeueCircle();
 
-            // 애니메이션 시작 전 초기값 저장
             Vector3 startCenter = currentZone.center;
             float   startRadius = currentZone.radius;
 

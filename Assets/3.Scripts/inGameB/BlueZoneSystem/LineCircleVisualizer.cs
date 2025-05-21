@@ -4,8 +4,9 @@ using UnityEngine;
 public class LineCircleVisualizer : MonoBehaviour
 {
     [Tooltip("줄어드는 Zone 정보를 가진 ReduceCircle")]
-    public CircleData currentZone;
+    public ReduceCircle reduceCircle;
 
+    [Tooltip("원 둘레를 몇 개의 선분으로 나눌지")]
     public int segmentCount = 64;
 
     [Tooltip("라인 두께")]
@@ -16,21 +17,25 @@ public class LineCircleVisualizer : MonoBehaviour
     void Awake()
     {
         lr = GetComponent<LineRenderer>();
+
         // 라인 두께 설정
         lr.startWidth = lineWidth;
         lr.endWidth   = lineWidth;
+
+        // 선을 loop(폐곡선)으로
         lr.loop = true;
+
         // 포인트 개수를 segmentCount+1 로 설정
         lr.positionCount = segmentCount + 1;
     }
 
     void Update()
     {
-        if (currentZone == null) return;
+        if (reduceCircle == null) return;
 
         // 현재 Zone 정보를 가져와서 원 그리기
-        Vector3 center = currentZone.center;
-        float   radius = currentZone.radius;
+        Vector3 center = reduceCircle.currentZone.center;
+        float   radius = reduceCircle.currentZone.radius;
         DrawCircle(center, radius);
     }
 
