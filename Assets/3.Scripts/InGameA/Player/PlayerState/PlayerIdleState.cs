@@ -9,31 +9,28 @@ public class PlayerIdleState : PlayerState
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
-        this.playerController.CurrentState = CurrentState;
     }
 
     public override void StateUpdate()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
         if (GetInput(out NetworkInputData input))
         {
-            if (input.IsAttack)
+            if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0))
             {
                 playerController.ChangeState(State.Attack);
                 return;
             }
             
-            Vector3 dir = new Vector3(input.Horizontal, 0, input.Vertical).normalized;
+            Vector3 dir = input.Direction.normalized;
             playerController.CharacterController.Move(dir * 1f * Runner.DeltaTime);
-
-            if (input.IsRun)
-            {
-                playerController.ChangeState(State.Run);
-                return;
-            }
             
-            if (input.Horizontal != 0 || input.Vertical != 0)
+            if (input.Direction.sqrMagnitude > 0.0f)
                 playerController.ChangeState(State.Walk);
         }
+#else
+
+#endif
     }
 
     public override void StateExit()

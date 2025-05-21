@@ -19,8 +19,8 @@ public class PlayerController : NetworkBehaviour
     
     private Dictionary<PlayerState.State, PlayerState> playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
     private Dictionary<PlayerState.State, int> playerAnimDic = new Dictionary<PlayerState.State, int>();
-
-    public PlayerState.State CurrentState { get; set; }
+    
+    private PlayerState.State previousState;
 
     private void Awake()
     {
@@ -35,6 +35,7 @@ public class PlayerController : NetworkBehaviour
         }
         
         ChangeState(PlayerState.State.Idle);
+        previousState = PlayerState.State.Idle;
         animator.ResetTrigger(playerAnimDic[PlayerState.State.Idle]);
     }
 
@@ -48,10 +49,12 @@ public class PlayerController : NetworkBehaviour
     //     animator.SetTrigger(playerAnimDic[newState]);
     // }
 
-    public override void Render()
-    {
-        animator.SetTrigger(playerAnimDic[CurrentState]);
-    }
+    // public override void Render()
+    // {
+    //     if (previousState == currentState.CurrentState) return;
+    //     animator.SetTrigger(playerAnimDic[currentState.CurrentState]);
+    //     previousState = currentState.CurrentState;
+    // }
     
     public void ChangeState(PlayerState.State newState)
     {
@@ -61,6 +64,7 @@ public class PlayerController : NetworkBehaviour
         animator.ResetTrigger(playerAnimDic[newState]);
         currentState?.StateExit();
         currentState = playerStateDic[newState];
+        animator.SetTrigger(playerAnimDic[currentState.CurrentState]);
         currentState.StateEnter(this);
     }
 }
