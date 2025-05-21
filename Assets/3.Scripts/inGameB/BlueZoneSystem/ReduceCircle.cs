@@ -1,75 +1,79 @@
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Transform))]
 public class ReduceCircle : MonoBehaviour
 {
-    [Header("MakeCircle")]
-    public MakeCircle makeCircle;
+    [Header("Reduction Settings")]
+    [Tooltip("한 Zone이 줄어드는 데 걸리는 시간 (초)")]
+    public float reductionTime = 10f;
 
-    [Header("초")]
-    public float shrinkDuration = 90f;
+    [Tooltip("다음 Zone으로 넘어가기 전 대기 시간 (초)")]
+    public float waitTime = 10f;
 
-    private bool isShrinking;
-    private float startRadius;
-    private float targetRadius;
-    private float elapsedTime;
+    private MakeCircle makeCircle;
+    private CircleData currentZone;
 
     private void Start()
     {
+        makeCircle = GetComponent<MakeCircle>();
         if (makeCircle == null)
         {
-            makeCircle = GetComponent<MakeCircle>();
-        }
-
-        BeginShrink(0);
-    }
-
-    /// from 단계의 원에서 다음 단계의 원으로 줄어들기 시작합니다.
-    public void BeginShrink(int fromIndex)
-    {
-        if (fromIndex < 0 || fromIndex + 1 >= makeCircle.CircleCount)
-        {
-            isShrinking = false;
+            Debug.LogError("MakeCircle 컴포넌트를 찾을 수 없습니다.");
+            enabled = false;
             return;
         }
 
-        startRadius  = makeCircle.GetRadius(fromIndex);
-        targetRadius = makeCircle.GetRadius(fromIndex + 1);
-        elapsedTime  = 0f;
-        isShrinking  = true;
-
-        // 초기 위치와 크기 설정
-        transform.position   = makeCircle.GetCenter(fromIndex);
-        transform.localScale = Vector3.one * startRadius * 2f;
+        // 첫 Zone 꺼내서 currentZone으로 설정
+        currentZone = makeCircle.DequeueCircle();
+        StartCoroutine(ReduceRoutine());
     }
 
-    private void Update()
+    private IEnumerator ReduceRoutine()
     {
-        if (!isShrinking) return;
+        // 첫 Zone 대기
+        yield return new WaitForSeconds(waitTime);
 
-        elapsedTime += Time.deltaTime;
-        float t = Mathf.Clamp01(elapsedTime / shrinkDuration);
-
-        float radius = Mathf.Lerp(startRadius, targetRadius, t);
-        transform.localScale = Vector3.one * radius * 2f;
-
-        if (t >= 1f)
+        // 남은 Zone이 있을 때까지 반복
+        while (makeCircle.CircleCount > 0)
         {
-            isShrinking = false;
+            // 다음 Zone 정보(대상) 꺼내기
+            var nextZone = makeCircle.DequeueCircle();
+
+            // 애니메이션 시작 전 초기값 저장
+            Vector3 startCenter = currentZone.center;
+            float   startRadius = currentZone.radius;
+
+            Vector3 endCenter = nextZone.center;
+            float   endRadius = nextZone.radius;
+
+            float elapsed = 0f;
+            while (elapsed < reductionTime)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / reductionTime);
+
+                // 중심과 반지름을 부드럽게 보간
+                currentZone.center = Vector3.Lerp(startCenter, endCenter, t);
+                currentZone.radius = Mathf.Lerp(startRadius, endRadius, t);
+
+                yield return null;
+            }
+
+            // 다음 Zone 시작 전 대기
+            if (makeCircle.CircleCount > 0)
+                yield return new WaitForSeconds(waitTime);
         }
+
+        Debug.Log("모든 Zone 축소 완료");
     }
 
-    // Gizmo로 줄어드는 반지름 표시
     private void OnDrawGizmos()
     {
-        if (!isShrinking) return;
+        if (currentZone == null)
+            return;
 
-        // 현재 축소 중인 반지름 (파란색)
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, transform.localScale.x / 2f);
-
-        // 목표 반지름 (빨간색)
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, targetRadius);
+        // 런타임 중 하나의 Zone만 시각화
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(currentZone.center, currentZone.radius);
     }
 }
