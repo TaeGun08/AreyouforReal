@@ -165,6 +165,10 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.HoochooCompany.AreyouforReal
     Standalone: com.HoochooCompany.AreyouforReal
+<<<<<<< HEAD
+=======
+    iPhone: com.HoochooCompany.AreyouforReal
+>>>>>>> Develop_OutGame
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -761,13 +765,20 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+<<<<<<< HEAD
     Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+=======
+    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO;SHAPES_URP
+>>>>>>> Develop_OutGame
     Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO;SHAPES_URP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
+<<<<<<< HEAD
     Standalone: 0
+=======
+>>>>>>> Develop_OutGame
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel: {}

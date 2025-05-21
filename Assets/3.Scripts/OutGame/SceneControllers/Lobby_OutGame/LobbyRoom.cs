@@ -1,16 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Firebase.Firestore;
+using Fusion;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyRoom : MonoBehaviour
 {
-    //방 제목, 설명, 코드, 게임 시작 여부 표시용(실제로 확인해 봐야 함(갱신 이슈))
-    [SerializeField] private TMP_Text roomNameText;
-    [SerializeField] private TMP_Text roomInfoText;
+    [Header("Components")]
+    [SerializeField] private TMP_Text roomName;             // 제목
+    [SerializeField] private TMP_Text roomInfo;             // 설명
+    [SerializeField] private Button EnterButton;            // 게임 시작 버튼
+    [SerializeField] private GameObject DimBackground;      // 방 입장 불가시 표시할 가림막
+    [SerializeField] private GameObject joinableIcon;       // 방 입장 가능할때 표시할 아이콘
+    [SerializeField] private GameObject unjoinableIcon;     // 방 입장 불가시 표시할 아이콘
     
-    // [SerializeField] private bool createdAt;
-    [SerializeField] private bool isGameStarted;
+    private string roomCode;       //세션 코드
+    private bool isGameOver;       //게임 종료 여부
+    public Timestamp createdAt { get; private set; }   //방 생성 시점 (정렬용)
+    
+    public void RoomSetting( RoomData roomData )
+    {
+        roomName.text = roomData.RoomName;
+        roomInfo.text = roomData.RoomInfo;
+        roomCode = roomData.RoomCode;
+        createdAt = roomData.CreatedAt;
+        
+        DimBackground.SetActive( roomData.IsGameStarted ); //게임이 이미 시작됐을 경우 가림막을 표시해서 보는사람에게 차이 주기
+        EnterButton.interactable = !roomData.IsGameStarted; //게임이 이미 시작됐을 경우 클릭 비활성화
+    }
 
-    [HideInInspector] public string roomCode;
+    //ButtonEvent
+    public void OnClickedRoomButton()
+    {
+        NetworkStartBridge.Instance.SetCode(roomCode);
+        _ = NetworkStartBridge.Instance.StartGame(GameMode.Client);
+    }
 }
