@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -65,14 +67,17 @@ namespace DefaultNamespace
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
             Debug.Assert(runner.IsServer);
-            
             // TODO : 유효성 검사
             playerDic.Add(pRef, localPlayer);
-
-            // foreach (var p in playerDic)
-            // {
-            //     Debug.Log($"Player : {p.Key.PlayerId}");
-            // }
+            // TODO : Player 업데이트
+            
+            var userCount = new Dictionary<string, object>
+            {
+                { "MembersCount", playerDic.Count }
+            };
+            Debug.Log("업데이트");
+            FirestoreManager.Instance.UpdateDataAsync(
+                FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
         }
         
         public void RemovePlayer(NetworkRunner runner, PlayerRef pRef)
@@ -94,13 +99,28 @@ namespace DefaultNamespace
                 RemovePlayer(runner, player);
             }
         }
+
+        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+        {
+            if (shutdownReason == ShutdownReason.HostMigration)
+            {
+                // Debug.Log("호스트 마이그레이션 발생");
+            }
+            else if (shutdownReason == ShutdownReason.DisconnectedByPluginLogic ||
+                     shutdownReason == ShutdownReason.Ok ||
+                     shutdownReason == ShutdownReason.ServerInRoom)
+            {
+                // Debug.Log("호스트가 나가거나 방이 종료됨");
+                FirestoreManager.Instance.DeleteDataAsync(
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"]);
+            }
+        }
         
         #region INetworkRunnerCallbacks
         
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
         public void OnInput(NetworkRunner runner, NetworkInput input) { }
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
         public void OnConnectedToServer(NetworkRunner runner) { }
         public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
         public void OnConnectFailed(NetworkRunner runner, Fusion.Sockets.NetAddress remoteAddress, Fusion.Sockets.NetConnectFailedReason reason) { }
