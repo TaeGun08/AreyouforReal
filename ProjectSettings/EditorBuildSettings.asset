@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scenes/OutGame/OutGame_LobbyScene.unity
     guid: 10b999276f95be84285918070a5295f2
+  - enabled: 1
+    path: Assets/1.Scenes/InGameA/TestScene_Network_InGameA.unity
+    guid: b4e78405533b84545a78bdf701f0e510
+  - enabled: 1
+    path: Assets/1.Scenes/InGameA/TestScene_Network_LobbyA.unity
+    guid: 9331a3e057463ec419f475034c09c1cf
   m_configObjects: {}

@@ -12,7 +12,6 @@ public abstract class PlayerState : NetworkBehaviour
         Run,
         Attack,
         Knockout,
-        
     }
     
     protected PlayerController playerController;

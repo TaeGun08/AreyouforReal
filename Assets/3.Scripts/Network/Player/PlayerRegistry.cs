@@ -41,6 +41,19 @@ namespace DefaultNamespace
             
             return null;
         }
+
+        public void MovePlayer(Vector3 position)
+        {
+            // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
+            Debug.Assert(Runner.IsServer);
+            
+            foreach (var player in playerDic)
+            {
+                // 캐싱필요
+                player.Value.GetComponent<NetworkCharacterController>().Teleport(position);
+            }
+            // TODO : 플레이이동
+        }
         
         /// <summary>
         /// 호스트만 Add하지만 [Network]로 동기화해서 모두 공유함!
