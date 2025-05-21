@@ -472,7 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runnerPrefab: {fileID: 3116285149370853324, guid: 66bf86db49d4b6547bb65eaed1750355,
     type: 3}
-  sceneIndex: 5
+  sceneIndex: 4
 --- !u!1001 &1089912704
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,8 +26,8 @@ public class PlayerInputBehaviour : SimulationBehaviour
 
     private void Update()
     {
-        run |= Input.GetKey(KeyCode.Q);
-        attack |= Input.GetKey(KeyCode.W);
+        run = run | Input.GetKey(KeyCode.LeftShift);
+        attack = attack | Input.GetMouseButtonDown(0);
     }
 
     private void LateUpdate()
@@ -52,17 +52,27 @@ public class PlayerInputBehaviour : SimulationBehaviour
     {
         NetworkInputData data = new NetworkInputData();
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (joystick != null)
-        {
-            data.Horizontal += joystick.Horizontal;
-            data.Vertical += joystick.Vertical;
-        }
 
-        if (actionButton != null)
-        {
-            data.IsRun = run;
-            data.IsAttack = attack;
-        }
+        if (Input.GetKey(KeyCode.W))
+            data.Direction += Vector3.forward;
+
+        if (Input.GetKey(KeyCode.S))
+            data.Direction += Vector3.back;
+
+        if (Input.GetKey(KeyCode.A))
+            data.Direction += Vector3.left;
+
+        if (Input.GetKey(KeyCode.D))
+            data.Direction += Vector3.right;
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+            data.IsRun = true;
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            data.IsRun = false;
+        
+        data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, attack);
+        attack = false;
 #else
                 if (joystick != null)
         {

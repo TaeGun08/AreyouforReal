@@ -19,7 +19,7 @@ public class PlayerController : NetworkBehaviour
     
     private Dictionary<PlayerState.State, PlayerState> playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
     private Dictionary<PlayerState.State, int> playerAnimDic = new Dictionary<PlayerState.State, int>();
-    
+
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();
@@ -40,20 +40,26 @@ public class PlayerController : NetworkBehaviour
     {
         currentState?.StateUpdate();
     }
-
-    public void ChangeAnimation(PlayerState.State newState)
-    {
-        animator.SetTrigger(playerAnimDic[newState]);
-    }
-
+    
     public void ChangeState(PlayerState.State newState)
     {
         if (currentState != null)
             if (currentState.CurrentState.Equals(newState)) return;
         
-        animator.ResetTrigger(playerAnimDic[newState]);
         currentState?.StateExit();
+        
         currentState = playerStateDic[newState];
+        
         currentState.StateEnter(this);
+    }
+    
+    public void ChangeAnimation(PlayerState.State newState)
+    {
+        animator.SetTrigger(playerAnimDic[newState]);
+    }
+
+    public void ResetAnimation(PlayerState.State curState)
+    {
+        animator.ResetTrigger(playerAnimDic[curState]);
     }
 }
