@@ -9,6 +9,7 @@ public class PlayerIdleState : PlayerState
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
+        this.playerController.ChangeAnimation(CurrentState);
     }
 
     public override void StateUpdate()
@@ -21,19 +22,19 @@ public class PlayerIdleState : PlayerState
                 playerController.ChangeState(State.Attack);
                 return;
             }
-            
+
             Vector3 dir = input.Direction.normalized;
             playerController.CharacterController.Move(dir * 1f * Runner.DeltaTime);
-            
+
             if (input.Direction.sqrMagnitude > 0.0f)
                 playerController.ChangeState(State.Walk);
         }
 #else
-
 #endif
     }
 
     public override void StateExit()
     {
+        playerController.ResetAnimation(CurrentState);
     }
 }

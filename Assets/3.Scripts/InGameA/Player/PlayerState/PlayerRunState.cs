@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerRunState : PlayerState
 {
     public override State CurrentState => State.Run;
-    
+
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
+        this.playerController.ChangeAnimation(CurrentState);
     }
 
     public override void StateUpdate()
@@ -21,27 +22,26 @@ public class PlayerRunState : PlayerState
                 playerController.ChangeState(State.Attack);
                 return;
             }
-            
+
             float speed = playerController.LocalPlayer.Stats.RunSpeed;
             Vector3 dir = input.Direction.normalized;
             playerController.CharacterController.Move(dir * speed * Runner.DeltaTime);
-
-            if (input.Buttons.IsSet(NetworkInputData.SHIFT_BUTTON_1) == false)
+            
+            if (input.IsRun == false)
             {
                 playerController.ChangeState(State.Walk);
                 return;
             }
-            
-            if (input.Direction.sqrMagnitude > 0.0f)
+
+            if (input.Direction.sqrMagnitude <= 0.0f)
                 playerController.ChangeState(State.Idle);
         }
 #else
-
 #endif
     }
 
     public override void StateExit()
     {
-
+        playerController.ResetAnimation(CurrentState);
     }
 }

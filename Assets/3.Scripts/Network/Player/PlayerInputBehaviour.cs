@@ -65,11 +65,14 @@ public class PlayerInputBehaviour : SimulationBehaviour
         if (Input.GetKey(KeyCode.D))
             data.Direction += Vector3.right;
         
+        if (Input.GetKey(KeyCode.LeftShift))
+            data.IsRun = true;
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            data.IsRun = false;
+        
         data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, attack);
         attack = false;
-        
-        data.Buttons.Set(NetworkInputData.SHIFT_BUTTON_1, run);
-        run = false;
 #else
                 if (joystick != null)
         {
