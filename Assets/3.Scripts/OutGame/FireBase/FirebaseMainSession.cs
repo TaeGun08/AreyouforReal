@@ -29,7 +29,8 @@ public class FirebaseMainSession : MonoBehaviour
     public void SetUserData(FirebaseUser user)
     {
         SampleUser.UserData = user;
-        Debug.Log($"MainSystem ::: {SampleUser.UserData.DisplayName}");
+        Debug.Log($"MainSystem UserId ::: {SampleUser.UserData.UserId}");
+        Debug.Log($"MainSystem DisplayName ::: {SampleUser.UserData.DisplayName}");
     }
     
     // public void SetFusionPlayerRef(PlayerRef playerRef)
