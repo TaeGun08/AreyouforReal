@@ -68,16 +68,23 @@ namespace DefaultNamespace
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
             Debug.Assert(runner.IsServer);
             // TODO : 유효성 검사
-            playerDic.Add(pRef, localPlayer);
-            // TODO : Player 업데이트
-            
-            var userCount = new Dictionary<string, object>
+
+            if (playerDic.Add(pRef, localPlayer))
             {
-                { "MembersCount", playerDic.Count }
-            };
-            Debug.Log("업데이트");
-            FirestoreManager.Instance.UpdateDataAsync(
-                FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
+                var userCount = new Dictionary<string, object>
+                {
+                    { "MembersCount", playerDic.Count }
+                };
+            
+                _ = FirestoreManager.Instance.UpdateDataAsync(
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
+                
+                // Debug.Log("업데이트");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerRegistry 추가 못함!");
+            }
         }
         
         public void RemovePlayer(NetworkRunner runner, PlayerRef pRef)
@@ -85,10 +92,21 @@ namespace DefaultNamespace
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
             Debug.Assert(runner.IsServer);
 
-            if (playerDic.Remove(pRef) == false)
+            if (playerDic.Remove(pRef))
+            {
+                var userCount = new Dictionary<string, object>
+                {
+                    { "MembersCount", playerDic.Count }
+                };
+            
+                _ = FirestoreManager.Instance.UpdateDataAsync(
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
+            }
+            else
             {
                 Debug.LogWarning("dic에 플레이어 없음");
             }
+            
         }
         
         // Host만 처리
@@ -102,17 +120,20 @@ namespace DefaultNamespace
 
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
-            if (shutdownReason == ShutdownReason.HostMigration)
+            if (runner.IsServer)
             {
-                // Debug.Log("호스트 마이그레이션 발생");
-            }
-            else if (shutdownReason == ShutdownReason.DisconnectedByPluginLogic ||
-                     shutdownReason == ShutdownReason.Ok ||
-                     shutdownReason == ShutdownReason.ServerInRoom)
-            {
-                // Debug.Log("호스트가 나가거나 방이 종료됨");
-                FirestoreManager.Instance.DeleteDataAsync(
-                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"]);
+                if (shutdownReason == ShutdownReason.HostMigration)
+                {
+                    // Debug.Log("호스트 마이그레이션 발생");
+                }
+                else if (shutdownReason == ShutdownReason.DisconnectedByPluginLogic
+                         || shutdownReason == ShutdownReason.Ok
+                         || shutdownReason == ShutdownReason.ServerInRoom)
+                {
+                    // Debug.Log("호스트가 나가거나 방이 종료됨");
+                    _ = FirestoreManager.Instance.DeleteDataAsync(
+                        FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"]);
+                }
             }
         }
         
