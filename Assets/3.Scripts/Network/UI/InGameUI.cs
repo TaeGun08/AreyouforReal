@@ -27,7 +27,7 @@ public class InGameUI : MonoBehaviour
         
         chatSendButton.onClick.AddListener(() =>
         {
-            ChattingSystem.Instance.SendChat(chatInput.text);
+            ChattingSystem.Instance.SendChat(chatInput.text, "asd");
             chatInput.text = string.Empty;
         });
     }
