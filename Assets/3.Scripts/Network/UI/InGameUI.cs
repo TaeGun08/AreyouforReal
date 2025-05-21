@@ -27,7 +27,8 @@ public class InGameUI : MonoBehaviour
         
         chatSendButton.onClick.AddListener(() =>
         {
-            ChattingSystem.Instance.SendChat(chatInput.text, "asd");
+            // TODO : sender에 닉네임 넣기
+            ChattingSystem.Instance.SendChat(chatInput.text, "Imsi");
             chatInput.text = string.Empty;
         });
     }
