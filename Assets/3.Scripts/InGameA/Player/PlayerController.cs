@@ -19,7 +19,7 @@ public class PlayerController : NetworkBehaviour
     
     private Dictionary<PlayerState.State, PlayerState> playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
     private Dictionary<PlayerState.State, int> playerAnimDic = new Dictionary<PlayerState.State, int>();
-
+    
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();
@@ -51,6 +51,12 @@ public class PlayerController : NetworkBehaviour
         currentState = playerStateDic[newState];
         
         currentState.StateEnter(this);
+    }
+
+    public void PlayerKnockout()
+    {
+        ChangeState(PlayerState.State.Knockout);
+        ChangeAnimation(PlayerState.State.Knockout);
     }
     
     public void ChangeAnimation(PlayerState.State newState)
