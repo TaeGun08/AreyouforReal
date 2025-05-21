@@ -2,15 +2,14 @@
   "project_info": {
     "project_number": "1096413087019",
     "project_id": "areyouforreal-cb6d0",
-    "firebase_url": "https://console.firebase.google.com/project/areyouforreal-cb6d0/firestore/databases/-default-/data/~2Fcities~2FLA?hl=ko",
     "storage_bucket": "areyouforreal-cb6d0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1096413087019:android:bef013f5cf9cf1f5e6f16e",
+        "mobilesdk_app_id": "1:1096413087019:android:126e18f1ecb4549be6f16e",
         "android_client_info": {
-          "package_name": "com.HoochooCompany.main"
+          "package_name": "com.HoochooCompany.AreyouforReal"
         }
       },
       "oauth_client": [
