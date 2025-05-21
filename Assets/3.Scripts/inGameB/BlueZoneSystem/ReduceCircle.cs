@@ -5,10 +5,10 @@ public class ReduceCircle : MonoBehaviour
 {
     [Header("Reduction Settings")]
     [Tooltip("한 Zone이 줄어드는 데 걸리는 시간 (초)")]
-    public float reductionTime = 10f;
+    public float reductionTime = 45f;
 
     [Tooltip("다음 Zone으로 넘어가기 전 대기 시간 (초)")]
-    public float waitTime = 10f;
+    public float waitTime = 45f;
 
     private MakeCircle makeCircle;
     private CircleData currentZone;
