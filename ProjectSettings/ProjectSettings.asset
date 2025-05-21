@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 2a9ce2edf31be304d9d06e73b0b85242
+  productGUID: ce9c34b1500626e46b855624b54c0edd
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: HoochooCompany
+  companyName: DefaultCompany
   productName: AreyouforReal
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -162,13 +162,7 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier:
-    Android: com.HoochooCompany.AreyouforReal
-    Standalone: com.HoochooCompany.AreyouforReal
-<<<<<<< HEAD
-=======
-    iPhone: com.HoochooCompany.AreyouforReal
->>>>>>> Develop_OutGame
+  applicationIdentifier: {}
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -176,7 +170,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 27
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -268,7 +262,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 2
+  AndroidTargetArchitectures: 1
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -765,20 +759,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-<<<<<<< HEAD
-    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
-=======
-    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO;SHAPES_URP
->>>>>>> Develop_OutGame
-    Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO;SHAPES_URP
+    Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO
   additionalCompilerArguments: {}
   platformArchitecture: {}
+<<<<<<< HEAD
   scriptingBackend:
     Android: 1
 <<<<<<< HEAD
     Standalone: 0
 =======
 >>>>>>> Develop_OutGame
+=======
+  scriptingBackend: {}
+>>>>>>> Develop_InGameA
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel: {}

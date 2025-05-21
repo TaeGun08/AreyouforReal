@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 <<<<<<<< HEAD:Assets/3.Scripts/inGameB/BlueZoneSystem/LineCircleVisualizer.cs.meta
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: a2a27f7a51fbf544d8feaa5af0e048a6
 =======
 guid: 0586310c46c5add4fa97d64c8d8ac04a
 >>>>>>> Develop_OutGame
+=======
+guid: b732cf46c87f50f40a58d639afd6cd63
+>>>>>>> Develop_InGameA
 ========
 guid: 53871c966c5709b4eb056572696e5bbd
 >>>>>>>> Develop_OutGame:Assets/3.Scripts/OutGame/SceneControllers/Lobby_OutGame/Popup_RoomList.cs.meta
