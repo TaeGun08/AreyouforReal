@@ -10,6 +10,7 @@ public class PlayerData
     [FirestoreProperty] public string NickName { get; set; }
     [FirestoreProperty] public string Role { get; set; }
     [FirestoreProperty] public Timestamp CreatedAt { get; set; }
+    [FirestoreProperty] public bool IsTutorialCompleted { get; set; }
     [FirestoreProperty] public List<string> Friends { get; set; } =  new List<string>();
 }
 

@@ -57,7 +57,7 @@ public class FirebaseAccountManager : MonoBehaviour
 
             var result = task.Result;
             FirebaseUser newUser = result.User;
-            MainSystem.Instance.SetUserData(newUser);
+            FirebaseMainSession.Instance.SetUserData(newUser);
             
             //회원가입 성공
             UpdateUserNickname(newUser, nickname); // Auth 닉네임 설정
@@ -96,7 +96,8 @@ public class FirebaseAccountManager : MonoBehaviour
             Email = email,
             NickName = nickname,
             CreatedAt = Timestamp.GetCurrentTimestamp(),
-            Role = "user"
+            Role = "user",
+            IsTutorialCompleted = false
             //Freiends
         };
         
@@ -135,7 +136,7 @@ public class FirebaseAccountManager : MonoBehaviour
             isSignIn = true;
             var result = task.Result;
             FirebaseUser user = result.User;
-            MainSystem.Instance.SetUserData(user);
+            FirebaseMainSession.Instance.SetUserData(user);
         });
 
         return isSignIn;
@@ -144,6 +145,6 @@ public class FirebaseAccountManager : MonoBehaviour
     public void SignOut() //실행하는곳에서 login false 하기
     {
         auth.SignOut();
-        MainSystem.Instance.SetUserData(null);
+        FirebaseMainSession.Instance.SetUserData(null);
     }
 }

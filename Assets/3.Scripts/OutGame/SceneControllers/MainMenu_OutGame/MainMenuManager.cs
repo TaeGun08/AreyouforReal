@@ -29,7 +29,7 @@ public class MainMenuManager : MonoBehaviour
                 // 자동 로그인 시도
                 AutoLogin(savedEmail, savedPassword);
             }
-            else // 자동 로그인 실패
+            else // PlayerPrefs 없음
             {
                 popupLogin.gameObject.SetActive(true);
             }
@@ -48,6 +48,11 @@ public class MainMenuManager : MonoBehaviour
         if(await FirebaseAccountManager.Instance.SignIn(email, password))
         {
             LoadingSceneManager.LoadScene("OutGame_LobbyScene");
+        }
+        else // PlayerPrefs는 있지만 계정이 없는 경우
+        {
+            PlayerPrefs.DeleteKey(EmailKey);
+            PlayerPrefs.DeleteKey(PasswordKey);
         }
     }
 }
