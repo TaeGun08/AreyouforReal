@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Firebase.Extensions;
 using Fusion;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,6 +39,8 @@ public class NetworkStartBridge : MonoBehaviour
         roomCode = code;
     }
 
+    
+    // TODO : 매개변수 수정 방이름, 멤버수 
     public async Task StartGame(GameMode mode)
     {
         runner = Instantiate(runnerPrefab);
@@ -57,17 +62,50 @@ public class NetworkStartBridge : MonoBehaviour
             roomCode = Room.CreateRandomCode();
         }
         
+        string uuid = Guid.NewGuid().ToString();
+
+        Debug.Log("생성 UUID : " + uuid);
+        
+        var sessionProperty = new Dictionary<string, SessionProperty>()
+        {
+            { "uuid", uuid }
+        };
+        
         StartGameResult result = await runner.StartGame(new StartGameArgs()
         {
+            SessionProperties = sessionProperty,
             GameMode = mode,
             SessionName = roomCode,
             Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            // playerCount
         });
 
         if (result.Ok)
         {
             Debug.Log("방 번호 : " + roomCode);
+            
+            // TODO : 하랑할일
+            
+            RoomData roomData = new RoomData()
+            {
+                RoomName = "eomjunsik",
+                RoomCode = roomCode,
+                MembersCount = 0,
+                IsGameStarted = false,
+            };
+
+            bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
+                FirebaseCollections.Rooms, uuid, roomData);
+            
+            if (isSucced == false)
+            {
+                Debug.Log("파이어베이스 저장실패");
+            }
+            else
+            {
+                Debug.Log("생성성공");
+            }
         }
         else
         {

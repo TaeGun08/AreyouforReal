@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scenes/InGameA/TestScene_Network_InGameA.unity
     guid: b4e78405533b84545a78bdf701f0e510
+<<<<<<< HEAD
+=======
+  - enabled: 1
+    path: Assets/1.Scenes/InGameA/TestScene_Network_LobbyA.unity
+    guid: 9331a3e057463ec419f475034c09c1cf
+  - enabled: 1
+    path: Assets/1.Scenes/Network/TestScene_Network_InGame.unity
+    guid: d82aa733399e2be418593b0081f5dffc
+>>>>>>> Develop_Network
   m_configObjects: {}
