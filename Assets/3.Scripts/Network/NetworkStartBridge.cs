@@ -49,7 +49,7 @@ public class NetworkStartBridge : MonoBehaviour
         
         runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
         
-        SceneRef scene = SceneRef.FromPath("TestScene_Network_InGame");
+        SceneRef scene = SceneRef.FromIndex(sceneIndex);
         NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
         
         if (scene.IsValid) 

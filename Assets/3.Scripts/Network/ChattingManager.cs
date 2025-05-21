@@ -1,39 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Fusion;
+using TMPro;
 using UnityEngine;
 
 public class ChattingSystem : MonoBehaviour
 {
     public static ChattingSystem Instance { get; private set; }
-    private List<(string, string)> messageList = new List<(string, string)>();
+    
+    [SerializeField] private GameObject chatAreaGameObject;
+    [SerializeField] private GameObject chatPrefab;
+    
+    
+    // private List<(string, string)> messageList = new List<(string, string)>();
     
     private void Awake()
     {
         Instance = this;
     }
 
-    // [Rpc(RpcSources.InputAuthority, RpcTargets.InputAuthority)]
-    // public void RPC_SendChat(string message)
-    // {
-    //     RPC_ReceiveChat(message);
-    // }
-
     public void SendChat(string message, string sender)
     {
         RPC_ReceiveChat(message, sender);
     }
     
-    [Rpc(RpcSources.InputAuthority, RpcTargets.InputAuthority)]
-    public void RPC_ReceiveChat(string message, string sender)
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    private void RPC_ReceiveChat(string message, string sender)
     {
         Debug.Log("ReceiveChat : " + message);
-        messageList.Add((message, sender));
-
-        foreach (var props in messageList)
-        {
-            Debug.Log(props.Item1);
-        }
+        
+        GameObject chat = Instantiate(chatPrefab, parent: chatAreaGameObject.transform);
+        chat.GetComponentInChildren<TMP_Text>().SetText($"{sender}: {message}");
+        
+        // messageList.Add((message, sender));
     }
 }
