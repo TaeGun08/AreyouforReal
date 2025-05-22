@@ -8,16 +8,15 @@ public class AIKnockoutState : AIState
     
     public override void StateEnter(AIController aiController)
     {
-
+        this.aiController = aiController;
+        this.aiController.ChangeAnimation(CurrentState);
     }
 
     public override void StateUpdate()
     {
-
     }
 
     public override void StateExit()
     {
-
     }
 }

@@ -27,19 +27,21 @@ public class PlayerAttackState : PlayerState
     [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
     private void RPC_Attacking()
     {
+        LayerMask layerMask = LayerMask.GetMask("Player") 
+                              | LayerMask.GetMask("AI");
+        
         Collider[] hitColliders = Physics.OverlapSphere(hitCollider.bounds.center, hitCollider.radius, 
-            LayerMask.GetMask("Player"));
+            layerMask);
             
         if (hitColliders.Length > 0)
         {
             foreach (Collider collider in hitColliders)
             {
-                PlayerController player = collider.GetComponent<PlayerController>();
-                if (player.Object.Id == playerController.Object.Id) continue;
+                IKnockout networkObject = collider.GetComponent<IKnockout>();
+                if (networkObject.NetworkObj.Id == playerController.NetworkObj.Id) continue;
                 
-                 player.RPC_PlayerKnockout();
+                networkObject.RPC_Knockout();
                 // player.RPC_PlayerKnockout(playerController.Object);
-
                 break;
             }
         }
