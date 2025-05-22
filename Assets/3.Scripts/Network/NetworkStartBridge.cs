@@ -21,19 +21,27 @@ public class NetworkStartBridge : MonoBehaviour
     
     [Space]
     
-    [SerializeField] private int sceneIndex;
+    [Header("임시용")]
+    private string roomCode;
     
     private NetworkRunner runner;
 
+    [SerializeField] private int sceneIndex;
     
     private void Awake()
     {
         Instance = this;
     }
 
+    // CLient시
+    public void SetCode(string code)
+    {
+        roomCode = code;
+    }
+
     
     // TODO : 매개변수 수정 방이름, 멤버수 
-    public async Task CreateRoom()
+    public async Task StartGame(GameMode mode)
     {
         runner = Instantiate(runnerPrefab);
         DontDestroyOnLoad(gameObject);
@@ -48,11 +56,15 @@ public class NetworkStartBridge : MonoBehaviour
         {
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
+
+        if (roomCode.IsNullOrEmpty())
+        {
+            roomCode = Room.CreateRandomCode();
+        }
         
-        string roomCode = Room.CreateRandomCode();
         string uuid = Guid.NewGuid().ToString();
-        
-        // Debug.Log("생성 UUID : " + uuid);
+
+        Debug.Log("생성 UUID : " + uuid);
         
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
@@ -62,7 +74,7 @@ public class NetworkStartBridge : MonoBehaviour
         StartGameResult result = await runner.StartGame(new StartGameArgs()
         {
             SessionProperties = sessionProperty,
-            GameMode = GameMode.Host,
+            GameMode = mode,
             SessionName = roomCode,
             Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
@@ -71,7 +83,8 @@ public class NetworkStartBridge : MonoBehaviour
 
         if (result.Ok)
         {
-            // Debug.Log("방 번호 : " + roomCode);
+            Debug.Log("방 번호 : " + roomCode);
+            
             // TODO : 하랑할일
             
             RoomData roomData = new RoomData()
@@ -98,42 +111,5 @@ public class NetworkStartBridge : MonoBehaviour
         {
             Debug.LogWarning("에러!");
         }
-    }
-    
-    // Client
-    // TODO : 매개변수 수정 방이름, 멤버수 
-    public async Task JoinRoom(string roomCode)
-    {
-        runner = Instantiate(runnerPrefab);
-        DontDestroyOnLoad(gameObject);
-        runner.ProvideInput = true;
-        
-        runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
-        
-        SceneRef scene = SceneRef.FromIndex(sceneIndex);
-        NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
-        
-        if (scene.IsValid) 
-        {
-            sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
-        }
-        
-        StartGameResult result = await runner.StartGame(new StartGameArgs()
-        {
-            GameMode = GameMode.Client,
-            SessionName = roomCode,
-            Scene = SceneRef.FromIndex(sceneIndex),
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-            // playerCount
-        });
-
-        if (result.Ok)
-        {
-            // Debug.Log("방 번호 : " + roomCode);
-        }
-        else
-        {
-            Debug.LogWarning("에러!");
-        }
-    }
+    } 
 }

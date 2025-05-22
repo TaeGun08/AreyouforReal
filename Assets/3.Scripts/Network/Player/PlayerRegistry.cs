@@ -69,8 +69,6 @@ namespace DefaultNamespace
             Debug.Assert(runner.IsServer);
             // TODO : 유효성 검사
 
-            Debug.Log("AddPlayerdasdsadwqe");
-            
             if (playerDic.Add(pRef, localPlayer))
             {
                 var userCount = new Dictionary<string, object>

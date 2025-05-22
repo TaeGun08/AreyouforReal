@@ -6,7 +6,7 @@ using Fusion;
 using TMPro;
 using UnityEngine;
 
-public class ChattingSystem : NetworkBehaviour
+public class ChattingSystem : MonoBehaviour
 {
     public static ChattingSystem Instance { get; private set; }
     
@@ -21,30 +21,12 @@ public class ChattingSystem : NetworkBehaviour
         Instance = this;
     }
 
-    // public void SendChat(string message, string sender)
-    // {
-    //     RPC_SendChat(message, sender);
-    // }
-    //
-    // [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    // public void RPC_SendChat(string message, string sender)
-    // {
-    //     RPC_ReceiveChat(message, sender);
-    // }
-    
-    public void RPC_SendChat(string message, string sender)
+    public void SendChat(string message, string sender)
     {
         RPC_ReceiveChat(message, sender);
     }
     
-    /// <summary>
-    /// 채팅은 모두가 호출가능 RpcSources.All
-    /// UI에서 버튼을 눌러야 해서 RpcSources.Input 으로 체크 못함!
-    /// UI는 InputAuthority가 없기 때문
-    /// </summary>
-    /// <param name="message"></param>
-    /// <param name="sender"></param>
-    [Rpc(RpcSources.All, RpcTargets.All)]
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     private void RPC_ReceiveChat(string message, string sender)
     {
         Debug.Log("ReceiveChat : " + message);
