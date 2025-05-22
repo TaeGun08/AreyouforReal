@@ -18,7 +18,7 @@ public class MainMenuManager : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isLoginInProgress.Equals(false)) // any pressed
+        if (Input.GetKeyDown(KeyCode.Space)) // any pressed
         {
             if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey)) // 자동 로그인 트리거
             {

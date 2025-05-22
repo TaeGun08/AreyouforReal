@@ -182,9 +182,14 @@ PlayerSettings:
 <<<<<<< HEAD
   applicationIdentifier:
     Android: com.HoochooCompany.AreyouforReal
+<<<<<<< HEAD
 =======
   applicationIdentifier: {}
 >>>>>>> Develop_Network
+=======
+    Standalone: com.HoochooCompany.AreyouforReal
+    iPhone: com.HoochooCompany.AreyouforReal
+>>>>>>> Develop_OutGame
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -786,6 +791,7 @@ PlayerSettings:
 =======
 >>>>>>> Develop_Network
     Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO
+    iPhone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
