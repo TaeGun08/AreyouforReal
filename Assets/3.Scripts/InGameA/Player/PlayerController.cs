@@ -20,6 +20,8 @@ public class PlayerController : NetworkBehaviour
     private Dictionary<PlayerState.State, PlayerState> playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
     private Dictionary<PlayerState.State, int> playerAnimDic = new Dictionary<PlayerState.State, int>();
     
+    // 킬로그용
+    public static event Action<PlayerController, PlayerController> OnPlayerKnockoutEvent;
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();
@@ -69,4 +71,16 @@ public class PlayerController : NetworkBehaviour
     {
         animator.ResetTrigger(playerAnimDic[curState]);
     }
+    
+    // 킬로그용 영돈
+   // public void RPC_PlayerKnockout(NetworkObjectRef attackerRef)
+   // {
+   //     ChangeState(PlayerState.State.Knockout);
+   //     ChangeAnimation(PlayerState.State.Knockout);
+//
+   //     var attackerObj = Runner.GetPlayerObject(attackerRef)?
+   //         .GetComponent<PlayerController>();
+   //     if (attackerObj != null)
+   //         OnPlayerKnockoutEvent?.Invoke(attackerObj, this);
+   // }
 }
