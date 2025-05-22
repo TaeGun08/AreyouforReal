@@ -15,8 +15,8 @@ public class Player : NetworkBehaviour
     [System.Serializable]
     public class PlayerStats
     {
-        public int WalkSpeed;
-        public int RunSpeed;
+        public float WalkSpeed;
+        public float RunSpeed;
     }
     
     [Header("Character Stats")] 

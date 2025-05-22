@@ -10,6 +10,7 @@ public class PlayerWalkState : PlayerState
     {
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
+        this.playerController.CharacterController.maxSpeed = this.playerController.LocalPlayer.Stats.WalkSpeed;
     }
 
     public override void StateUpdate()
@@ -25,7 +26,7 @@ public class PlayerWalkState : PlayerState
 
             float speed = playerController.LocalPlayer.Stats.WalkSpeed;
             Vector3 dir = input.Direction.normalized;
-            playerController.CharacterController.Move(dir * speed * Runner.DeltaTime);
+            playerController.CharacterController.Move(dir * Runner.DeltaTime);
             
             if (input.IsRun)
             {
