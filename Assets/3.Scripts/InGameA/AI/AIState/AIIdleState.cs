@@ -13,11 +13,11 @@ public class AIIdleState : AIState
 
     public override void StateUpdate()
     {
-
+        
     }
 
     public override void StateExit()
     {
-
+        
     }
 }
