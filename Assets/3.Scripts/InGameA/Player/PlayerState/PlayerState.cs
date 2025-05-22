@@ -14,6 +14,17 @@ public abstract class PlayerState : NetworkBehaviour
         Knockout,
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected PlayerController playerController;
 
     public abstract State CurrentState { get; }
