@@ -16,14 +16,18 @@ public class Popup_RoomList : BaseWindow
         roomList.AddRange(roomListParent.GetComponentsInChildren<LobbyRoom>(true)); // 비활성 포함하여 풀링
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) //테스트dragon~
+        {
+            OnRoomInfoPanel();
+        }
     }
 
     public void OnClickedCreateRoomButton()
     {
         //시형님이랑 작업
+        //방을 생성
     }
     
     public void OnClickedJoinRoomButton()
@@ -43,7 +47,9 @@ public class Popup_RoomList : BaseWindow
             CreateRoomInstances(roomData.Count - roomList.Count);
         }
         
-        // roomData.Sort(x => x.CreatedAt.CompareTo(x.CreatedAt));
+        //데이터를 방 생성 시점 기준 (CreatedAt) 최신순으로 정렬
+        roomData.Sort((a, b) => b.CreatedAt.ToDateTime().CompareTo(a.CreatedAt.ToDateTime())); //내림차순 정렬
+        //roomData.Sort((a, b) => a.CreatedAt.ToDateTime().CompareTo(b.CreatedAt.ToDateTime())); //오름차순 정렬
         
         int roomIndex = 0;
         
@@ -51,7 +57,7 @@ public class Popup_RoomList : BaseWindow
         {
             foreach (RoomData data in roomData)
             {
-                if (data.IsGameOver.Equals(false)) //게임 완료 상태가 아닐 경우
+                if (data.IsGameOver.Equals(false)) //게임 종료 상태가 아닐 경우
                 {
                     roomList[roomIndex].RoomSetting(data);
                     roomList[roomIndex].gameObject.SetActive(true);
