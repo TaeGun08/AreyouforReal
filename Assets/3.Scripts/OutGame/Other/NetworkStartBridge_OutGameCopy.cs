@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using WebSocketSharp;
+using Random = UnityEngine.Random;
 
 
 // 네트워크 관련 
@@ -25,33 +26,50 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
     
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     
     public async Task CreateRoom(string roomName, string roomDescription, string maxPlayers)
     {
-        runner = Instantiate(runnerPrefab);
-        DontDestroyOnLoad(gameObject);
-        runner.ProvideInput = true;
-        
-        runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
-        
-        SceneRef scene = SceneRef.FromIndex(sceneIndex);
-        NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
-        
-        if (scene.IsValid) 
-        {
-            sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
-        }
-        
-        string roomCode = Room.CreateRandomCode();
-        
-        // TODO : 방입장 방생성 분리
-        
-        string uuid = Guid.NewGuid().ToString();
-
-        Debug.Log("생성 UUID : " + uuid);
-        
+        // if (runner != null)
+        // {
+        //     await runner.Shutdown();
+        //     Destroy(runner.gameObject);
+        //     runner = null;
+        // }
+        //
+        // runner = Instantiate(runnerPrefab);
+        //
+        // runner.ProvideInput = true;
+        //
+        // runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
+        //
+        // SceneRef scene = SceneRef.FromIndex(sceneIndex);
+        // NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
+        //
+        // if (scene.IsValid) 
+        // {
+        //     sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
+        // }
+        //
+        // string roomCode = Room.CreateRandomCode();
+        string roomCode = "Room.CreateRandomCode()";
+        //
+        // // TODO : 방입장 방생성 분리
+        //
+        // //string uuid = Guid.NewGuid().ToString();
+        //
+        string uuid = Random.Range(100, 999).ToString();
+        //
+        // Debug.Log("생성 UUID : " + uuid);
+        //
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
             { "uuid", uuid }
@@ -74,10 +92,7 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
                 IsGameOver = false,
             };
             
-            // bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
-            //     FirebaseCollections.Rooms, uuid, roomData);
-            
-            FirestoreManager.Instance.WriteDataAsync_Test<RoomData>(
+            await FirestoreManager.Instance.WriteDataAsync<RoomData>(
                 FirebaseCollections.Rooms, uuid, roomData);
             
             // if (isSucced == false)
@@ -94,15 +109,15 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
         //     Debug.LogWarning("에러!");
         // }
 
-        StartGameResult result = await runner.StartGame(new StartGameArgs()
-        {
-            SessionProperties = sessionProperty,
-            GameMode = GameMode.Host,
-            SessionName = roomCode,
-            Scene = SceneRef.FromIndex(sceneIndex),
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-            // playerCount
-        });
+        // StartGameResult result = await runner.StartGame(new StartGameArgs()
+        // {
+        //     SessionProperties = sessionProperty,
+        //     GameMode = GameMode.Host,
+        //     SessionName = roomCode,
+        //     Scene = SceneRef.FromIndex(sceneIndex),
+        //     SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+        //     // playerCount
+        // });
     }
     
     public async Task JoinRoom(string roomCode)
