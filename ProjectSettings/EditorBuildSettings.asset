@@ -5,10 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scenes/InGameA/TestScene_Network_LobbyA.unity
     guid: 9331a3e057463ec419f475034c09c1cf
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scenes/InGameA/TestScene_Network_InGameA.unity
     guid: b4e78405533b84545a78bdf701f0e510
+  - enabled: 0
+    path: Assets/1.Scenes/OutGame/OutGame_GameStartScene.unity
+    guid: 5f41ad69562789e429ab2738eea64953
+  - enabled: 0
+    path: Assets/1.Scenes/OutGame/OutGame_LoadingScene.unity
+    guid: b090c05a6ae207349a403e637d4a5245
+  - enabled: 0
+    path: Assets/1.Scenes/OutGame/OutGame_LobbyScene.unity
+    guid: 10b999276f95be84285918070a5295f2
+  - enabled: 1
+    path: Assets/1.Scenes/Network/TestScene_Network_Lobby.unity
+    guid: 8c0af6cbcd2589d4ebddd95becb3cb34
+  - enabled: 1
+    path: Assets/1.Scenes/Network/TestScene_Network_InGame.unity
+    guid: d82aa733399e2be418593b0081f5dffc
   m_configObjects: {}
