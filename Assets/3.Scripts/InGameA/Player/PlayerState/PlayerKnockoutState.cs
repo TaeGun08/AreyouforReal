@@ -10,6 +10,9 @@ public class PlayerKnockoutState : PlayerState
     {
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
+
+        // 퇴장 기록
+        GameResult.Instance.RecordElimination(playerController);
     }
 
     public override void StateUpdate()

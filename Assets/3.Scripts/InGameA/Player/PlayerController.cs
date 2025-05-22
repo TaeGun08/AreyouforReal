@@ -53,7 +53,8 @@ public class PlayerController : NetworkBehaviour
         currentState.StateEnter(this);
     }
 
-    public void PlayerKnockout()
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_PlayerKnockout()
     {
         ChangeState(PlayerState.State.Knockout);
         ChangeAnimation(PlayerState.State.Knockout);

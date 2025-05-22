@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class Popup_RoomList : BaseWindow
 {
+    [Header("Room")]
     [SerializeField] private GameObject roomListParent;
     [SerializeField] private LobbyRoom roomPrefab;
+    
+    [Header("PopUp")]
+    [SerializeField] private Popup_CreateRoom popupCreateRoom;
     
     private readonly List<LobbyRoom> roomList = new List<LobbyRoom>();
     
@@ -18,7 +22,7 @@ public class Popup_RoomList : BaseWindow
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) //테스트dragon~
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             OnRoomInfoPanel();
         }
@@ -26,14 +30,29 @@ public class Popup_RoomList : BaseWindow
 
     public void OnClickedCreateRoomButton()
     {
-        //시형님이랑 작업
-        //방을 생성
+        //방 만드는 창을 띄워줍니다
+        popupCreateRoom.gameObject.SetActive(true);
     }
     
     public void OnClickedJoinRoomButton()
     {
         //시형님이랑 작업
         //룸 번호를 직접 입력해서 입장
+    }
+    
+    public void OnClickedResetButton()
+    {
+        OnRoomInfoPanel();
+    }
+    
+    public override void OnClickedExitButton() // roomListParent 창이 꺼질 때
+    {
+        foreach (var room in roomList)
+        {
+            room.gameObject.SetActive(false); //자식 room들을 꺼줍니다.
+        }
+
+        gameObject.SetActive(false); //후에 자신을 끕니다.
     }
     
     public async Task OnRoomInfoPanel()
@@ -81,15 +100,5 @@ public class Popup_RoomList : BaseWindow
             room.gameObject.SetActive(false);
             roomList.Add(room);
         }
-    }
-    
-    public override void OnClickedExitButton() // roomListParent 창이 꺼질 때
-    {
-        foreach (var room in roomList)
-        {
-            room.gameObject.SetActive(false); //자식 room들을 꺼줍니다.
-        }
-
-        gameObject.SetActive(false); //후에 자신을 끕니다.
     }
 }
