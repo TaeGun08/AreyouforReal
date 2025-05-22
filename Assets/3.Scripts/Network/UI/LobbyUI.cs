@@ -16,16 +16,13 @@ public class LobbyUI : MonoBehaviour
     {
         hostButton.onClick.AddListener(() => {
             // 코드 자동생성
-            _ = NetworkStartBridge.Instance.StartGame(GameMode.Host);
+            _ = NetworkStartBridge.Instance.CreateRoom();
         });
         
         joinButton.onClick.AddListener(() => 
         {
             // SetCode를 통해 Join 
-            NetworkStartBridge.Instance.SetCode(codeText.text);
-            _ = NetworkStartBridge.Instance.StartGame(GameMode.Client);
+            _ = NetworkStartBridge.Instance.JoinRoom(codeText.text);
         });
-        
-        
     }
 }
