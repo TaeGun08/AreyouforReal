@@ -36,7 +36,10 @@ public class PlayerAttackState : PlayerState
             {
                 PlayerController player = collider.GetComponent<PlayerController>();
                 if (player.Object.Id == playerController.Object.Id) continue;
-                player.RPC_PlayerKnockout();
+                
+                 player.RPC_PlayerKnockout();
+                // player.RPC_PlayerKnockout(playerController.Object);
+
                 break;
             }
         }
