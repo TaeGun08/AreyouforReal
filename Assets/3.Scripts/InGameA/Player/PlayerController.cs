@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : NetworkBehaviour, IKnockout
 {
     private LocalPlayer localPlayer;
     public LocalPlayer LocalPlayer => localPlayer;
 
     private NetworkCharacterController characterController;
     public NetworkCharacterController CharacterController => characterController;
+
+    public NetworkObject NetworkObj => Object;
     
     private Animator animator;
     
@@ -22,6 +24,7 @@ public class PlayerController : NetworkBehaviour
     
     // 킬로그용
     public static event Action<PlayerController, PlayerController> OnPlayerKnockoutEvent;
+    
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();
@@ -56,10 +59,9 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
-    public void RPC_PlayerKnockout()
+    public void RPC_Knockout()
     {
         ChangeState(PlayerState.State.Knockout);
-        ChangeAnimation(PlayerState.State.Knockout);
     }
     
     public void ChangeAnimation(PlayerState.State newState)
