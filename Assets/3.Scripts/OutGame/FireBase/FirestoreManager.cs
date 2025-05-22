@@ -70,6 +70,29 @@ public class FirestoreManager : MonoBehaviour
         }
     }
 
+    // 데이터 쓰기 (Collection과 Key 기반)
+    public void WriteDataAsync_Test<T>(FirebaseCollections collection, string key, T data)
+    {
+        if (isInitialized.Equals(false))
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return;
+        }
+
+        try
+        {
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            docRef.SetAsync(data);
+            Debug.Log($"Data written to {collection}/{key}");
+            return;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to write data: {e.Message}");
+            return;
+        }
+    }
+    
     // 데이터 읽기 (Collection과 Key 기반)
     public async Task<T> ReadDataAsync<T>(FirebaseCollections collection, string key) where T : class
     {
@@ -115,12 +138,13 @@ public class FirestoreManager : MonoBehaviour
     #endregion
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
+        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
             return;
         }
-
+        
         try
         {
             DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
@@ -136,6 +160,7 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
+        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");

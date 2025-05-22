@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2572872087651958167}
   - component: {fileID: 533767864377999721}
   - component: {fileID: 7645768101398077125}
-  - component: {fileID: 283072699300264515}
+  - component: {fileID: 6295231320789268624}
   m_Layer: 5
   m_Name: Room Sample
   m_TagString: Untagged
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &283072699300264515
+--- !u!114 &6295231320789268624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023762811374689419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939979ce27f8f11498ebc9f1b96de185, type: 3}
+  m_Script: {fileID: 11500000, guid: b6a56ca9c11407841bd275f533538fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomName: {fileID: 7850805448026291299}
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 283072699300264515}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyRoom, Assembly-CSharp
         m_MethodName: OnClickedEnterButton
         m_Mode: 1
