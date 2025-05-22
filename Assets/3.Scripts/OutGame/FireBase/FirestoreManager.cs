@@ -33,10 +33,10 @@ public class FirestoreManager : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
         
-        if (FirebaseAuth.DefaultInstance.CurrentUser == null)
+        if (FirebaseAuth.DefaultInstance.CurrentUser == null) //디버그용 자동 로그인 Admin 확인 필요
         {
             Debug.LogWarning("Firebase User is not authenticated!");
-            FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync();
+            FirebaseAccountManager.Instance.SignIn("admin@gmail.com", "admin123");
         }
     }
 
