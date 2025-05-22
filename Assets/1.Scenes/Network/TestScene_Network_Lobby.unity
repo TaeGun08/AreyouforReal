@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632a0a5e30f38cf4c9307999b8668979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runnerPrefab: {fileID: 3116285149370853324, guid: 66bf86db49d4b6547bb65eaed1750355,
+  runnerPrefab: {fileID: 3116285149370853324, guid: a7d7a453a6590664eaf69616999a2d5e,
     type: 3}
   sceneIndex: 1
 --- !u!1001 &1089912704
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927912039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 465355c176c6ed146a66df91c99e81a2, type: 3}
   m_Name: 

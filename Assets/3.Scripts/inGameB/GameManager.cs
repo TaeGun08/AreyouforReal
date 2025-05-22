@@ -33,10 +33,14 @@ public class GameManager : MonoBehaviour
     {
         if (currentState == GameState.Ready)
         {
-            // 플레이어와 AI를 각각 생성하고 게임 시작
-            PlayerManager.Instance.CreatePlayers(playerCount);   // 플레이어 생성
-            PlayerManager.Instance.CreateAIs();                 // AI 생성
-            
+            // 참가자 수 초기화
+            int total = PlayerManager.Instance.humanPlayers.Count 
+                        + PlayerManager.Instance.aiPlayers.Count;
+            GameResult.Instance.Initialize(total);
+
+            PlayerManager.Instance.CreatePlayers(playerCount);
+            PlayerManager.Instance.CreateAIs();
+
             currentState = GameState.Playing;
             Debug.Log("게임 시작");
         }

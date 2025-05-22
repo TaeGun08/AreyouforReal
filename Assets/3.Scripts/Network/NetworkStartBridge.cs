@@ -62,6 +62,8 @@ public class NetworkStartBridge : MonoBehaviour
             roomCode = Room.CreateRandomCode();
         }
         
+        // TODO : 방입장 방생성 분리
+        
         string uuid = Guid.NewGuid().ToString();
 
         Debug.Log("생성 UUID : " + uuid);
@@ -93,6 +95,7 @@ public class NetworkStartBridge : MonoBehaviour
                 RoomCode = roomCode,
                 MembersCount = 0,
                 IsGameStarted = false,
+                
             };
 
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(

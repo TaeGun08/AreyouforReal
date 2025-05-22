@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 827055390}
   - component: {fileID: 827055389}
   m_Layer: 5
-  m_Name: BlzTimer
+  m_Name: BZTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1662,7 +1662,7 @@ GameObject:
   - component: {fileID: 1429507357}
   - component: {fileID: 1429507356}
   m_Layer: 5
-  m_Name: BlzText
+  m_Name: BZText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2445,7 +2445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 0}
   aiPrefab: {fileID: 0}
-  players: []
+  humanPlayers: []
+  aiPlayers: []
 --- !u!4 &1796352233
 Transform:
   m_ObjectHideFlags: 0
