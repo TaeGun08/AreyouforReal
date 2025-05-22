@@ -93,7 +93,6 @@ public class NetworkStartBridge : MonoBehaviour
                 RoomCode = roomCode,
                 MembersCount = 0,
                 IsGameStarted = false,
-                
             };
 
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(

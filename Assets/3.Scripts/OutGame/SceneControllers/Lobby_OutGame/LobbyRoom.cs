@@ -39,7 +39,7 @@ public class LobbyRoom : MonoBehaviour
     //ButtonEvent
     public void OnClickedEnterButton()
     {
-         NetworkStartBridge_OutGameCopy.Instance.SetCode(roomCode);
-         _ = NetworkStartBridge_OutGameCopy.Instance.StartGame(GameMode.Client);
+        NetworkStartBridge.Instance.SetCode(roomCode);
+        _ = NetworkStartBridge.Instance.StartGame(GameMode.Client);
     }
 }
