@@ -12,6 +12,8 @@ public class InGameUI : MonoBehaviour
     
     [SerializeField] private TMP_Text roomCode;
     [SerializeField] private Button startButton;
+    [SerializeField] private TMP_InputField chatInput;
+    [SerializeField] private Button chatSendButton;
     
     private NetworkRunner runner;
 
@@ -21,6 +23,13 @@ public class InGameUI : MonoBehaviour
         {
             PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
             Debug.Log("게임시작버튼 클릭!");
+        });
+        
+        chatSendButton.onClick.AddListener(() =>
+        {
+            // TODO : sender에 닉네임 넣기
+            ChattingSystem.Instance.SendChat(chatInput.text, "Imsi");
+            chatInput.text = string.Empty;
         });
     }
 

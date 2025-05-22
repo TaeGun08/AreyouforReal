@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private Popup_Login popupLogin;
+    [SerializeField] private Popup_Login popupLogin;      // 로그인 팝업 창
+    [SerializeField] private GameObject mainMenuParticle; // 메인메뉴 파티클 (카메라에 위치)
     
     //PlayerPrefs Keys
     private const string EmailKey = "UserEmail";
@@ -32,6 +33,7 @@ public class MainMenuManager : MonoBehaviour
             else // PlayerPrefs 없음
             {
                 popupLogin.gameObject.SetActive(true);
+                mainMenuParticle.SetActive(false);
             }
         }
         

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 <<<<<<<< HEAD:Assets/3.Scripts/InGameA/Player/PlayerState/PlayerAttackState.cs.meta
+<<<<<<< HEAD
 guid: a04c99a3721fcc04abc1d0bcb240a048
+=======
+guid: c06ee5293fd3b8f4fb5fff270f724be3
+>>>>>>> 8e16ce4249d79051183111ab63c5d93c79036722
 ========
 guid: 1364d2153cb336b4fa76df7b10512313
 >>>>>>>> Develop_OutGame:Assets/3.Scripts/OutGame/SceneControllers/Lobby_OutGame/LobbyRoom.cs.meta
