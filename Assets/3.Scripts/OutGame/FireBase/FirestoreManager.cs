@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase;
+using Firebase.Auth;
 using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine;
@@ -15,13 +16,28 @@ public enum FirebaseCollections
 public class FirestoreManager : MonoBehaviour
 {
     private FirebaseFirestore firestore;
+    private DocumentReference docRef;
     private bool isInitialized = false;
-    
+
     public static FirestoreManager Instance { get; private set; }
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         Instance = this;
+        
+        DontDestroyOnLoad(gameObject);
+        
+        if (FirebaseAuth.DefaultInstance.CurrentUser == null)
+        {
+            Debug.LogWarning("Firebase User is not authenticated!");
+            FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync();
+        }
     }
 
     private void Start()
@@ -50,15 +66,22 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 쓰기 (Collection과 Key 기반)
     public async Task<bool> WriteDataAsync<T>(FirebaseCollections collection, string key, T data)
     {
+
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
             return false;
         }
+        
+        Debug.Log(collection);
+        Debug.Log(key);
+        Debug.Log(data);
 
+        // return false;
+        
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
             return true;
