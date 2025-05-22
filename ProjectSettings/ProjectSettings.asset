@@ -5,10 +5,14 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
 <<<<<<< HEAD
+<<<<<<< HEAD
   productGUID: 49e74b1a63a272e4fabecf2a404b2243
 =======
   productGUID: 0c8ffc03e9e5a674f81eb8e3116122fa
 >>>>>>> Develop_InGameA
+=======
+  productGUID: b852c989e996f5f4cbb90a292f8df423
+>>>>>>> Develop_OutGame
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -17,10 +21,14 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
 <<<<<<< HEAD
+<<<<<<< HEAD
   companyName: DefaultCompany
 =======
   companyName: HoochooCompany
 >>>>>>> Develop_InGameA
+=======
+  companyName: HoochooCompany
+>>>>>>> Develop_OutGame
   productName: AreyouforReal
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -51,12 +59,17 @@ PlayerSettings:
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
 =======
   defaultScreenWidth: 800
   defaultScreenHeight: 600
 >>>>>>> Develop_InGameA
+=======
+  defaultScreenWidth: 800
+  defaultScreenHeight: 600
+>>>>>>> Develop_OutGame
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -119,10 +132,14 @@ PlayerSettings:
   visibleInBackground: 1
   allowFullscreenSwitch: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   fullscreenMode: 1
 =======
   fullscreenMode: 3
 >>>>>>> Develop_InGameA
+=======
+  fullscreenMode: 3
+>>>>>>> Develop_OutGame
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -179,7 +196,14 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
+<<<<<<< HEAD
   applicationIdentifier: {}
+=======
+  applicationIdentifier:
+    Android: com.HoochooCompany.AreyouforReal
+    Standalone: com.HoochooCompany.AreyouforReal
+    iPhone: com.HoochooCompany.AreyouforReal
+>>>>>>> Develop_OutGame
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -777,6 +801,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
 <<<<<<< HEAD
+<<<<<<< HEAD
     Android: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     EmbeddedLinux: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     GameCoreScarlett: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
@@ -795,6 +820,9 @@ PlayerSettings:
     iPhone: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     tvOS: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
 =======
+=======
+    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO
+>>>>>>> Develop_OutGame
     Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO
 >>>>>>> Develop_InGameA
   additionalCompilerArguments: {}

@@ -26,9 +26,9 @@ public class MainMenuManager : MonoBehaviour
                 
                 string savedEmail = PlayerPrefs.GetString(EmailKey);
                 string savedPassword = PlayerPrefs.GetString(PasswordKey);
-
-                // 자동 로그인 시도
-                AutoLogin(savedEmail, savedPassword);
+            
+                // // 자동 로그인 시도
+                // AutoLogin(savedEmail, savedPassword);
             }
             else // PlayerPrefs 없음
             {
