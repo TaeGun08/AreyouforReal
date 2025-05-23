@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Firebase.Extensions;
 using Firebase.Firestore;
-using Fusion;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +41,17 @@ public class LobbyRoom : MonoBehaviour
     //ButtonEvent
     public void OnClickedEnterButton()
     {
-         // NetworkStartBridge_OutGameCopy.Instance.SetCode(roomCode);
-         // _ = NetworkStartBridge_OutGameCopy.Instance.StartGame(GameMode.Client);
+        FirestoreManager.Instance.ReadDataAsync<RoomData>(FirebaseCollections.Rooms, roomCode).ContinueWithOnMainThread(
+            task =>
+            {
+                RoomData roomData = task.Result;
+                
+                if (roomData.MembersCount < roomData.MaxPlayers && //최대인원수 검사
+                    roomData.IsGameStarted.Equals(false) && 
+                    roomData.IsGameOver.Equals(false))
+                {
+                    _ = NetworkStartBridge.Instance.JoinRoom(roomCode);
+                }
+            });
     }
 }

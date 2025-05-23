@@ -36,7 +36,7 @@ public class FirestoreManager : MonoBehaviour
         if (FirebaseAuth.DefaultInstance.CurrentUser == null) //디버그용 자동 로그인 Admin 확인 필요
         {
             Debug.LogWarning("Firebase User is not authenticated!");
-            FirebaseAccountManager.Instance.SignIn("admin@gmail.com", "admin123");
+            _ = FirebaseAccountManager.Instance.SignIn("admin@gmail.com", "admin123");
         }
     }
 
@@ -72,12 +72,6 @@ public class FirestoreManager : MonoBehaviour
             Debug.LogError("Firebase is not initialized.");
             return false;
         }
-        
-        Debug.Log(collection);
-        Debug.Log(key);
-        Debug.Log(data);
-
-        // return false;
         
         try
         {
@@ -161,7 +155,6 @@ public class FirestoreManager : MonoBehaviour
     #endregion
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
@@ -183,7 +176,6 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");

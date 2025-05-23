@@ -12,6 +12,7 @@ public class Popup_RoomList : BaseWindow
     
     [Header("PopUp")]
     [SerializeField] private Popup_CreateRoom popupCreateRoom;
+    [SerializeField] private Popup_JoinRoom popupJoinRoom;
     
     private readonly List<LobbyRoom> roomList = new List<LobbyRoom>();
     
@@ -20,14 +21,11 @@ public class Popup_RoomList : BaseWindow
         roomList.AddRange(roomListParent.GetComponentsInChildren<LobbyRoom>(true)); // 비활성 포함하여 풀링
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnRoomInfoPanel();
-        }
+        _ = OnRoomInfoPanel();
     }
-
+    
     public void OnClickedCreateRoomButton()
     {
         //방 만드는 창을 띄워줍니다
@@ -38,11 +36,12 @@ public class Popup_RoomList : BaseWindow
     {
         //시형님이랑 작업
         //룸 번호를 직접 입력해서 입장
+        popupJoinRoom.gameObject.SetActive(true);
     }
     
     public void OnClickedResetButton()
     {
-        OnRoomInfoPanel();
+        _ = OnRoomInfoPanel();
     }
     
     public override void OnClickedExitButton() // roomListParent 창이 꺼질 때

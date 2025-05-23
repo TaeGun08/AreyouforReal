@@ -9,17 +9,15 @@ using Firebase.Firestore;
 public class FirebaseAccountManager : MonoBehaviour
 {
     public static FirebaseAccountManager Instance { get; private set; }
+    
+    private FirebaseAuth auth;
+    private bool isInitialized = false;           //초기화 상태 확인용 bool
+    private TaskCompletionSource<bool> resultTcs; //종료 시점 판단을 위한 Tcs
+    
     private void Awake()
     {
         Instance = this;
-    }
-    
-    private FirebaseAuth auth;
-    
-    private bool isInitialized = false;
-    
-    private void Start()
-    {
+        
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             if (task.Result == DependencyStatus.Available)
@@ -34,8 +32,6 @@ public class FirebaseAccountManager : MonoBehaviour
             }
         });
     }
-
-    private TaskCompletionSource<bool> resultTcs; //종료 시점 판단을 위한 Tcs
     
     public Task<bool> CreateAccount(string email, string password, string nickname) //계정 생성
     {
@@ -56,7 +52,7 @@ public class FirebaseAccountManager : MonoBehaviour
             }
 
             var result = task.Result;
-            FirebaseUser newUser = result.User;
+            Firebase.Auth.FirebaseUser newUser = result.User;
             FirebaseMainSession.Instance.SetUserData(newUser);
             
             //회원가입 성공
@@ -67,7 +63,7 @@ public class FirebaseAccountManager : MonoBehaviour
         return resultTcs.Task;
     }
 
-    private void UpdateUserNickname(FirebaseUser user, string nickname)
+    private void UpdateUserNickname(Firebase.Auth.FirebaseUser user, string nickname)
     {
         if (isInitialized.Equals(false))
         {
@@ -135,7 +131,7 @@ public class FirebaseAccountManager : MonoBehaviour
 
             isSignIn = true;
             var result = task.Result;
-            FirebaseUser user = result.User;
+            Firebase.Auth.FirebaseUser user = result.User;
             FirebaseMainSession.Instance.SetUserData(user);
         });
 
