@@ -38,6 +38,8 @@ public class PlayerAttackState : PlayerState
                 if (player.Object.Id == playerController.Object.Id) continue;
                 
                  player.RPC_PlayerKnockout();
+                 
+                // 킬로그용
                 // player.RPC_PlayerKnockout(playerController.Object);
 
                 break;
