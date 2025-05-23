@@ -170,8 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a56ca9c11407841bd275f533538fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomName: {fileID: 7850805448026291299}
-  roomInfo: {fileID: 4427793127814480673}
+  roomNameText: {fileID: 7850805448026291299}
+  roomInfoText: {fileID: 4427793127814480673}
+  playerCountText: {fileID: 8182918705215092059}
   EnterButton: {fileID: 3193224681861667376}
   DimBackground: {fileID: 3827854992420831824}
   joinableIcon: {fileID: 3031697639851537100}

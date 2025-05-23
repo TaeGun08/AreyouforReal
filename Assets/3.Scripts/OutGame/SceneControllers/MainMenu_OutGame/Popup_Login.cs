@@ -120,22 +120,4 @@ public class Popup_Login : BaseWindow
     {
         //later...
     }
-    
-    // public void AutoLoginSet(string email, string password)
-    // {
-    //     emailInputField.text = email;
-    //     passwordInputField.text = password;
-    //     
-    //     //아래는 구 자동로그인 로직
-    //     // Debug.Log($"자동 로그인 시도: {email}");
-    //     // if(FirebaseAccountManager.Instance.SignIn(email, password))
-    //     // {
-    //     //     LoadingSceneManager.LoadScene("OutGame_LobbyScene");
-    //     // }
-    //     // else // PlayerPrefs는 있지만 계정이 없는 경우
-    //     // {
-    //     //     PlayerPrefs.DeleteKey(EmailKey);
-    //     //     PlayerPrefs.DeleteKey(PasswordKey);
-    //     // }
-    // }
 }

@@ -7,26 +7,45 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
+
     [Header("PopUps")]
     [SerializeField] private Popup_RoomList popupRoomList; // 방 목록 표시 팝업
     [SerializeField] private GameObject popupFriend;       // 친구 목록 표시 팝업 (임시)
     [SerializeField] private Popup_Chat popupChat;         // 채팅 목록 표시 팝업 (임시)
     [SerializeField] private GameObject popupRanking;      // 랭킹 표시 팝업 (임시)
     [SerializeField] private GameObject popupSetting;      // 세팅 표시 팝업 (임시)
+    [SerializeField] private GameObject popupChecking;     // 경고 팝업
     
     [Space]
     [Header("Player Information")]
     [SerializeField] private TMP_Text playerNameText;
+
+    private TMP_Text checkText;
     
+    private const string cannotJoinText = "Sorry, you cannot join the room."; // 경고 메시지
+    
+    public static LobbyManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
-        throw new NotImplementedException();
+        if(FirebaseMainSession.Instance != null)
+            LobbyUpdate();
     }
 
     private void LobbyUpdate()
     {
-        // playerNameText.text = FirebaseMainSession.Instance.FirebaseUser.Username;
+        playerNameText.text = FirebaseMainSession.Instance.FirebaseUser.Username;
+    }
+
+    public void OnPopupChecking()   //경고 팝업 표시
+    {
+        checkText.text = cannotJoinText;
+        popupRoomList.gameObject.SetActive(true);
     }
     
     public void OnClickedRoomListButton() //방 들어가는 버튼
