@@ -17,9 +17,9 @@ public class Popup_CreateRoom : BaseWindow
     //     _ = OnClickedCreateButton();
     // }
     
-    private void OnClickedCreateButton()
+    public void OnClickedCreateButton()
     {
         //방 입장 Host
-        NetworkStartBridge_OutGameCopy.Instance.StartGame(GameMode.Host, RoomName.text, RoomInfo.text, MaxPlayers.text);
+        NetworkStartBridge_OutGameCopy.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
     }
 }

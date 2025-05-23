@@ -82,6 +82,7 @@ public class NetworkStartBridge : MonoBehaviour
                 
             };
 
+            // // TODO : 여기 방여러개 생성시 문제
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
                 FirebaseCollections.Rooms, uuid, roomData);
             

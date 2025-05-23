@@ -26,6 +26,7 @@ public class RoomData
     [FirestoreProperty] public bool IsGameStarted { get; set; }
     [FirestoreProperty] public bool IsGameOver { get; set; }
 }
+
 //
 // public class FirebaseDataSheet : MonoBehaviour
 // {
