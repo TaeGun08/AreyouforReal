@@ -4184,7 +4184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runnerPrefab: {fileID: 3116285149370853324, guid: 66bf86db49d4b6547bb65eaed1750355,
     type: 3}
-  sceneIndex: 1
+  sceneIndex: 3
 --- !u!224 &1275438223 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2572872087651958167, guid: 9575fb4e7c8e7614e9e88e2dc2aed7fb,
