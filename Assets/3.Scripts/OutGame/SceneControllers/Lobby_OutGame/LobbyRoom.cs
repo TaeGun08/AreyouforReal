@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Firebase.Extensions;
 using Firebase.Firestore;
-using Fusion;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +41,6 @@ public class LobbyRoom : MonoBehaviour
     //ButtonEvent
     public void OnClickedEnterButton()
     {
-         NetworkStartBridge.Instance.JoinRoom(roomCode);
+        _ = NetworkStartBridge.Instance.JoinRoom(roomCode);
     }
 }

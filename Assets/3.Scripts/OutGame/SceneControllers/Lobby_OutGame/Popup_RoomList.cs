@@ -23,7 +23,7 @@ public class Popup_RoomList : BaseWindow
 
     private void Start()
     {
-        OnRoomInfoPanel();
+        _ = OnRoomInfoPanel();
     }
     
     public void OnClickedCreateRoomButton()
@@ -41,7 +41,7 @@ public class Popup_RoomList : BaseWindow
     
     public void OnClickedResetButton()
     {
-        OnRoomInfoPanel();
+        _ = OnRoomInfoPanel();
     }
     
     public override void OnClickedExitButton() // roomListParent 창이 꺼질 때

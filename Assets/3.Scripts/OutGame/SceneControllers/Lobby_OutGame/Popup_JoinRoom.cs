@@ -19,6 +19,6 @@ public class Popup_JoinRoom : BaseWindow
         //         room.MaxPlayers
         // }
         
-        NetworkStartBridge.Instance.JoinRoom(roomCodeInputField.text);
+        _ = NetworkStartBridge.Instance.JoinRoom(roomCodeInputField.text);
     }
 }

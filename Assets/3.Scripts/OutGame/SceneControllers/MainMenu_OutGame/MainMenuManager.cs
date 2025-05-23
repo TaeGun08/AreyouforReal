@@ -20,16 +20,9 @@ public class MainMenuManager : MonoBehaviour
     private const string EmailKey = "UserEmail";
     private const string PasswordKey = "UserPassword";
     
-    private bool isLoginInProgress = false; //로그인 중복 시도를 막는 bool변수
-
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
-
     }
     
     public async Task AutoLogin(string email, string password)
@@ -62,7 +55,7 @@ public class MainMenuManager : MonoBehaviour
             string savedPassword = PlayerPrefs.GetString(PasswordKey);
                 
             // 자동 로그인 시도
-            AutoLogin(savedEmail, savedPassword);
+            _ = AutoLogin(savedEmail, savedPassword);
         }
         // 3. 모두 아니라면 로그인 창을 출력한다.
         else

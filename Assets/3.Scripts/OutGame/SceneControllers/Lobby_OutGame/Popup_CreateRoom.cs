@@ -48,6 +48,6 @@ public class Popup_CreateRoom : BaseWindow
     public void OnClickedCreateButton()
     {
         //방 입장 Host
-        NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
+        _ = NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
     }
 }
