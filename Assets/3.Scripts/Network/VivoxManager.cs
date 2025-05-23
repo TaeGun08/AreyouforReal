@@ -55,7 +55,7 @@ public class VivoxManager : MonoBehaviour
         await LoginAsync();
         Debug.Log("Vivox 로그인 완료");
 
-        await JoinVoiceChannel("Global");
+        // await JoinVoiceChannel("Global");
     }
     
     private async Task LoginAsync()
