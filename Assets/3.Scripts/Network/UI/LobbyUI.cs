@@ -18,7 +18,7 @@ public class LobbyUI : MonoBehaviour
             // 코드 자동생성
             // _ = NetworkStartBridge.Instance.StartGame(GameMode.Host);
             
-            // _ = NetworkStartBridge.Instance.CreateRoom();
+            _ = NetworkStartBridge.Instance.CreateRoom("asd", "asdasd", "8");
         });
         
         joinButton.onClick.AddListener(() => 
