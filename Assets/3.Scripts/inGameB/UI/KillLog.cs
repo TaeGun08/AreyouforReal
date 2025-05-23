@@ -23,11 +23,19 @@ public class KillLog : MonoBehaviour
    //      // AI는 무시 (LocalPlayer가 없으면 AI)
    //      if (attacker.LocalPlayer == null || victim.LocalPlayer == null)
    //          return;
-// 
+   // 
    //      // 예: LocalPlayer.UserName (혹은 PlayerController에 정의된 닉네임 프로퍼티) 사용
    //      string attackerName = attacker.LocalPlayer.UserName;
+   
+   
+   
+   
+   
+   
+   
+    
    //      string victimName   = victim.LocalPlayer.UserName;
-// 
+   // 
    //      killLogText.text += $"{attackerName} hit {victimName}\n";
    //  }
 }
