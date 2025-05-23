@@ -34,7 +34,8 @@ public class VivoxManager : MonoBehaviour
     
     [Header("3D Channel Settings")]
     [SerializeField] private Channel3DSetting channel3DSetting;
-    
+    public bool isInChannel;
+
     private async void Awake()
     {
         // 필수
@@ -84,6 +85,7 @@ public class VivoxManager : MonoBehaviour
     {
         //위치 음성 채널에 접속
         await VivoxService.Instance.JoinPositionalChannelAsync(channelName, ChatCapability.AudioOnly, channel3DSetting.GetChannel3DProperties());
+        isInChannel = true;
     }
 
     /// <summary>
