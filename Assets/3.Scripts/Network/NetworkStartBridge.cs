@@ -28,7 +28,7 @@ public class NetworkStartBridge : MonoBehaviour
         Instance = this;
     }
     
-    public async Task CreateRoom()
+    public async Task CreateRoom(string roomName, string roomDescription, string maxPlayers)
     {
         runner = Instantiate(runnerPrefab);
         DontDestroyOnLoad(gameObject);
@@ -71,18 +71,17 @@ public class NetworkStartBridge : MonoBehaviour
         {
             // Debug.Log("방 번호 : " + roomCode);
             
-            // TODO : 하랑할일
-            
             RoomData roomData = new RoomData()
             {
-                RoomName = "eomjunsik",
+                RoomName = roomName,
+                RoomInfo = roomDescription,
                 RoomCode = roomCode,
                 MembersCount = 0,
+                MaxPlayers = 0,
                 IsGameStarted = false,
-                
+                IsGameOver = false,
             };
-
-            // // TODO : 여기 방여러개 생성시 문제
+            
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
                 FirebaseCollections.Rooms, uuid, roomData);
             

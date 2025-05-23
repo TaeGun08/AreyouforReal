@@ -12,10 +12,10 @@ public class Popup_SignUp : BaseWindow
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private TMP_InputField nickNameInputField;
     
-    [Space]
-    [Header("Login Panel InputField")]
-    [SerializeField] private TMP_InputField login_EmailInputField;
-    [SerializeField] private TMP_InputField login_PasswordInputField;
+    // [Space]
+    // [Header("Login Panel InputField")]
+    // [SerializeField] private TMP_InputField login_EmailInputField;
+    // [SerializeField] private TMP_InputField login_PasswordInputField;
     
     [Space]
     [Header("PopUp Panel")]
@@ -25,6 +25,10 @@ public class Popup_SignUp : BaseWindow
     private string password = "";
     private string nickname = "";
 
+    //PlayerPrefs Keys
+    private const string EmailKey = "UserEmail";
+    private const string PasswordKey = "UserPassword";
+    
     private void Awake()
     {
         emailInputField.characterLimit = 20;
@@ -79,8 +83,14 @@ public class Popup_SignUp : BaseWindow
                 return;
             }
             
-            login_EmailInputField.text = email;
-            login_PasswordInputField.text = password;
+            // login_EmailInputField.text = email;
+            // login_PasswordInputField.text = password;
+            
+            PlayerPrefs.SetString(EmailKey, email);
+            PlayerPrefs.SetString(PasswordKey, password);
+            PlayerPrefs.Save();
+            
+            MainMenuManager.Instance.ReloadMainMenuScene();
             gameObject.SetActive(false);
         });
     }

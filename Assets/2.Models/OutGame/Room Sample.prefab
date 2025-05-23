@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6295231320789268624}
         m_TargetAssemblyTypeName: LobbyRoom, Assembly-CSharp
         m_MethodName: OnClickedEnterButton
         m_Mode: 1

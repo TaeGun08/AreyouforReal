@@ -161,7 +161,6 @@ public class FirestoreManager : MonoBehaviour
     #endregion
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
@@ -183,7 +182,6 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
