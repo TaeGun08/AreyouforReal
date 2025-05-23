@@ -154,7 +154,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularNoiseSize: 1
     - _SrcBlend: 1
-    - _StrongRimStrength: 0.5
+    - _StrongRimStrength: 0.2
     - _Surface: 0
     - _SurfaceDistortionAmount: 0.27
     - _SurfaceNoiseCutoff: 0.797
