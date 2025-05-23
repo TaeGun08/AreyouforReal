@@ -73,12 +73,6 @@ public class FirestoreManager : MonoBehaviour
             return false;
         }
         
-        Debug.Log(collection);
-        Debug.Log(key);
-        Debug.Log(data);
-
-        // return false;
-        
         try
         {
             docRef = firestore.Collection(collection.ToString()).Document(key);

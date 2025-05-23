@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Firebase.Extensions;
+using Firebase.Firestore;
 using Fusion;
 using UnityEditor;
 using UnityEngine;
@@ -76,6 +77,7 @@ public class NetworkStartBridge : MonoBehaviour
                 RoomName = roomName,
                 RoomInfo = roomDescription,
                 RoomCode = roomCode,
+                CreatedAt = Timestamp.GetCurrentTimestamp(),
                 MembersCount = 0,
                 MaxPlayers = 0,
                 IsGameStarted = false,
