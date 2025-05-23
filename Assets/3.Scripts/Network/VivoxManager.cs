@@ -43,7 +43,10 @@ public class VivoxManager : MonoBehaviour
         // Vivox 사용자 로그인(LoginAsync)
         
         Instance = this;
-        
+    }
+
+    public async Task Init()
+    {
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         await VivoxService.Instance.InitializeAsync();
@@ -52,7 +55,7 @@ public class VivoxManager : MonoBehaviour
         await LoginAsync();
         Debug.Log("Vivox 로그인 완료");
 
-        JoinVoiceChannel("Global");
+        await JoinVoiceChannel("Global");
     }
     
     private async Task LoginAsync()
@@ -77,7 +80,7 @@ public class VivoxManager : MonoBehaviour
     /// </summary>
     /// <param name="speakObj"></param>
     /// <param name="channelName"></param>
-    public async void Join3DChannel(GameObject speakObj, string channelName)
+    public async Task Join3DChannel(GameObject speakObj, string channelName)
     {
         //위치 음성 채널에 접속
         await VivoxService.Instance.JoinPositionalChannelAsync(channelName, ChatCapability.AudioOnly, channel3DSetting.GetChannel3DProperties());
