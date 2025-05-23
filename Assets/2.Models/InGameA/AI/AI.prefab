@@ -201,13 +201,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.5
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &-3930940639146983354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +225,8 @@ MonoBehaviour:
   jumpImpulse: 8
   acceleration: 10
   braking: 10
-  maxSpeed: 2
-  rotationSpeed: 15
+  maxSpeed: 1
+  rotationSpeed: 10
 --- !u!114 &8118017099306007645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,9 @@ MonoBehaviour:
   - {fileID: 5332217216341173875}
   - {fileID: 2472227653136732531}
   - {fileID: 787606814091072617}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &2619917897904740092
 MonoBehaviour:
   m_ObjectHideFlags: 0

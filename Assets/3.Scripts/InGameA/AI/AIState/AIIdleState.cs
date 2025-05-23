@@ -7,21 +7,24 @@ public class AIIdleState : AIState
 {
     public override State CurrentState =>  State.Idle;
 
-    private float Timer { get; set; }
+    private float timer;
 
     public override void StateEnter(AIController aiController)
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-        Timer = Random.Range(3f, 10f);
+        timer = Random.Range(3f, 10f);
     }
 
     public override void StateUpdate()
     {
-        Timer -= Runner.DeltaTime;
+        aiController.CharacterController.Move(aiController.transform.position * (0f * Runner.DeltaTime));
         
-        if (Timer <= 0f)
+        timer -= Runner.DeltaTime;
+        
+        if (timer <= 0f)
         {
+            timer = 0f;
             aiController.ChangeState(State.Walk);
         }
     }

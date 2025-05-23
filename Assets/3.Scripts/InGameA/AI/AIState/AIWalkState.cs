@@ -2,39 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
-using DG.Tweening;
 
 public class AIWalkState : AIState
 {
     public override State CurrentState => State.Walk;
 
-    private float Timer { get; set; }
+    private float timer;
     private Vector3 direction;
-    
+
+    private bool isTurn;
+
+    private int randomState;
+
+    private Coroutine coroutine;
+
     public override void StateEnter(AIController aiController)
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-        Timer = Random.Range(3f, 10f);
-        direction = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) * Vector3.forward;
+        timer = Random.Range(3f, 10f);
+        
+        randomState = Random.Range(0, 10) % 2;
+        
+        Vector3 forward = this.aiController.transform.forward;
+        float angle = isTurn ? 180f : Random.Range(0f, 360f);
+        direction = Quaternion.AngleAxis(angle, Vector3.up) * forward;
+        
+        isTurn = false;
     }
 
     public override void StateUpdate()
     {
-        Vector3 moveTarget = transform.position + direction;
-        aiController.Agent.SetDestination(moveTarget);
+        aiController.CharacterController.Move(direction.normalized * Runner.DeltaTime);
         
-        Timer -= Runner.DeltaTime;
-        
-        if (Timer <= 0f)
+        timer -= Runner.DeltaTime;
+
+        if (aiController.IsGrounded == false)
         {
-            aiController.ChangeState(State.Idle);
+            isTurn = true;
+            switch (randomState)
+            {
+                case 0:
+                    aiController.ChangeState(State.Idle);
+                    break;
+                case 1:
+                    aiController.ChangeState(State.Walk);
+                    break;
+            }
+            return;
+        }
+        
+        if (timer <= 0f)
+        {
+            timer = 0f;
+            switch (randomState)
+            {
+                case 0:
+                    aiController.ChangeState(State.Idle);
+                    break;
+                case 1:
+                    aiController.ChangeState(State.Walk);
+                    break;
+            }
         }
     }
 
     public override void StateExit()
     {
-        aiController.Agent.SetDestination(aiController.transform.position);
         aiController.ResetAnimation(CurrentState);
     }
 }
