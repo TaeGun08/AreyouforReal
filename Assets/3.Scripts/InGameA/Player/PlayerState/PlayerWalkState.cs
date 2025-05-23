@@ -23,9 +23,9 @@ public class PlayerWalkState : PlayerState
                 playerController.ChangeState(State.Attack);
                 return;
             }
-
-            float speed = playerController.LocalPlayer.Stats.WalkSpeed;
-            Vector3 dir = input.Direction.normalized;
+            
+            float angles = Mathf.Atan2(input.Direction.x, input.Direction.z) * Mathf.Rad2Deg + mainCam.transform.eulerAngles.y;
+            Vector3 dir = Quaternion.Euler(0f, angles, 0f) * Vector3.forward;
             playerController.CharacterController.Move(dir * Runner.DeltaTime);
             
             if (input.IsRun)

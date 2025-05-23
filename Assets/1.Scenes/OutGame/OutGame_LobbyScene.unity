@@ -3923,8 +3923,12 @@ MonoBehaviour:
   popupChat: {fileID: 8400181541575019227}
   popupRanking: {fileID: 67714181124973850}
   popupSetting: {fileID: 5640705483711462403}
+<<<<<<< HEAD
   popupChecking: {fileID: 0}
   playerNameText: {fileID: 2854502651518801177}
+=======
+  playerNameText: {fileID: 0}
+>>>>>>> Develop_InGameA
 --- !u!1 &972927325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,6 +5612,82 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1361859763}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!1001 &1349728927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391749160243869062, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606847406728504392, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_Name
+      value: FirebaseAutoLogInPack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606847406728504392, guid: 75fa40455d995604c8863ecc5c262ce7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75fa40455d995604c8863ecc5c262ce7, type: 3}
+>>>>>>> Develop_InGameA
 --- !u!1 &1386272915
 GameObject:
   m_ObjectHideFlags: 0

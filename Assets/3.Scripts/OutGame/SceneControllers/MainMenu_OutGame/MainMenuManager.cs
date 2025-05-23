@@ -44,7 +44,7 @@ public class MainMenuManager : MonoBehaviour
         // 0. 로그인 되어있다면 클릭시 씬이동
         if (FirebaseMainSession.Instance.FirebaseUser.UserData != null)
         {
-            LoadingSceneManager.LoadScene("OutGame_LobbyScene");
+            LoadingSceneManager.LoadScene("Lobby");
         }
         // 1. 로그인 안되어있음 && 이전 로그인 기록이 있음 => 자동 로그인 시도
         // else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))

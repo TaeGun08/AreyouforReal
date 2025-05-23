@@ -77,7 +77,7 @@ public class Popup_Login : BaseWindow
     {
         if (FirebaseMainSession.Instance.FirebaseUser != null)
         {
-            LoadingSceneManager.LoadScene("OutGame_LobbyScene");
+            LoadingSceneManager.LoadScene("Lobby");
         }
         
         email = emailInputField.text;
@@ -101,7 +101,7 @@ public class Popup_Login : BaseWindow
                 PlayerPrefs.DeleteKey(PasswordKey);
             }
             
-            LoadingSceneManager.LoadScene("OutGame_LobbyScene");
+            LoadingSceneManager.LoadScene("Lobby");
         }
         else
         {
