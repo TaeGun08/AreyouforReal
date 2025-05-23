@@ -1286,7 +1286,12 @@ PrefabInstance:
     - target: {fileID: 6287550577856165675, guid: d82a39ae527bc5743b143a39c08b68bf,
         type: 3}
       propertyPath: TotalWords
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287550577856165675, guid: d82a39ae527bc5743b143a39c08b68bf,
+        type: 3}
+      propertyPath: SyncSettings
+      value: 127
       objectReference: {fileID: 0}
     - target: {fileID: 6287550577856165675, guid: d82a39ae527bc5743b143a39c08b68bf,
         type: 3}

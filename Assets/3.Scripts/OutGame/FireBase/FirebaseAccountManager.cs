@@ -35,9 +35,9 @@ public class FirebaseAccountManager : MonoBehaviour
         });
     }
 
-    private TaskCompletionSource<bool> resultTcs;
+    private TaskCompletionSource<bool> resultTcs; //종료 시점 판단을 위한 Tcs
     
-    public Task<bool> CreateAccount(string email, string password, string nickname)
+    public Task<bool> CreateAccount(string email, string password, string nickname) //계정 생성
     {
         if (isInitialized.Equals(false))
         {
@@ -114,7 +114,7 @@ public class FirebaseAccountManager : MonoBehaviour
             });
     }
 
-    public async Task<bool> SignIn(string email, string password)
+    public async Task<bool> SignIn(string email, string password) //로그인
     {
         bool isSignIn = false;
         

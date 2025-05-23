@@ -10,6 +10,7 @@ public class PlayerRunState : PlayerState
     {
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
+        this.playerController.CharacterController.maxSpeed = this.playerController.LocalPlayer.Stats.RunSpeed;
     }
 
     public override void StateUpdate()
@@ -22,10 +23,9 @@ public class PlayerRunState : PlayerState
                 playerController.ChangeState(State.Attack);
                 return;
             }
-
-            float speed = playerController.LocalPlayer.Stats.RunSpeed;
+            
             Vector3 dir = input.Direction.normalized;
-            playerController.CharacterController.Move(dir * speed * Runner.DeltaTime);
+            playerController.CharacterController.Move(dir * Runner.DeltaTime);
             
             if (input.IsRun == false)
             {
