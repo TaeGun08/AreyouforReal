@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -14,14 +15,15 @@ public class Popup_RoomList : BaseWindow
     [SerializeField] private Popup_CreateRoom popupCreateRoom;
     [SerializeField] private Popup_JoinRoom popupJoinRoom;
     
-    private readonly List<LobbyRoom> roomList = new List<LobbyRoom>();
+    private List<LobbyRoom> roomList;
     
     private void Awake()
     {
+        roomList = new List<LobbyRoom>();
         roomList.AddRange(roomListParent.GetComponentsInChildren<LobbyRoom>(true)); // 비활성 포함하여 풀링
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _ = OnRoomInfoPanel();
     }
@@ -73,14 +75,11 @@ public class Popup_RoomList : BaseWindow
         
         if (roomData.Count > 0)
         {
-            foreach (RoomData data in roomData)
+            foreach (var data in roomData.Where(data => data.IsGameOver.Equals(false)))
             {
-                if (data.IsGameOver.Equals(false)) //게임 종료 상태가 아닐 경우
-                {
-                    roomList[roomIndex].RoomSetting(data);
-                    roomList[roomIndex].gameObject.SetActive(true);
-                    roomIndex++;
-                }
+                roomList[roomIndex].RoomSetting(data);
+                roomList[roomIndex].gameObject.SetActive(true);
+                roomIndex++;
             }
         }
         

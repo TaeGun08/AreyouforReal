@@ -25,10 +25,8 @@ public class MainMenuManager : MonoBehaviour
         Instance = this;
     }
     
-    public async Task AutoLogin(string email, string password)
+    private async Task AutoLogin(string email, string password)
     {
-        Debug.Log($"자동 로그인 시도: {email}");
-        
         if(await FirebaseAccountManager.Instance.SignIn(email, password)) //자동 로그인 성공
         {
             SignOutButton.SetActive(true); //로그아웃 버튼 활성화
@@ -37,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
         {
             PlayerPrefs.DeleteKey(EmailKey);
             PlayerPrefs.DeleteKey(PasswordKey);
+            popupLogin.gameObject.SetActive(true);
         }
     }
 
@@ -48,15 +47,12 @@ public class MainMenuManager : MonoBehaviour
             LoadingSceneManager.LoadScene("OutGame_LobbyScene");
         }
         // 1. 로그인 안되어있음 && 이전 로그인 기록이 있음 => 자동 로그인 시도
-        else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
-        {
-            Debug.Log($"자동 로그인 시도 중");
-            string savedEmail = PlayerPrefs.GetString(EmailKey);
-            string savedPassword = PlayerPrefs.GetString(PasswordKey);
-                
-            // 자동 로그인 시도
-            _ = AutoLogin(savedEmail, savedPassword);
-        }
+        // else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
+        // {
+        //     Debug.Log($"자동 로그인 시도 중");
+        //     // 자동 로그인 시도
+        //     _ = AutoLogin(PlayerPrefs.GetString(EmailKey), PlayerPrefs.GetString(PasswordKey));
+        // }
         // 3. 모두 아니라면 로그인 창을 출력한다.
         else
         {
@@ -70,6 +66,11 @@ public class MainMenuManager : MonoBehaviour
         if (FirebaseMainSession.Instance.FirebaseUser.UserData != null) //클릭시 세션에 로그인정보가 있으면
         {
             FirebaseAccountManager.Instance.SignOut(); //로그아웃
+            
+            PlayerPrefs.DeleteKey(EmailKey);
+            PlayerPrefs.DeleteKey(PasswordKey);
+            SignOutButton.SetActive(false);
+            popupLogin.gameObject.SetActive(true);
         }
     }
 

@@ -9,7 +9,7 @@ using UnityEngine;
 public class FirebaseUser
 {
     public Firebase.Auth.FirebaseUser UserData { get; set; }
-    // public PlayerRef FusionPlayerRef { get; set; }
+    public string Username { get; set; }
 }
 
 public class FirebaseMainSession : MonoBehaviour
@@ -26,9 +26,10 @@ public class FirebaseMainSession : MonoBehaviour
         FirebaseUser = new FirebaseUser();
     }
     
-    public void SetUserData(Firebase.Auth.FirebaseUser user)
+    public void SetUserData(Firebase.Auth.FirebaseUser user, string username)
     {
         FirebaseUser.UserData = user;
+        FirebaseUser.Username =  username;
 
         if (user != null) //디버그용
         {

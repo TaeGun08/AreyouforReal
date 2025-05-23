@@ -16,7 +16,7 @@ public enum FirebaseCollections
 public class FirestoreManager : MonoBehaviour
 {
     private FirebaseFirestore firestore;
-    private DocumentReference docRef;
+
     private bool isInitialized = false;
 
     public static FirestoreManager Instance { get; private set; }
@@ -32,12 +32,6 @@ public class FirestoreManager : MonoBehaviour
         Instance = this;
         
         DontDestroyOnLoad(gameObject);
-        
-        if (FirebaseAuth.DefaultInstance.CurrentUser == null) //디버그용 자동 로그인 Admin 확인 필요
-        {
-            Debug.LogWarning("Firebase User is not authenticated!");
-            _ = FirebaseAccountManager.Instance.SignIn("admin@gmail.com", "admin123");
-        }
     }
 
     private void Start()
@@ -75,7 +69,7 @@ public class FirestoreManager : MonoBehaviour
         
         try
         {
-            docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
             return true;
@@ -176,6 +170,8 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
+        return;
+        
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");

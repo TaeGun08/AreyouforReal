@@ -164,6 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.HoochooCompany.AreyouforReal
+    Standalone: com.HoochooCompany.AreyouforReal
   buildNumber:
     Standalone: 0
     VisionOS: 0

@@ -33,6 +33,7 @@ public class FirebaseAccountManager : MonoBehaviour
         });
     }
     
+    
     public Task<bool> CreateAccount(string email, string password, string nickname) //계정 생성
     {
         if (isInitialized.Equals(false))
@@ -53,7 +54,7 @@ public class FirebaseAccountManager : MonoBehaviour
 
             var result = task.Result;
             Firebase.Auth.FirebaseUser newUser = result.User;
-            FirebaseMainSession.Instance.SetUserData(newUser);
+            FirebaseMainSession.Instance.SetUserData(newUser,nickname);
             
             //회원가입 성공
             UpdateUserNickname(newUser, nickname); // Auth 닉네임 설정
@@ -132,7 +133,19 @@ public class FirebaseAccountManager : MonoBehaviour
             isSignIn = true;
             var result = task.Result;
             Firebase.Auth.FirebaseUser user = result.User;
-            FirebaseMainSession.Instance.SetUserData(user);
+            
+            FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, user.UserId)
+                .ContinueWithOnMainThread(
+                    task =>
+                    {
+                        if (task.IsCanceled || task.IsFaulted)
+                        {
+                            return;
+                        }
+
+                        FirebaseMainSession.Instance.SetUserData(user, task.Result.NickName);
+                    });
+
         });
 
         return isSignIn;
@@ -141,6 +154,6 @@ public class FirebaseAccountManager : MonoBehaviour
     public void SignOut() //실행하는곳에서 login false 하기
     {
         auth.SignOut();
-        FirebaseMainSession.Instance.SetUserData(null);
+        FirebaseMainSession.Instance.SetUserData(null, null);
     }
 }
