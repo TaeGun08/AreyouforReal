@@ -1702,12 +1702,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297323475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31bcb7473baf65b42a89d5e90ce62614, type: 3}
+  m_Script: {fileID: 11500000, guid: e78f24ec59d63af49a5ed9728f36fd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   reduceCircle: {fileID: 1297323478}
   segmentCount: 64
-  lineWidth: 10
+  lineWidth: 0.1
 --- !u!1 &1427348417
 GameObject:
   m_ObjectHideFlags: 0

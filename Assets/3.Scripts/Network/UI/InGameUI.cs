@@ -14,6 +14,8 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private TMP_InputField chatInput;
     [SerializeField] private Button chatSendButton;
+
+    [SerializeField] private Transform telpoTrs;
     
     private NetworkRunner runner;
 
