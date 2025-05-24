@@ -59,8 +59,7 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
         
-        string roomCode = Room.CreateRandomCode();
-
+        string roomCode = Room.CreateRandomCode().Result;
         
         // TODO : 방입장 방생성 분리
         
