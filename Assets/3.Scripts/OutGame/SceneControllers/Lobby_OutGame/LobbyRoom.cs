@@ -51,21 +51,6 @@ public class LobbyRoom : MonoBehaviour
     //ButtonEvent
     public void OnClickedEnterButton()
     {
-        FirestoreManager.Instance.ReadDataAsync<RoomData>(FirebaseCollections.Rooms, roomCode).ContinueWithOnMainThread(
-            task =>
-            {
-                RoomData roomData = task.Result;
-                
-                if (roomData.MembersCount < roomData.MaxPlayers && //최대인원수 검사
-                    roomData.IsGameStarted.Equals(false) && 
-                    roomData.IsGameOver.Equals(false))
-                {
-                    _ = NetworkStartBridge.Instance.JoinRoom(roomCode);
-                }
-                else
-                {
-                    LobbyManager.Instance.OnPopupChecking();
-                }
-            });
+        _ = NetworkStartBridge.Instance.JoinRoom(roomCode); // 입장 가능 검사를 JoinRoom에서 하도록 수정
     }
 }

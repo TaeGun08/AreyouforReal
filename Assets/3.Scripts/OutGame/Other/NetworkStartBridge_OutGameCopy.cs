@@ -59,7 +59,7 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
         
-        string roomCode = Room.CreateRandomCode().Result;
+        string roomCode = await Room.CreateRandomCode();
         
         // TODO : 방입장 방생성 분리
         
@@ -69,7 +69,7 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
         
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
-            { "uuid", uuid }
+            { "RoomId", roomCode }
         };
         
         StartGameResult result = await runner.StartGame(new StartGameArgs()
@@ -99,7 +99,7 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
             };
             
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
-                FirebaseCollections.Rooms, uuid, roomData);
+                FirebaseCollections.Rooms, roomCode, roomData);
             
             if (isSucced == false)
             {

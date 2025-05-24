@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Fusion;
 using TMPro;
 
 public class ChatManager : MonoBehaviour
@@ -77,5 +78,22 @@ public class ChatManager : MonoBehaviour
         {
             otherBubblePool.Enqueue(bubble);
         }
+    }
+    
+    public void RPC_SendChat(string message, string sender)
+    {
+        RPC_ReceiveChat(message, sender);
+    }
+    
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_ReceiveChat(string message, string sender)
+    {
+        Debug.Log("ReceiveChat : " + message);
+        
+        GameObject bubble = myBubblePool.Dequeue();
+        // GameObject chat = Instantiate(chatPrefab, chatAreaGameObject.transform);
+        // chat.GetComponentInChildren<TMP_Text>().SetText($"{sender}: {message}");
+        
+        // messageList.Add((message, sender));
     }
 }

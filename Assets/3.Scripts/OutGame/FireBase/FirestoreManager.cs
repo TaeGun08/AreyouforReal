@@ -220,4 +220,33 @@ public class FirestoreManager : MonoBehaviour
             return null;
         }
     }
+    
+    //콜렉션 내 모든 문서의 키 가져오기
+    public async Task<List<string>> GetAllDocumentKeysAsync(FirebaseCollections collection)
+    {
+        if (!isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return null;
+        }
+
+        try
+        {
+            CollectionReference colRef = firestore.Collection(collection.ToString());
+            QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
+
+            List<string> keys = new List<string>();
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                keys.Add(doc.Id);
+            }
+
+            return keys;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to read document keys: {e.Message}");
+            return null;
+        }
+    }
 }
