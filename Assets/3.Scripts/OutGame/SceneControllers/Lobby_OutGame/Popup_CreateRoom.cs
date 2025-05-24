@@ -47,6 +47,13 @@ public class Popup_CreateRoom : BaseWindow
     
     public void OnClickedCreateButton()
     {
+        if (RoomName.text.Equals("")  || RoomInfo.text.Equals("")  || MaxPlayers.text.Equals("") ) //예외처리, 경고문 표시
+        {
+            LobbyManager.Instance.OnPopupChecking(CheckTexts.Create);
+            return;
+        }
+        
+        Debug.Log("?");
         //방 입장 Host
         _ = NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
     }

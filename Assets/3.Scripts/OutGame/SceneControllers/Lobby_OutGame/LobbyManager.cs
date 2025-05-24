@@ -5,6 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CheckTexts
+{
+    Create,
+    Join,
+}
+
 public class LobbyManager : MonoBehaviour
 {
 
@@ -15,14 +21,16 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject popupRanking;      // 랭킹 표시 팝업 (임시)
     [SerializeField] private GameObject popupSetting;      // 세팅 표시 팝업 (임시)
     [SerializeField] private GameObject popupChecking;     // 경고 팝업
+    [SerializeField] private TMP_Text checkText;           // 경고문 텍스트
     
     [Space]
     [Header("Player Information")]
-    [SerializeField] private TMP_Text playerNameText;
-
-    private TMP_Text checkText;
+    [SerializeField] private TMP_Text playerNameText;  //플레이어 이름 표시
     
-    private const string cannotJoinText = "Sorry, you cannot join the room."; // 경고 메시지
+    // 경고 메시지 캐싱
+    private const string cannotCreateText = "Sorry, you cannot Create the room.";
+    private const string cannotJoinText = "Sorry, you cannot join the room."; 
+
     
     public static LobbyManager Instance;
 
@@ -42,9 +50,18 @@ public class LobbyManager : MonoBehaviour
         playerNameText.text = FirebaseMainSession.Instance.FirebaseUser.Username;
     }
 
-    public void OnPopupChecking()   //경고 팝업 표시
+    public void OnPopupChecking( CheckTexts checkEnum )   //경고 팝업 표시
     {
-        checkText.text = cannotJoinText;
+
+        if (checkEnum == CheckTexts.Create)
+        {
+            checkText.text =  cannotCreateText;
+        }
+        else if (checkEnum == CheckTexts.Join)
+        {
+            checkText.text = cannotJoinText;
+        }
+
         popupRoomList.gameObject.SetActive(true);
     }
     

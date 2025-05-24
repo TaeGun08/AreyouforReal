@@ -3482,7 +3482,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7649,8 +7649,8 @@ MonoBehaviour:
   _effectGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.2941177, b: 1, a: 1}
-    key1: {r: 0.28773582, g: 0.56234354, b: 1, a: 1}
-    key2: {r: 0, g: 0.11449814, b: 1, a: 0}
+    key1: {r: 0.4764151, g: 0.6777939, b: 1, a: 1}
+    key2: {r: 0.18396229, g: 0.27676672, b: 1, a: 0}
     key3: {r: 0, g: 0.11449814, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
