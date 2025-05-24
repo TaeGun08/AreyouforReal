@@ -70206,6 +70206,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 543342599}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &544900910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544900913}
+  - component: {fileID: 544900912}
+  - component: {fileID: 544900911}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &544900911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544900910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3042213136
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 544900912}
+  ForceRemoteRenderTimeframe: 0
+--- !u!114 &544900912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544900910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507036f673f8de04aa94e4fb6f2daadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlivePlayers: []
+  map: {fileID: 431816924}
+--- !u!4 &544900913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544900910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5031233, y: -0.79995286, z: 11.158795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &545418955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98519,7 +98585,6 @@ MonoBehaviour:
   startButton: {fileID: 56077805}
   chatInput: {fileID: 505929081}
   chatSendButton: {fileID: 1468798404}
-  telpoTrs: {fileID: 0}
 --- !u!114 &784258683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261486,3 +261551,4 @@ SceneRoots:
   - {fileID: 1788505460}
   - {fileID: 869504830}
   - {fileID: 2084161395}
+  - {fileID: 544900913}
