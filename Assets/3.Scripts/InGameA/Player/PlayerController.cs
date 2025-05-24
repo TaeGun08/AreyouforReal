@@ -61,6 +61,7 @@ public class PlayerController : NetworkBehaviour, IKnockout
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     public void RPC_Knockout()
     {
+        
         ChangeState(PlayerState.State.Knockout);
     }
     

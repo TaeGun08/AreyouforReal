@@ -20,8 +20,8 @@ namespace DefaultNamespace
         // UnitySerializeField인스펙터에서 보이게
         [Networked, Capacity(CAPACITY)]
         [UnitySerializeField]
-        private NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
-
+        public NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
+        
         public override void Spawned()
         {
             Instance = this;

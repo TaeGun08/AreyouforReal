@@ -14,8 +14,6 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private TMP_InputField chatInput;
     [SerializeField] private Button chatSendButton;
-
-    [SerializeField] private Transform telpoTrs;
     
     private NetworkRunner runner;
 
@@ -23,7 +21,8 @@ public class InGameUI : MonoBehaviour
     {
         startButton.onClick.AddListener(() =>
         {
-            PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
+            // PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
+            GameManager_Network.Instance.TryStartGame();
             Debug.Log("게임시작버튼 클릭!");
         });
         
