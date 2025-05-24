@@ -4,25 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/1.Scenes/DevelopMerge/Main.unity
-    guid: d22f93e14c028584593043bf94891ed0
-  - enabled: 1
-    path: Assets/1.Scenes/DevelopMerge/Loading.unity
-    guid: 0fb39d70da828f849838c5a5da32bec3
-  - enabled: 1
-    path: Assets/1.Scenes/DevelopMerge/Lobby.unity
-    guid: 311990f37887afa4fa370f0901e47e75
-  - enabled: 1
-    path: Assets/1.Scenes/DevelopMerge/InGame.unity
-    guid: 2be4b9517f2699b49a330893fa2a5304
-=======
-    path: Assets/1.Scenes/Network/TestScene_Network_Lobby.unity
-    guid: 8c0af6cbcd2589d4ebddd95becb3cb34
-  - enabled: 1
-    path: Assets/1.Scenes/Network/TestScene_Network_InGame.unity
-    guid: d82aa733399e2be418593b0081f5dffc
->>>>>>> Develop_Network
+  m_Scenes: []
   m_configObjects: {}
