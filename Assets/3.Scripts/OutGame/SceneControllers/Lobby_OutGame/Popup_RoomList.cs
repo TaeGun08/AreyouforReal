@@ -68,8 +68,14 @@ public class Popup_RoomList : BaseWindow
         }
         
         //데이터를 방 생성 시점 기준 (CreatedAt) 최신순으로 정렬
-        roomData.Sort((a, b) => b.CreatedAt.ToDateTime().CompareTo(a.CreatedAt.ToDateTime())); //내림차순 정렬
+        //roomData.Sort((a, b) => b.CreatedAt.ToDateTime().CompareTo(a.CreatedAt.ToDateTime())); //내림차순 정렬
         //roomData.Sort((a, b) => a.CreatedAt.ToDateTime().CompareTo(b.CreatedAt.ToDateTime())); //오름차순 정렬
+        
+        // 정렬: 시작되지 않은 방이 먼저, 같은 그룹 내에서는 최신순
+        roomData = roomData
+            .OrderBy(data => data.IsGameStarted)
+            .ThenByDescending(data => data.CreatedAt.ToDateTime())
+            .ToList();
         
         int roomIndex = 0;
         

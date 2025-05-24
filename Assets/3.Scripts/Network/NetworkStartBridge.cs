@@ -45,17 +45,17 @@ public class NetworkStartBridge : MonoBehaviour
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
         
-        string roomCode = Room.CreateRandomCode();
+        string roomCode = Room.CreateRandomCode().Result;
         
         // TODO : 방입장 방생성 분리
         
-        string uuid = Guid.NewGuid().ToString();
-
-        Debug.Log("생성 UUID : " + uuid);
+        // string uuid = Guid.NewGuid().ToString();
+        //
+        // Debug.Log("생성 UUID : " + uuid);
         
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
-            { "uuid", uuid }
+            { "RoomId", roomCode }
         };
         
         StartGameResult result = await runner.StartGame(new StartGameArgs()
@@ -85,7 +85,7 @@ public class NetworkStartBridge : MonoBehaviour
             };
             
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
-                FirebaseCollections.Rooms, uuid, roomData);
+                FirebaseCollections.Rooms, roomCode, roomData);
             
             if (isSucced == false)
             {
