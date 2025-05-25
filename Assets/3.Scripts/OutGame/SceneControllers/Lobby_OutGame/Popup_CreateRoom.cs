@@ -53,7 +53,6 @@ public class Popup_CreateRoom : BaseWindow
             return;
         }
         
-        Debug.Log("?");
         //방 입장 Host
         _ = NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
     }
