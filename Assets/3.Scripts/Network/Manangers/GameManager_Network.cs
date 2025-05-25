@@ -17,9 +17,10 @@ public class GameManager_Network : NetworkBehaviour
     public NetworkLinkedList<PlayerRef> AlivePlayers { get; }
 
     [SerializeField] private GameObject map;
-    
+    [Networked] private GameState delayedState { get; set; }
     public enum GameState
     {
+        None,
         Wait,
         Start,
         Play,
@@ -35,6 +36,15 @@ public class GameManager_Network : NetworkBehaviour
     {
         Instance = this;
         state = GameState.Wait;
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
+        {
+            state = delayedState;
+            delayedState = GameState.None;
+        }
     }
 
     public bool TryStartGame()
@@ -64,7 +74,7 @@ public class GameManager_Network : NetworkBehaviour
         return false;
     }
 
-    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     private void RPC_MapActive()
     {
         map.SetActive(true);
@@ -73,7 +83,7 @@ public class GameManager_Network : NetworkBehaviour
     private void DelaySetState(GameState state, float delayTime)
     {
         Delay = TickTimer.CreateFromSeconds(Runner, delayTime);
-        this.state = state;
+        delayedState = state;
     }
 
     public void KillEvent(PlayerRef player)
