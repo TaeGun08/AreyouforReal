@@ -34,27 +34,24 @@ public class FirestoreManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        InitializeFirebase();
-    }
-
     // Firebase 초기화
-    public void InitializeFirebase()
+    public void InitializeFirebase(FirebaseApp app)
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                firestore = FirebaseFirestore.DefaultInstance;
-                isInitialized = true;
-                Debug.Log("Firebase Firestore Initialized Successfully");
-            }
-            else
-            {
-                Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
-            }
-        });
+        firestore = FirebaseFirestore.GetInstance(app);
+        isInitialized = true;
+        // FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        // {
+        //     if (task.Result == DependencyStatus.Available)
+        //     {
+        //         firestore = FirebaseFirestore.DefaultInstance;
+        //         isInitialized = true;
+        //         Debug.Log("Firebase Firestore Initialized Successfully");
+        //     }
+        //     else
+        //     {
+        //         Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
+        //     }
+        // });
     }
 
     // 데이터 쓰기 (Collection과 Key 기반)
