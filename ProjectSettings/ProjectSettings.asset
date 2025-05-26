@@ -4,11 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-<<<<<<< HEAD
-  productGUID: 257ed6a04233f784a9dce6c8fa6076b1
-=======
-  productGUID: 031c3c2c047e9ce43ad2fd2b23370395
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
+  productGUID: dc062ee404943554cbcad2c2f0cceecc
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -16,11 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-<<<<<<< HEAD
   companyName: DefaultCompany
-=======
-  companyName: HoochooCompany
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
   productName: AreyouforReal
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -50,13 +42,8 @@ PlayerSettings:
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-<<<<<<< HEAD
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-=======
-  defaultScreenWidth: 800
-  defaultScreenHeight: 600
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -118,11 +105,7 @@ PlayerSettings:
   xboxEnableFitness: 0
   visibleInBackground: 1
   allowFullscreenSwitch: 1
-<<<<<<< HEAD
   fullscreenMode: 1
-=======
-  fullscreenMode: 3
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -179,12 +162,7 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-<<<<<<< HEAD
   applicationIdentifier: {}
-=======
-  applicationIdentifier:
-    Android: com.HoochooCompany.AreyouforReal
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -781,9 +759,6 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-<<<<<<< HEAD
-    Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;FUSION_WEAVER;FUSION2;FUSION_LOGLEVEL_INFO
-=======
     Android: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     EmbeddedLinux: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     GameCoreScarlett: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
@@ -801,7 +776,6 @@ PlayerSettings:
     XboxOne: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     iPhone: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     tvOS: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
->>>>>>> d0df3394c91066ffdd75d69203830980dc3ad276
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -894,7 +868,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
