@@ -21,10 +21,10 @@ public class MakeCircle : MonoBehaviour
         CreateCircles();
     }
 
-    private void CreateCircles()
+    public void CreateCircles()
     {
+        circleQueue.Clear();    
         CircleData last = null;
-
         for (int i = 0; i < 4; i++)
         {
             Vector3 center;
