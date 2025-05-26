@@ -16,7 +16,6 @@ public class PlayerWalkState : PlayerState
 
     public override void StateUpdate()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
         if (playerController.Runner.TryGetInputForPlayer(playerController.Object.InputAuthority, out NetworkInputData input))
         {
             if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0))
@@ -36,8 +35,6 @@ public class PlayerWalkState : PlayerState
             if (input.Direction.sqrMagnitude <= 0.0f)
                 playerController.ChangeState(State.Idle);
         }
-#else
-#endif
     }
 
     public override void StateExit()
