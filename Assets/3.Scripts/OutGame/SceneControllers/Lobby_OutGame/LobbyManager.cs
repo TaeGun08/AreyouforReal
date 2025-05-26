@@ -17,7 +17,7 @@ public class LobbyManager : MonoBehaviour
     [Header("PopUps")]
     [SerializeField] private Popup_RoomList popupRoomList; // 방 목록 표시 팝업
     [SerializeField] private GameObject popupFriend;       // 친구 목록 표시 팝업 (임시)
-    [SerializeField] private Popup_Chat popupChat;         // 채팅 목록 표시 팝업 (임시)
+    // [SerializeField] private Popup_Chat popupChat;         // 채팅 목록 표시 팝업 (임시)
     [SerializeField] private GameObject popupRanking;      // 랭킹 표시 팝업 (임시)
     [SerializeField] private GameObject popupSetting;      // 세팅 표시 팝업 (임시)
     [SerializeField] private GameObject popupChecking;     // 경고 팝업
@@ -77,7 +77,7 @@ public class LobbyManager : MonoBehaviour
     
     public void OnClickedChatButton() // 채팅 팝업 버튼
     {
-        popupChat.gameObject.SetActive(true);
+        // popupChat.gameObject.SetActive(true);
     }
     
     public void OnClickedRankingButton() // 랭킹 팝업 버튼

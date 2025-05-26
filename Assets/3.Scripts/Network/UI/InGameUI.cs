@@ -28,7 +28,7 @@ public class InGameUI : MonoBehaviour
         
         chatSendButton.onClick.AddListener(() =>
         {
-            ChattingSystem.Instance.RPC_SendChat(chatInput.text, "Imsi");
+            // ChattingSystem.Instance.RPC_SenderChatWrapper(chatInput.text, "Imsi");
             
             chatInput.text = string.Empty;
         });

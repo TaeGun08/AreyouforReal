@@ -37,7 +37,7 @@ public class Popup_Login : BaseWindow
 
     private void Awake()
     {
-        emailInputField.characterLimit = 20;
+        emailInputField.characterLimit = 30;
         passwordInputField.characterLimit = 15;
         
         emailInputField.contentType = TMP_InputField.ContentType.Custom;
