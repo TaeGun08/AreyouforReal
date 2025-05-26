@@ -7,14 +7,20 @@ public class ReduceCircle : MonoBehaviour
     public float reductionTime = 45f;
     public float waitTime = 45f;
 
-    private MakeCircle makeCircle;
+    [SerializeField] private MakeCircle makeCircle;
     public CircleData currentZone;
 
     private Coroutine reduceCoroutine;
 
+    private void Awake()
+    {
+        // Inspector에 할당되지 않았다면 씬에서 한 번만 검색
+        if (makeCircle == null)
+            makeCircle = FindObjectOfType<MakeCircle>();
+    }
+
     private void Start()
     {
-        makeCircle = GetComponent<MakeCircle>();
         if (makeCircle == null)
         {
             Debug.LogError("MakeCircle 컴포넌트를 찾을 수 없습니다.");
@@ -22,11 +28,11 @@ public class ReduceCircle : MonoBehaviour
             return;
         }
 
-        currentZone = makeCircle.DequeueCircle();
+        
         reduceCoroutine = StartCoroutine(ReduceRoutine());
     }
 
-    private IEnumerator ReduceRoutine()
+    public IEnumerator ReduceRoutine()
     {
         yield return new WaitForSeconds(waitTime);
 
@@ -35,10 +41,10 @@ public class ReduceCircle : MonoBehaviour
             var nextZone = makeCircle.DequeueCircle();
 
             Vector3 startCenter = currentZone.center;
-            float startRadius = currentZone.radius;
+            float   startRadius = currentZone.radius;
 
-            Vector3 endCenter = nextZone.center;
-            float endRadius = nextZone.radius;
+            Vector3 endCenter   = nextZone.center;
+            float   endRadius   = nextZone.radius;
 
             float elapsed = 0f;
             while (elapsed < reductionTime)
@@ -63,7 +69,6 @@ public class ReduceCircle : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (currentZone == null) return;
-
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(currentZone.center, currentZone.radius);
     }
