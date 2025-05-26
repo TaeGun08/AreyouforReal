@@ -1,19 +1,33 @@
+using System;
 using System.Threading.Tasks;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RecordSceneManager : MonoBehaviour
 {
-    public static TMP_Text userNameText;
-    public static TMP_Text recordRankingText;
-    public static TMP_Text getRankingPointText;
-    public static TMP_Text userRankingPointText;
+    public TMP_Text userNameText;
+    public TMP_Text recordRankingText;
+    public TMP_Text getRankingPointText;
+    public TMP_Text userRankingPointText;
     
-    private static bool isEndRecording = false;
+    private bool isEndRecording = false;
     
+    public static RecordSceneManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // public static void LoadSceneStatic(string recordRanking, int getRankingPoint)
+    // {
+    //     RecordSceneSetup(recordRanking, getRankingPoint);
+    // }
+
     //순위, 순위에 따른 포인트증가
-    public static async Task RecordSceneSetup(string recordRanking, int getRankingPoint)
+    public async Task RecordSceneSetup(string recordRanking, int getRankingPoint)
     {
         FirebaseUser user = FirebaseMainSession.Instance.FirebaseUser;
         

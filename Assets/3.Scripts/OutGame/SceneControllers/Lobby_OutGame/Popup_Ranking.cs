@@ -7,7 +7,7 @@ using Firebase.Extensions;
 using Fusion;
 using UnityEngine;
 
-public class Popup_Ranking : MonoBehaviour
+public class Popup_Ranking : BaseWindow
 {
     [Header("Rank")]
     [SerializeField] private GameObject rankListParent;
