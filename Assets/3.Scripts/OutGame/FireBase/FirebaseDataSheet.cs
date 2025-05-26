@@ -2,9 +2,16 @@ using System.Collections.Generic;
 using Firebase.Firestore;
 using UnityEngine;
 
+public enum FirebaseCollections
+{
+    Players,
+    Rooms,
+    MatchHistorys,
+    Ranks,
+}
 
 [FirestoreData]
-public class PlayerData
+public class PlayerData  //key : GUID
 {
     [FirestoreProperty] public string Email { get; set; }
     [FirestoreProperty] public string NickName { get; set; }
@@ -15,7 +22,7 @@ public class PlayerData
 }
 
 [FirestoreData]
-public class RoomData
+public class RoomData  //key : RoomCode
 {
     [FirestoreProperty] public string RoomName { get; set; }
     [FirestoreProperty] public string RoomInfo { get; set; }
@@ -27,8 +34,17 @@ public class RoomData
     [FirestoreProperty] public bool IsGameOver { get; set; }
 }
 
-//
-// public class FirebaseDataSheet : MonoBehaviour
-// {
-//     
-// }
+[FirestoreData]
+public class MatchHistoryData  //key : Player GUID
+{
+    [FirestoreProperty] public string Rank { get; set; }
+    [FirestoreProperty] public string KillCount { get; set; }
+    [FirestoreProperty] public string PlayTime { get; set; }
+}
+
+[FirestoreData]
+public class RankData  //key : Player GUID
+{
+    [FirestoreProperty] public string PlayerName { get; set; }
+    [FirestoreProperty] public string RankPoint { get; set; }
+}

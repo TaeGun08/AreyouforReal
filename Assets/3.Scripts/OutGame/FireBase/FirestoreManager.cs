@@ -7,11 +7,7 @@ using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine;
 
-public enum FirebaseCollections
-{
-    Players,
-    Rooms,
-}
+
 
 public class FirestoreManager : MonoBehaviour
 {
@@ -205,6 +201,39 @@ public class FirestoreManager : MonoBehaviour
                 if (doc.Exists)
                 {
                     allDocs.Add(doc.ConvertTo<T>());
+                }
+            }
+
+            Debug.Log($"Fetched {allDocs.Count} documents from {collection}");
+            return allDocs;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to read all documents: {e.Message}");
+            return null;
+        }
+    }
+    
+    public async Task<Dictionary<string, T>> GetAllDocumentsWithKeyAsync<T>(FirebaseCollections collection) where T : class
+    {
+        if (isInitialized.Equals(false))
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return null;
+        }
+
+        try
+        {
+            CollectionReference colRef = firestore.Collection(collection.ToString());
+            QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
+
+            Dictionary<string, T> allDocs = new Dictionary<string, T>();
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                if (doc.Exists)
+                {
+                    T data = doc.ConvertTo<T>();
+                    allDocs[doc.Id] = data; // 키는 Document ID
                 }
             }
 
