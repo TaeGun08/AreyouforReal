@@ -11,6 +11,6 @@ public class Rank : MonoBehaviour
     {
         rankText.text = rankIndex;
         playerNameText.text = rankData.PlayerName;
-        rankPointText.text = rankData.RankPoint;
+        rankPointText.text = rankData.RankPoint.ToString();
     }
 }
