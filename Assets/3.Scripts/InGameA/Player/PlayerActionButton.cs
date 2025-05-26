@@ -9,19 +9,20 @@ public class PlayerActionButton : MonoBehaviour
     public static PlayerActionButton ActionButton;
 
     [Header("Buttons Settings")]
-    [SerializeField] private Button attackButton;
-    public Button AttackButton => attackButton;
-    [SerializeField] private Button runButton;
-    public Button RunButton => runButton;
+    [SerializeField] private ButtonHold attackButton;
+    public ButtonHold AttackButton => attackButton;
+    [SerializeField] private ButtonHold runButton;
+    public ButtonHold RunButton => runButton;
 
     private void Awake()
     {
         ActionButton = this;
         
-// #if UNITY_EDITOR || UNITY_STANDALONE
-//         gameObject.SetActive(false);
-// #else
-//         gameObject.SetActive(true);
-// #endif
+#if UNITY_EDITOR || UNITY_STANDALONE
+        gameObject.SetActive(false);
+#else
+        gameObject.SetActive(true);
+#endif
     }
+    
 }
