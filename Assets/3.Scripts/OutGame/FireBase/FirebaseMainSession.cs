@@ -6,31 +6,36 @@ using Firebase.Auth;
 using Fusion;
 using UnityEngine;
 
-public class SampleUser
+public class FirebaseUser
 {
-    public FirebaseUser UserData { get; set; }
-    // public PlayerRef FusionPlayerRef { get; set; }
+    public Firebase.Auth.FirebaseUser UserData { get; set; }
+    public string Username { get; set; }
 }
 
 public class FirebaseMainSession : MonoBehaviour
 {
     public static FirebaseMainSession Instance { get; private set; }
 
-    public SampleUser SampleUser { get; private set; }
+    public FirebaseUser FirebaseUser { get; private set; }
     
     private void Awake()
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
         
-        SampleUser = new SampleUser();
+        FirebaseUser = new FirebaseUser();
     }
     
-    public void SetUserData(FirebaseUser user)
+    public void SetUserData(Firebase.Auth.FirebaseUser user, string username)
     {
-        SampleUser.UserData = user;
-        Debug.Log($"MainSystem UserId ::: {SampleUser.UserData.UserId}");
-        Debug.Log($"MainSystem DisplayName ::: {SampleUser.UserData.DisplayName}");
+        FirebaseUser.UserData = user;
+        FirebaseUser.Username =  username;
+
+        if (user != null) //디버그용
+        {
+            Debug.Log($"MainSystem UserId ::: {FirebaseUser.UserData.UserId}");
+            Debug.Log($"MainSystem DisplayName ::: {FirebaseUser.UserData.DisplayName}");
+        }
     }
     
     // public void SetFusionPlayerRef(PlayerRef playerRef)

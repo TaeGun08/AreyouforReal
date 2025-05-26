@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Firebase.Extensions;
+using Firebase.Firestore;
 using Fusion;
 using UnityEditor;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class NetworkStartBridge : MonoBehaviour
         Instance = this;
     }
     
-    public async Task CreateRoom()
+    public async Task CreateRoom(string roomName, string roomDescription, string maxPlayers)
     {
         runner = Instantiate(runnerPrefab);
         DontDestroyOnLoad(gameObject);
@@ -44,17 +45,13 @@ public class NetworkStartBridge : MonoBehaviour
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
         
-        string roomCode = Room.CreateRandomCode();
+        string roomCode = await Room.CreateRandomCode();
         
         // TODO : 방입장 방생성 분리
         
-        string uuid = Guid.NewGuid().ToString();
-
-        Debug.Log("생성 UUID : " + uuid);
-        
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
-            { "uuid", uuid }
+            { "RoomId", roomCode }
         };
         
         StartGameResult result = await runner.StartGame(new StartGameArgs()
@@ -71,20 +68,20 @@ public class NetworkStartBridge : MonoBehaviour
         {
             // Debug.Log("방 번호 : " + roomCode);
             
-            // TODO : 하랑할일
-            
             RoomData roomData = new RoomData()
             {
-                RoomName = "eomjunsik",
+                RoomName = roomName,
+                RoomInfo = roomDescription,
                 RoomCode = roomCode,
-                MembersCount = 0,
+                CreatedAt = Timestamp.GetCurrentTimestamp(),
+                MembersCount = 1, //자기 자신 (Host)
+                MaxPlayers = int.Parse(maxPlayers), //숫자만 들어오도록 예외처리하고 있습니다.
                 IsGameStarted = false,
-                
+                IsGameOver = false,
             };
-
-            // // TODO : 여기 방여러개 생성시 문제
+            
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
-                FirebaseCollections.Rooms, uuid, roomData);
+                FirebaseCollections.Rooms, roomCode, roomData);
             
             if (isSucced == false)
             {
@@ -115,22 +112,49 @@ public class NetworkStartBridge : MonoBehaviour
         {
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
-        
-        StartGameResult result = await runner.StartGame(new StartGameArgs()
-        {
-            GameMode = GameMode.Client,
-            SessionName = roomCode,
-            Scene = SceneRef.FromIndex(sceneIndex),
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-        });
 
-        if (result.Ok)
+        bool canJoin = false;
+        
+        await FirestoreManager.Instance.ReadDataAsync<RoomData>(FirebaseCollections.Rooms, roomCode).ContinueWithOnMainThread(
+            task =>
+            {
+                RoomData roomData = task.Result;
+                
+                if (roomData.MembersCount < roomData.MaxPlayers && // 최대인원수 검사
+                    roomData.IsGameStarted.Equals(false) &&        // 게임 시작 여부 검사
+                    roomData.IsGameOver.Equals(false))             // 게임 종료 여부 검사 //이건 필요한지 후에 생각
+                {
+                    canJoin =  true;
+                }
+                else
+                {
+                    LobbyManager.Instance.OnPopupChecking(CheckTexts.Join);
+                }
+            });
+
+        if (canJoin)
         {
+            StartGameResult result = await runner.StartGame(new StartGameArgs()
+            {
+                GameMode = GameMode.Client,
+                SessionName = roomCode,
+                Scene = SceneRef.FromIndex(sceneIndex),
+                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            }); 
             
-        }
-        else
-        {
-            Debug.LogWarning("에러!");
+            if (result.Ok)
+            {
+                Dictionary<string, object> updateDic = new Dictionary<string, object> //업데이트할 자료
+                {
+                    {"MembersCount", FieldValue.Increment(1) } // 1 증가
+                };
+            
+                FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode ,updateDic);
+            }
+            else
+            {
+                Debug.LogWarning("에러!");
+            }
         }
     }
 }

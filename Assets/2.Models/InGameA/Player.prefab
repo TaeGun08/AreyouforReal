@@ -38087,8 +38087,8 @@ MonoBehaviour:
   jumpImpulse: 8
   acceleration: 10
   braking: 10
-  maxSpeed: 1.5
-  rotationSpeed: 15
+  maxSpeed: 1
+  rotationSpeed: 10
 --- !u!114 &2146824692807517563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38148,8 +38148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    WalkSpeed: 1.5
-    RunSpeed: 3
+    WalkSpeed: 1
+    RunSpeed: 2
 --- !u!114 &7668169826086334591
 MonoBehaviour:
   m_ObjectHideFlags: 0

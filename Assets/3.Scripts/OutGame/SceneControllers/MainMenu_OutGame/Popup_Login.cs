@@ -75,6 +75,11 @@ public class Popup_Login : BaseWindow
     
     private async Task OnClickedLoginButton()
     {
+        if (FirebaseMainSession.Instance.FirebaseUser != null)
+        {
+            LoadingSceneManager.LoadScene("Lobby");
+        }
+        
         email = emailInputField.text;
         password = passwordInputField.text;
         
@@ -90,15 +95,13 @@ public class Popup_Login : BaseWindow
                 PlayerPrefs.SetString(PasswordKey, password);
                 PlayerPrefs.Save();
             }
+            else
+            {
+                PlayerPrefs.DeleteKey(EmailKey);
+                PlayerPrefs.DeleteKey(PasswordKey);
+            }
             
-            //자동 로그인 선택여부에 따라 수정
-            // else
-            // {
-            //     PlayerPrefs.DeleteKey(EmailKey);
-            //     PlayerPrefs.DeleteKey(PasswordKey);
-            // }
-            
-            LoadingSceneManager.LoadScene("OutGame_LobbyScene");
+            LoadingSceneManager.LoadScene("Lobby");
         }
         else
         {
@@ -109,6 +112,7 @@ public class Popup_Login : BaseWindow
     
     public void OnClickedSignUpButton()
     {
+        gameObject.SetActive(false);
         popupSignUp.gameObject.SetActive(true);
     }
     

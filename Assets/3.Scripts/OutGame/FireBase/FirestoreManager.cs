@@ -16,7 +16,7 @@ public enum FirebaseCollections
 public class FirestoreManager : MonoBehaviour
 {
     private FirebaseFirestore firestore;
-    private DocumentReference docRef;
+
     private bool isInitialized = false;
 
     public static FirestoreManager Instance { get; private set; }
@@ -32,35 +32,26 @@ public class FirestoreManager : MonoBehaviour
         Instance = this;
         
         DontDestroyOnLoad(gameObject);
-        
-        if (FirebaseAuth.DefaultInstance.CurrentUser == null) //디버그용 자동 로그인 Admin 확인 필요
-        {
-            Debug.LogWarning("Firebase User is not authenticated!");
-            FirebaseAccountManager.Instance.SignIn("admin@gmail.com", "admin123");
-        }
-    }
-
-    private void Start()
-    {
-        InitializeFirebase();
     }
 
     // Firebase 초기화
-    public void InitializeFirebase()
+    public void InitializeFirebase(FirebaseApp app)
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                firestore = FirebaseFirestore.DefaultInstance;
-                isInitialized = true;
-                Debug.Log("Firebase Firestore Initialized Successfully");
-            }
-            else
-            {
-                Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
-            }
-        });
+        firestore = FirebaseFirestore.GetInstance(app);
+        isInitialized = true;
+        // FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        // {
+        //     if (task.Result == DependencyStatus.Available)
+        //     {
+        //         firestore = FirebaseFirestore.DefaultInstance;
+        //         isInitialized = true;
+        //         Debug.Log("Firebase Firestore Initialized Successfully");
+        //     }
+        //     else
+        //     {
+        //         Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
+        //     }
+        // });
     }
 
     // 데이터 쓰기 (Collection과 Key 기반)
@@ -73,15 +64,9 @@ public class FirestoreManager : MonoBehaviour
             return false;
         }
         
-        Debug.Log(collection);
-        Debug.Log(key);
-        Debug.Log(data);
-
-        // return false;
-        
         try
         {
-            docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
             return true;
@@ -161,7 +146,6 @@ public class FirestoreManager : MonoBehaviour
     #endregion
     public async Task UpdateDataAsync(FirebaseCollections collection, string key, Dictionary<string, object> updates)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
@@ -183,7 +167,6 @@ public class FirestoreManager : MonoBehaviour
     // 데이터 삭제 (Collection과 Key 기반)
     public async Task DeleteDataAsync(FirebaseCollections collection, string key)
     {
-        return;
         if (isInitialized.Equals(false))
         {
             Debug.LogError("Firebase is not initialized.");
@@ -231,6 +214,35 @@ public class FirestoreManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Failed to read all documents: {e.Message}");
+            return null;
+        }
+    }
+    
+    //콜렉션 내 모든 문서의 키 가져오기
+    public async Task<List<string>> GetAllDocumentKeysAsync(FirebaseCollections collection)
+    {
+        if (!isInitialized)
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return null;
+        }
+
+        try
+        {
+            CollectionReference colRef = firestore.Collection(collection.ToString());
+            QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
+
+            List<string> keys = new List<string>();
+            foreach (DocumentSnapshot doc in snapshot.Documents)
+            {
+                keys.Add(doc.Id);
+            }
+
+            return keys;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to read document keys: {e.Message}");
             return null;
         }
     }

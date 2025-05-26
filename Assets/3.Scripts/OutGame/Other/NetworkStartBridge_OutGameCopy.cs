@@ -38,49 +38,55 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
     
     public async Task CreateRoom(string roomName, string roomDescription, string maxPlayers)
     {
-        // if (runner != null)
-        // {
-        //     await runner.Shutdown();
-        //     Destroy(runner.gameObject);
-        //     runner = null;
-        // }
-        //
-        // runner = Instantiate(runnerPrefab);
-        //
-        // runner.ProvideInput = true;
-        //
-        // runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
-        //
-        // SceneRef scene = SceneRef.FromIndex(sceneIndex);
-        // NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
-        //
-        // if (scene.IsValid) 
-        // {
-        //     sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
-        // }
-        //
-        // string roomCode = Room.CreateRandomCode();
-        string roomCode = "Room.CreateRandomCode()";
-        //
-        // // TODO : 방입장 방생성 분리
-        //
-        // //string uuid = Guid.NewGuid().ToString();
-        //
-        string uuid = Random.Range(100, 999).ToString();
-        //
-        // Debug.Log("생성 UUID : " + uuid);
-        //
+        if (runner != null)
+        {
+            await runner.Shutdown();
+            Destroy(runner.gameObject);
+            runner = null;
+        }
+        
+        runner = Instantiate(runnerPrefab);
+        
+        runner.ProvideInput = true;
+        
+        runner.AddCallbacks(runner.GetComponent<INetworkRunnerCallbacks>());
+        
+        SceneRef scene = SceneRef.FromIndex(sceneIndex);
+        NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
+        
+        if (scene.IsValid) 
+        {
+            sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
+        }
+        
+        string roomCode = await Room.CreateRandomCode();
+        
+        // TODO : 방입장 방생성 분리
+        
+        string uuid = Guid.NewGuid().ToString();
+        
+        Debug.Log("생성 UUID : " + uuid);
+        
         var sessionProperty = new Dictionary<string, SessionProperty>()
         {
-            { "uuid", uuid }
+            { "RoomId", roomCode }
         };
         
-        // if (true) //result.Ok
+        StartGameResult result = await runner.StartGame(new StartGameArgs()
         {
-            // Debug.Log("방 번호 : " + roomCode);
+            SessionProperties = sessionProperty,
+            GameMode = GameMode.Host,
+            SessionName = roomCode,
+            Scene = SceneRef.FromIndex(sceneIndex),
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            // playerCount
+        });
+        
+        if (result.Ok) 
+        {
+            Debug.Log("방 번호 : " + roomCode);
             
             // TODO : 하랑할일
-            
             RoomData roomData = new RoomData()
             {
                 RoomName = roomName,
@@ -92,32 +98,22 @@ public class NetworkStartBridge_OutGameCopy : MonoBehaviour
                 IsGameOver = false,
             };
             
-            await FirestoreManager.Instance.WriteDataAsync<RoomData>(
-                FirebaseCollections.Rooms, uuid, roomData);
+            bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
+                FirebaseCollections.Rooms, roomCode, roomData);
             
-            // if (isSucced == false)
-            // {
-            //     Debug.Log("파이어베이스 저장실패");
-            // }
-            // else
-            // {
-            //     Debug.Log("생성성공");
-            // }
+            if (isSucced == false)
+            {
+                Debug.Log("파이어베이스 저장실패");
+            }
+            else
+            {
+                Debug.Log("생성성공");
+            }
         }
-        // else
-        // {
-        //     Debug.LogWarning("에러!");
-        // }
-
-        // StartGameResult result = await runner.StartGame(new StartGameArgs()
-        // {
-        //     SessionProperties = sessionProperty,
-        //     GameMode = GameMode.Host,
-        //     SessionName = roomCode,
-        //     Scene = SceneRef.FromIndex(sceneIndex),
-        //     SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-        //     // playerCount
-        // });
+        else
+        {
+            Debug.LogWarning("에러!");
+        }
     }
     
     public async Task JoinRoom(string roomCode)

@@ -20,8 +20,8 @@ namespace DefaultNamespace
         // UnitySerializeField인스펙터에서 보이게
         [Networked, Capacity(CAPACITY)]
         [UnitySerializeField]
-        private NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
-
+        public NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
+        
         public override void Spawned()
         {
             Instance = this;
@@ -77,7 +77,7 @@ namespace DefaultNamespace
                 };
             
                 _ = FirestoreManager.Instance.UpdateDataAsync(
-                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"], userCount);
                 
                 // Debug.Log("업데이트");
             }
@@ -100,7 +100,7 @@ namespace DefaultNamespace
                 };
             
                 _ = FirestoreManager.Instance.UpdateDataAsync(
-                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"], userCount);
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"], userCount);
             }
             else
             {
@@ -132,7 +132,7 @@ namespace DefaultNamespace
                 {
                     // Debug.Log("호스트가 나가거나 방이 종료됨");
                     _ = FirestoreManager.Instance.DeleteDataAsync(
-                        FirebaseCollections.Rooms, runner.SessionInfo.Properties["uuid"]);
+                        FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
                 }
             }
         }

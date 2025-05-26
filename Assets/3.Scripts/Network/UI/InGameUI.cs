@@ -21,7 +21,8 @@ public class InGameUI : MonoBehaviour
     {
         startButton.onClick.AddListener(() =>
         {
-            PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
+            // PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
+            GameManager_Network.Instance.TryStartGame();
             Debug.Log("게임시작버튼 클릭!");
         });
         

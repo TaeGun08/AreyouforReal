@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class PlayerKnockoutState : PlayerState
@@ -11,8 +12,9 @@ public class PlayerKnockoutState : PlayerState
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
 
+        GameManager_Network.Instance.KillEvent(this.playerController.GetComponent<PlayerRef>());
         // 퇴장 기록
-        GameResult.Instance.RecordElimination(playerController);
+        //GameResult.Instance.RecordElimination(playerController);
     }
 
     public override void StateUpdate()

@@ -7,14 +7,17 @@ using UnityEngine.AI;
 
 public class AIController : NetworkBehaviour, IKnockout
 {  
-    private NavMeshAgent agent;
-    public NavMeshAgent Agent => agent;
+    private NetworkCharacterController characterController;
+    public NetworkCharacterController CharacterController =>  characterController;
     
     private Animator animator;
 
     [SerializeField] private AIState[] aiState;
     private  AIState currentState;
     
+    [SerializeField] private LayerMask groundLayer;
+    public bool IsGrounded { get; private set; }
+
     public NetworkObject NetworkObj => Object;
     
     private Dictionary<AIState.State, AIState> aiStateDic = new Dictionary<AIState.State, AIState>();
@@ -22,7 +25,7 @@ public class AIController : NetworkBehaviour, IKnockout
     
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        characterController = GetComponent<NetworkCharacterController>();
         animator = GetComponent<Animator>();
         
         for (int i = 0; i < aiState.Length; i++)
@@ -38,13 +41,18 @@ public class AIController : NetworkBehaviour, IKnockout
     public override void FixedUpdateNetwork()
     {
         currentState?.StateUpdate();
+        GroundChecker();
+    }
+    
+    private void GroundChecker()
+    {
+        IsGrounded = Physics.Raycast(transform.position
+                                   + transform.forward
+                                   + Vector3.up, Vector3.down, 10f, groundLayer);
     }
     
     public void ChangeState(AIState.State newState)
     {
-        if (currentState != null)
-            if (currentState.CurrentState.Equals(newState)) return;
-        
         currentState?.StateExit();
         
         currentState = aiStateDic[newState];
@@ -55,6 +63,7 @@ public class AIController : NetworkBehaviour, IKnockout
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     public void RPC_Knockout()
     {
+        characterController.Move(transform.position * (0f * Runner.DeltaTime));
         ChangeState(AIState.State.Knockout);
     }
     

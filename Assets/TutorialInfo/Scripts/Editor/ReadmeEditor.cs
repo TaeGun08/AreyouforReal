@@ -152,6 +152,8 @@ public class ReadmeEditor : Editor
         {
             RemoveTutorial();
         }
+        
+        GUILayout.EndHorizontal();
     }
 
     bool m_Initialized;
