@@ -31,7 +31,7 @@ public class Popup_SignUp : BaseWindow
     
     private void Awake()
     {
-        emailInputField.characterLimit = 20;
+        emailInputField.characterLimit = 30;
         passwordInputField.characterLimit = 15;
         
         emailInputField.contentType = TMP_InputField.ContentType.Custom;
@@ -69,7 +69,6 @@ public class Popup_SignUp : BaseWindow
     
     private async Task OnClickedSignUpButton()
     {
-        Debug.Log("OnClickedSignUpButton");
         email = emailInputField.text;
         password = passwordInputField.text;
         nickname = nickNameInputField.text;

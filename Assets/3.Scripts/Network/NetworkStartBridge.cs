@@ -74,7 +74,7 @@ public class NetworkStartBridge : MonoBehaviour
                 RoomInfo = roomDescription,
                 RoomCode = roomCode,
                 CreatedAt = Timestamp.GetCurrentTimestamp(),
-                MembersCount = 1, //자기 자신 (Host)
+                MembersCount = 0, //자기 자신 (Host)
                 MaxPlayers = int.Parse(maxPlayers), //숫자만 들어오도록 예외처리하고 있습니다.
                 IsGameStarted = false,
                 IsGameOver = false,
