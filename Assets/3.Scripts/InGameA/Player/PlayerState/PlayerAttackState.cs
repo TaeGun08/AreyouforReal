@@ -24,7 +24,7 @@ public class PlayerAttackState : PlayerState
         playerController.ChangeState(State.Idle);
     }
 
-    [Rpc(sources: RpcSources.All, targets: RpcTargets.StateAuthority)]
+    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
     private void RPC_Attacking()
     {
         LayerMask layerMask = LayerMask.GetMask("Player") 

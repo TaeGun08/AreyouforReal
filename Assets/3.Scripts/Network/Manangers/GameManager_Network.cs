@@ -5,6 +5,7 @@ using DefaultNamespace;
 using Fusion;
 using Unity.Services.Authentication;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager_Network : NetworkBehaviour
@@ -14,14 +15,11 @@ public class GameManager_Network : NetworkBehaviour
     [Networked] TickTimer Delay { get; set; }
     
     [Networked, Capacity(MAX_PLAYER)]
-    public NetworkLinkedList<PlayerRef> AlivePlayers { get; }
-    
-    [Networked]
-    [field: SerializeField]
-    private int aliveAICount { get; set; } 
+    public NetworkLinkedList<LocalPlayer> AlivePlayers { get; }
 
     [SerializeField] private GameObject map;
     [Networked] private GameState delayedState { get; set; }
+    
     public enum GameState
     {
         None,
@@ -57,10 +55,8 @@ public class GameManager_Network : NetworkBehaviour
         
         if (2 <= PlayerRegistry.Instance.playerDic.Count)
         {
-            // TODO : 로딩화면 활성화, AI 스폰, 자기장
-            // AIManager.Instance.SpawnAI(
-            //     TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
             RPC_MapActive();
+            
             state = GameState.Start;
             
             foreach (var player in PlayerRegistry.Instance.playerDic)
@@ -69,7 +65,14 @@ public class GameManager_Network : NetworkBehaviour
                 
                 // 캐싱필요
                 player.Value.GetComponent<NetworkCharacterController>().Teleport(trs.position);
-                AlivePlayers.Add(player.Key);
+                AlivePlayers.Add(player.Value);
+            }
+            
+            // TODO : 로딩화면 활성화, 자기장
+            for (int i = 0; i < 20; i++)
+            {
+                AIManager.Instance.SpawnAI(
+                    TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
             }
             
             DelaySetState(GameState.Play, 5);
@@ -92,7 +95,7 @@ public class GameManager_Network : NetworkBehaviour
         delayedState = state;
     }
 
-    public void KillEvent(PlayerRef player)
+    public void KillEvent(LocalPlayer player)
     {
         if (AlivePlayers.Remove(player))
         {
@@ -108,13 +111,5 @@ public class GameManager_Network : NetworkBehaviour
         state = GameState.End;
         
         // TODO : 전적표시
-        
-        foreach (var player in PlayerRegistry.Instance.playerDic)
-        {
-            // 라운지로 이동
-            player.Value.GetComponent<NetworkCharacterController>().Teleport(new Vector3(0, 2, 0));
-            AlivePlayers.Add(player.Key);
-        }
-        
     }
 }

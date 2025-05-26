@@ -32,6 +32,8 @@ public class PlayerInputBehaviour : SimulationBehaviour
 
     private void LateUpdate()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
+#else
         if (joystick == null)
         {
             joystick = Joystick.Instance;
@@ -41,6 +43,7 @@ public class PlayerInputBehaviour : SimulationBehaviour
         {
             actionButton = PlayerActionButton.ActionButton;
         }
+#endif
     }
 
     private void OnDestroy()

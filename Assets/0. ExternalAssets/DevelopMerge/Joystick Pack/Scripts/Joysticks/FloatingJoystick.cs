@@ -8,6 +8,11 @@ public class FloatingJoystick : Joystick
     protected override void Start()
     {
         base.Start();
+#if UNITY_EDITOR || UNITY_STANDALONE
+        gameObject.SetActive(false);
+#else
+        gameObject.SetActive(true);
+#endif
         background.gameObject.SetActive(false);
     }
 
