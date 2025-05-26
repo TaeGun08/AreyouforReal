@@ -26,12 +26,25 @@ public class PlayerInputBehaviour : SimulationBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
         run = run | Input.GetKey(KeyCode.LeftShift);
         attack = attack | Input.GetMouseButtonDown(0);
+#else
+#endif
     }
 
     private void LateUpdate()
     {
+        if (joystick == null)
+        {
+            joystick = Joystick.Instance;
+        }
+
+        if (actionButton == null)
+        {
+            actionButton = PlayerActionButton.ActionButton;
+        }
+        
 #if UNITY_EDITOR || UNITY_STANDALONE
 #else
         if (joystick == null)
@@ -68,11 +81,11 @@ public class PlayerInputBehaviour : SimulationBehaviour
         if (Input.GetKey(KeyCode.D))
             data.Direction += Vector3.right;
         
-        if (Input.GetKey(KeyCode.LeftShift))
-            data.IsRun = true;
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            data.IsRun = false;
+        // if (Input.GetKey(KeyCode.LeftShift))
+        //     data.IsRun = true;
+        //
+        // if (Input.GetKeyUp(KeyCode.LeftShift))
+        //     data.IsRun = false;
         
         if (data.Direction.sqrMagnitude > 0.01f)
         {
@@ -81,8 +94,22 @@ public class PlayerInputBehaviour : SimulationBehaviour
             data.Direction = Quaternion.Euler(0f, angles, 0f) * Vector3.forward;
         }
         
-        data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, attack);
-        attack = false;
+        if (actionButton != null)
+        {
+            if (actionButton.RunButton)
+            {
+                data.IsRun = true;
+            }
+            else
+            {
+                data.IsRun = false;
+            }
+            
+            data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, actionButton.AttackButton);
+        }
+        
+        // data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, attack);
+        // attack = false;
 #else
         if (joystick != null)
         {
@@ -92,9 +119,25 @@ public class PlayerInputBehaviour : SimulationBehaviour
 
         if (actionButton != null)
         {
-            data.IsRun = actionButton.IsRun;
-            data.IsAttack = actionButton.IsAttack;
+            if (actionButton.RunButton)
+            {
+                data.IsRun = true;
+            }
+            else
+            {
+                data.IsRun = false;
+            }
         }
+
+        if (data.Direction.sqrMagnitude > 0.01f)
+        {
+            float angles = Mathf.Atan2(data.Horizontal, data.Vertical) * Mathf.Rad2Deg 
+                           + Camera.main.transform.eulerAngles.y;
+            data.Direction = Quaternion.Euler(0f, angles, 0f) * Vector3.forward;
+        }
+
+        data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, actionButton.AttackButton);
+        actionButton.AttackButton = false;
 #endif
 
         input.Set(data);

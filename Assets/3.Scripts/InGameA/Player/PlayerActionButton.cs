@@ -9,36 +9,19 @@ public class PlayerActionButton : MonoBehaviour
     public static PlayerActionButton ActionButton;
 
     [Header("Buttons Settings")]
-    [SerializeField] private Button runButton;
     [SerializeField] private Button attackButton;
-    public bool IsRun { get; private set; }
-    public bool IsAttack { get; private set; }
+    public Button AttackButton => attackButton;
+    [SerializeField] private Button runButton;
+    public Button RunButton => runButton;
 
     private void Awake()
     {
         ActionButton = this;
-        OnRunButton();
-        OnAttackButton();
-    }
-
-    private void OnRunButton()
-    {
-        runButton.onClick.AddListener(() =>
-        {
-            IsRun = true;
-        });
-    }
-
-    private void OnAttackButton()
-    {
-        attackButton.onClick.AddListener(() =>
-        {
-            IsAttack = true;
-        });
-    }
-
-    public void RunButtonUp()
-    {
-        IsRun = false;
+        
+// #if UNITY_EDITOR || UNITY_STANDALONE
+//         gameObject.SetActive(false);
+// #else
+//         gameObject.SetActive(true);
+// #endif
     }
 }
