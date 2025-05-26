@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 1297323478}
   - component: {fileID: 1297323481}
   - component: {fileID: 1297323480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1707,7 +1707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reduceCircle: {fileID: 1297323478}
   segmentCount: 64
-  lineWidth: 0.1
+  lineWidth: 10
+  heightOffset: 5
 --- !u!1 &1427348417
 GameObject:
   m_ObjectHideFlags: 0

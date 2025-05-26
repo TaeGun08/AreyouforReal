@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class ZoneUI : MonoBehaviour
 {
     [Header("References")]
     public TextMeshProUGUI inGameTimerText;
