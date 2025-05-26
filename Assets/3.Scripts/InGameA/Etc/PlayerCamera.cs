@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook camera;
-
+    
     private IEnumerator Start()
     {
         while (Player.LocalPlayer == null)

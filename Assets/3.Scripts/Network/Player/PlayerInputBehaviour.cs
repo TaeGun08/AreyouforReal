@@ -71,10 +71,17 @@ public class PlayerInputBehaviour : SimulationBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
             data.IsRun = false;
         
+        if (data.Direction.sqrMagnitude > 0.01f)
+        {
+            float angles = Mathf.Atan2(data.Direction.x, data.Direction.z) * Mathf.Rad2Deg 
+                           + Camera.main.transform.eulerAngles.y;
+            data.Direction = Quaternion.Euler(0f, angles, 0f) * Vector3.forward;
+        }
+        
         data.Buttons.Set(NetworkInputData.MOUSE_BUTTON_0, attack);
         attack = false;
 #else
-                if (joystick != null)
+        if (joystick != null)
         {
             data.Horizontal += joystick.Horizontal;
             data.Vertical += joystick.Vertical;

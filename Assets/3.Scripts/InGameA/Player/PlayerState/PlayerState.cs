@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public abstract class PlayerState : NetworkBehaviour
+public abstract class PlayerState : MonoBehaviour
 {
     public enum State
     {
@@ -18,13 +18,6 @@ public abstract class PlayerState : NetworkBehaviour
     protected PlayerController playerController;
 
     public abstract State CurrentState { get; }
-
-    protected Camera mainCam;
-
-    protected void Start()
-    {
-        mainCam = Camera.main;
-    }
 
     public abstract void StateEnter(PlayerController playerController);
     public abstract void StateUpdate();

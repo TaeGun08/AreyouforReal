@@ -15,7 +15,7 @@ public class PlayerIdleState : PlayerState
     public override void StateUpdate()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (GetInput(out NetworkInputData input))
+        if (playerController.Runner.TryGetInputForPlayer(playerController.Object.InputAuthority, out NetworkInputData input))
         {
             if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0))
             {
@@ -24,7 +24,7 @@ public class PlayerIdleState : PlayerState
             }
 
             Vector3 dir = input.Direction.normalized;
-            playerController.CharacterController.Move(dir * 1f * Runner.DeltaTime);
+            playerController.CharacterController.Move(dir * 1f * playerController.Runner.DeltaTime);
 
             if (input.Direction.sqrMagnitude > 0.0f)
                 playerController.ChangeState(State.Walk);

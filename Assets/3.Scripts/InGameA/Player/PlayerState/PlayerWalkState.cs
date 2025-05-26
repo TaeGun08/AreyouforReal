@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class PlayerWalkState : PlayerState
@@ -16,7 +17,7 @@ public class PlayerWalkState : PlayerState
     public override void StateUpdate()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (GetInput(out NetworkInputData input))
+        if (playerController.Runner.TryGetInputForPlayer(playerController.Object.InputAuthority, out NetworkInputData input))
         {
             if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0))
             {
@@ -24,9 +25,7 @@ public class PlayerWalkState : PlayerState
                 return;
             }
             
-            float angles = Mathf.Atan2(input.Direction.x, input.Direction.z) * Mathf.Rad2Deg + mainCam.transform.eulerAngles.y;
-            Vector3 dir = Quaternion.Euler(0f, angles, 0f) * Vector3.forward;
-            playerController.CharacterController.Move(dir * Runner.DeltaTime);
+            playerController.CharacterController.Move(input.Direction * playerController.Runner.DeltaTime);
             
             if (input.IsRun)
             {

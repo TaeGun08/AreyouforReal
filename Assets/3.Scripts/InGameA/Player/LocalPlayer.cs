@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class LocalPlayer : Player
 {
-    public bool IsRun { get; set; }
-    
     public override void Spawned()
     {
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);

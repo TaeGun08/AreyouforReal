@@ -38083,10 +38083,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
+  gravity: -40
   jumpImpulse: 8
   acceleration: 10
-  braking: 10
+  braking: 30
   maxSpeed: 1
   rotationSpeed: 10
 --- !u!114 &2146824692807517563
@@ -38111,11 +38111,6 @@ MonoBehaviour:
   - {fileID: 7743242317217729023}
   - {fileID: 7668169826086334591}
   - {fileID: 6290944151899437577}
-  - {fileID: 6577950570813430658}
-  - {fileID: 411585117142532709}
-  - {fileID: 4428494434397144654}
-  - {fileID: 8269359158420431952}
-  - {fileID: 3212378690789286336}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &9124484678336329888
 MonoBehaviour:
