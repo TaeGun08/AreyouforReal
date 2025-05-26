@@ -13,5 +13,6 @@ public class RecordUI : MonoBehaviour
     private void Start()
     {
         // FirestoreManager.Instance.ReadDataAsync<>()
+        // TODO : 파베 로드 작업
     }
 }

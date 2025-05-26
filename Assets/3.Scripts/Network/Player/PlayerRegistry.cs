@@ -75,7 +75,12 @@ namespace DefaultNamespace
                 {
                     { "MembersCount", playerDic.Count }
                 };
-            
+
+                if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
+                {
+                    InGameUIManager_OutGame.Instance.UpdateButtonState(playerDic.Count);
+                }
+                
                 _ = FirestoreManager.Instance.UpdateDataAsync(
                     FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"], userCount);
                 
@@ -98,7 +103,12 @@ namespace DefaultNamespace
                 {
                     { "MembersCount", playerDic.Count }
                 };
-            
+                
+                if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
+                {
+                    InGameUIManager_OutGame.Instance.UpdateButtonState(playerDic.Count);
+                }
+                
                 _ = FirestoreManager.Instance.UpdateDataAsync(
                     FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"], userCount);
             }
