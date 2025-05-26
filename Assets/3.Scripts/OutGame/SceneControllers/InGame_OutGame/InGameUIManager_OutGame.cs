@@ -32,13 +32,20 @@ public class InGameUIManager_OutGame : MonoBehaviour
 
     private void Start()
     {
+        startButton.SetActive(false);
+        waitingButton.SetActive(false);
         runner = FindObjectOfType<NetworkRunner>();
         roomCode.SetText(runner.SessionInfo.Name);
     }
 
     public void OnClickedStartButton()
     {
-        PlayerRegistry.Instance.MovePlayer(new Vector3(100, 2, 0));
+        bool isStart = GameManager_Network.Instance.TryStartGame();
+        
+        if (isStart)
+        {
+            startButton.gameObject.SetActive(false);
+        }
     }
     
     public void OnClickedChatButton()
@@ -48,6 +55,8 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void UpdateButtonState(int playerCount)  //시작버튼 활성화
     {
+        if(!runner.IsServer) return;  //서버 아니면 날림
+        
         if (playerCount < 2)
         {
             startButton.SetActive(false);

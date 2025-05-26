@@ -37,8 +37,8 @@ public class RoomData  //key : RoomCode
 [FirestoreData]
 public class MatchHistoryData  //key : Player GUID
 {
-    [FirestoreProperty] public string Rank { get; set; }
-    [FirestoreProperty] public string KillCount { get; set; }
+    [FirestoreProperty] public int Rank { get; set; }
+    [FirestoreProperty] public int KillCount { get; set; }
     [FirestoreProperty] public string PlayTime { get; set; }
 }
 
@@ -46,5 +46,5 @@ public class MatchHistoryData  //key : Player GUID
 public class RankData  //key : Player GUID
 {
     [FirestoreProperty] public string PlayerName { get; set; }
-    [FirestoreProperty] public string RankPoint { get; set; }
+    [FirestoreProperty] public int RankPoint { get; set; }
 }
