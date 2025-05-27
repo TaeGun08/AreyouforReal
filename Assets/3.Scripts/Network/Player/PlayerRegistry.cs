@@ -79,7 +79,7 @@ namespace DefaultNamespace
 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState(playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState(2 <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
@@ -107,7 +107,7 @@ namespace DefaultNamespace
                 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState(playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState( 2 <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
