@@ -33,7 +33,7 @@ public class ReduceCircle : MonoBehaviour
             enabled = false;
             return;
         }
-
+        currentZone = makeCircle.DequeueCircle();
         reduceCoroutine = StartCoroutine(ReduceRoutine());
     }
 

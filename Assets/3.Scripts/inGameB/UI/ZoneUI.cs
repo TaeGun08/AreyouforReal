@@ -16,6 +16,7 @@ public class ZoneUI : MonoBehaviour
 
     public void Init(float reductionTime, float waitTime)
     {
+        Debug.Log($"[ZoneUI] Init 호출됨: {reductionTime}, {waitTime}");
         totalBzTime = reductionTime + waitTime;
         remainingBzTime = totalBzTime;
         isInitialized = true;
