@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,21 @@ public class PlayerKnockoutState : PlayerState
 
     private IEnumerator RecordSceneLoadCoroutine()
     {
-        playerController.GetComponent<CharacterController>().enabled = false;
+        MatchHistoryData data = new MatchHistoryData
+        {
+            Players = new List<string>(),
+            Rank = GameManager_Network.Instance.AlivePlayers.Count,
+            KillCount = playerController.KillCount,
+            PlayTime = $"{BGameManager.Instance.ZoneUI.ElapsedGameTime}",
+        };
+        
+        //ToDo 하랑 할 일 
+        PlayerPrefs.SetString("SaveHistoryData", JsonConvert.SerializeObject(data));
+        
+        //Json 불러오는 방법
+        //if (string.IsNullOrEmpty(PlayerPrefs.GetString("SaveHistoryData"))) return;
+        //MatchHistoryData data = JsonConvert.DeserializeObject<MatchHistoryData>(PlayerPrefs.GetString("SaveHistoryData"));
+        
         yield return new WaitForSeconds(3f);
         playerController.Runner.Shutdown();
         SceneManager.LoadSceneAsync(4);

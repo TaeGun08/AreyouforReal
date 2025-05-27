@@ -8,6 +8,7 @@ public class ZoneUI : MonoBehaviour
     public TextMeshProUGUI bzTimerText;
 
     private float elapsedGameTime = 0f;
+    public float ElapsedGameTime => elapsedGameTime;
 
     private float totalBzTime;
     private float remainingBzTime;

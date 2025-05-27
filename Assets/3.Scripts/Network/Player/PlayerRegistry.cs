@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
 using Fusion.Sockets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,7 @@ namespace DefaultNamespace
         public NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
 
         [SerializeField] private int index;
+        [SerializeField] private TMP_Text countText;
         
         public override void Spawned()
         {
@@ -74,6 +76,7 @@ namespace DefaultNamespace
 
             if (playerDic.Add(pRef, localPlayer))
             {
+                countText.text = $"현재 인원: {playerDic.Count}";
                 var userCount = new Dictionary<string, object>
                 {
                     { "MembersCount", playerDic.Count }

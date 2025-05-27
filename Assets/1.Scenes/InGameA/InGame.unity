@@ -55357,7 +55357,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1914188539
+  SortKey: 2281819619
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -72167,7 +72167,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 688790236
+  SortKey: 1056421316
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -72188,6 +72188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AlivePlayers: []
   map: {fileID: 431816924}
+  fakeLoading: {fileID: 0}
+  countText: {fileID: 0}
 --- !u!4 &544900913
 Transform:
   m_ObjectHideFlags: 0
@@ -118124,7 +118126,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3199780665
+  SortKey: 3567411745
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -155227,8 +155229,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCode: {fileID: 1620822648}
   Popup_Chat: {fileID: 2047477408}
+  Popup_ExitChecking: {fileID: 0}
   startButton: {fileID: 1308425706}
   waitingButton: {fileID: 1879574485}
+  exitButton: {fileID: 0}
 --- !u!4 &1238798522
 Transform:
   m_ObjectHideFlags: 0
@@ -213569,7 +213573,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3207614639
+  SortKey: 3575245719
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -248821,6 +248825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDic:
     _items: []
+  index: 0
+  countText: {fileID: 0}
 --- !u!114 &1999339478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248833,7 +248839,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3681583891
+  SortKey: 4049214971
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -251215,7 +251221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2018702321
 Transform:
   m_ObjectHideFlags: 0
@@ -251253,7 +251259,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2518526629
+  SortKey: 2886157709
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
