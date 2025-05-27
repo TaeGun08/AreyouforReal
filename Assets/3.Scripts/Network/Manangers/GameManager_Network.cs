@@ -18,6 +18,7 @@ public class GameManager_Network : NetworkBehaviour
     public NetworkLinkedList<LocalPlayer> AlivePlayers { get; }
 
     [SerializeField] private GameObject map;
+    [SerializeField] private GameObject fakeLoading;
     [Networked] private GameState delayedState { get; set; }
         
     public enum GameState
@@ -102,11 +103,20 @@ public class GameManager_Network : NetworkBehaviour
     private void RPC_MapActive()
     {
         map.SetActive(true);
+        fakeLoading.SetActive(true);
+    }
+
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    private void RPC_FakeLoadingActiveFalse()
+    {
+        fakeLoading.SetActive(false);
     }
     
     private void DelaySetState(GameState state, float delayTime)
     {
         Delay = TickTimer.CreateFromSeconds(Runner, delayTime);
+        BGameManager.Instance.RPC_InitializeGame();
+        RPC_FakeLoadingActiveFalse();
         delayedState = state;
     }
 

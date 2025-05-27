@@ -14,9 +14,16 @@ public class PlayerKnockoutState : PlayerState
         this.playerController.ChangeAnimation(CurrentState);
 
         GameManager_Network.Instance.KillEvent(this.playerController.LocalPlayer);
-        // 퇴장 기록
-        //GameResult.Instance.RecordElimination(playerController);
-        SceneManager.LoadScene(2);
+
+        StartCoroutine(RecordSceneLoadCoroutine());
+        
+        GameResult.Instance.RecordElimination(playerController);
+    }
+
+    private IEnumerator RecordSceneLoadCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadSceneAsync(4);
     }
 
     public override void StateUpdate()

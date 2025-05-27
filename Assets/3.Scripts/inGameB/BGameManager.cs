@@ -23,15 +23,10 @@ public class BGameManager : NetworkBehaviour
             Instance = this;
         }
     }
-
-    private void Start()
-    {
-        InitializeGame();
-        survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
-    }
-
+    
     /// 게임 시작 시 순서대로 시스템 초기화 및 실행
-    public void InitializeGame()
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_InitializeGame()
     {
         makeCircle.CreateCircles();
         reduceCircle.currentZone = makeCircle.PeekCircle();
@@ -40,7 +35,10 @@ public class BGameManager : NetworkBehaviour
         zoneUI.Init(reduceCircle.reductionTime, reduceCircle.waitTime);
         
         reduceCircle.StartZoneSystem();
+        
+        survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
     }
+    
     private IEnumerator UpdateSurvivorCountRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(1f);
