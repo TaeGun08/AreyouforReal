@@ -49,16 +49,7 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void OnClickedExitSureButton() //나가기 확인 눌림
     {
-        bool isEndExit = false;
-        //ToDo : 시형님 여기에 나가는 로직 추가 부탁드립니당
-        
-        
-        //
-        
-        if (isEndExit)
-        {
-            LoadingSceneManager.LoadScene("Lobby");
-        }
+        LoadingSceneManager.LoadScene("Lobby");
     }
     
     public void OnClickedStartButton() //게임 시작 버튼
@@ -93,25 +84,12 @@ public class InGameUIManager_OutGame : MonoBehaviour
     }
 
     //초대 보네기
-    public void OnClickInviteSureButton()
+    public void OnClickInviteSureButton() //친구창의 친구 옆에 표시할 초대 버튼으로
     {
-        SendInvite(FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, "친구");
+        _ = FirebaseInviteManager.Instance.SendInvitation(
+            FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, //from
+            "Friend",   //to (Friend)
+            roomCode.text //roomCode
+            );
     }
-    
-    public void SendInvite(string hostUid, string guestUid)
-    {
-        var inviteData = new Dictionary<string, object>
-        {
-            { "host", hostUid },
-            { "status", "pending" },
-            { "timestamp", ServerValue.Timestamp }
-        };
-
-        FirebaseDatabase.DefaultInstance
-            .GetReference("user_invites")
-            .Child(guestUid)
-            .Child(roomCode.text)
-            .SetValueAsync(inviteData);
-    }
-
 }
