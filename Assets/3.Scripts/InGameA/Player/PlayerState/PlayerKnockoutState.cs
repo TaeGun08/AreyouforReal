@@ -15,7 +15,7 @@ public class PlayerKnockoutState : PlayerState
 
         GameManager_Network.Instance.KillEvent(this.playerController.LocalPlayer);
 
-        GameResult.Instance.RecordElimination(this.playerController);
+        //GameResult.Instance.RecordElimination(this.playerController);
         
         StartCoroutine(RecordSceneLoadCoroutine());
     }
