@@ -13,7 +13,8 @@ public class AIController : NetworkBehaviour, IKnockout,  IZoneTrackable
     private Animator animator;
 
     [SerializeField] private AIState[] aiState;
-    public  AIState currentState;
+    private AIState currentState;
+    public  AIState CurrentState => currentState;
     
     [SerializeField] private LayerMask groundLayer;
     public bool IsGrounded { get; private set; }

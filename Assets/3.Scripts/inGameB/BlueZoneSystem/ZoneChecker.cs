@@ -41,11 +41,13 @@ public class ZoneChecker : NetworkBehaviour
             // Knockout 처리 예시
             if (!inZone)
             {
-                if (target is PlayerController pc && pc.currentState != PlayerState.State.Knockout)
+                if (target is PlayerController pc
+                    && pc.CurrentState.CurrentState != PlayerState.State.Knockout)
                 {
                     pc.ChangeState(PlayerState.State.Knockout);
                 }
-                else if (target is AIController ai && ai.currentState != AIState.State.Knockout)
+                else if (target is AIController ai 
+                         && ai.CurrentState.CurrentState != AIState.State.Knockout)
                 {
                     ai.ChangeState(AIState.State.Knockout);
                 }

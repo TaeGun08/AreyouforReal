@@ -17,7 +17,8 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
     private Animator animator;
 
     [SerializeField] private PlayerState[] playerStates;
-    public PlayerState currentState;
+    private PlayerState currentState;
+    public PlayerState CurrentState => currentState;
 
     private Dictionary<PlayerState.State, PlayerState>
         playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
