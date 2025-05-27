@@ -23,6 +23,7 @@ public class InGameUIManager_OutGame : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject waitingButton;
+    [SerializeField] private GameObject exitButton;
 
     
     private NetworkRunner runner;
@@ -54,8 +55,22 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void OnClickedStartButton() //게임 시작 버튼
     {
-        GameManager_Network.Instance.TryStartGame();
         startButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
+        
+        Dictionary<string, object> updateIsGameStarted =  new Dictionary<string, object>{
+                {"IsGameStarted" , true}
+            };
+
+        //룸 게임 시작 bool 업데이트
+        FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode.text, updateIsGameStarted)
+            .ContinueWithOnMainThread(
+                task =>
+                {
+                    if(task.IsFaulted ||  task.IsCanceled) return;
+                    
+                    GameManager_Network.Instance.TryStartGame();  //게임시작
+                });
     }
     
     public void OnClickedChatButton()
