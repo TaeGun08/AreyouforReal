@@ -5,7 +5,7 @@ using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIController : NetworkBehaviour, IKnockout
+public class AIController : NetworkBehaviour, IKnockout,  IZoneTrackable
 {  
     private NetworkCharacterController characterController;
     public NetworkCharacterController CharacterController =>  characterController;
@@ -13,7 +13,7 @@ public class AIController : NetworkBehaviour, IKnockout
     private Animator animator;
 
     [SerializeField] private AIState[] aiState;
-    private  AIState currentState;
+    public  AIState currentState;
     
     [SerializeField] private LayerMask groundLayer;
     public bool IsGrounded { get; private set; }
@@ -22,7 +22,9 @@ public class AIController : NetworkBehaviour, IKnockout
     
     private Dictionary<AIState.State, AIState> aiStateDic = new Dictionary<AIState.State, AIState>();
     private Dictionary<AIState.State, int> aiAnimDic = new Dictionary<AIState.State, int>();
-    
+   
+    public bool IsInZone { get; set; }
+
     private void Awake()
     {
         characterController = GetComponent<NetworkCharacterController>();

@@ -10,7 +10,8 @@ public class BGameManager : NetworkBehaviour
     [SerializeField] private MakeCircle makeCircle;
     [SerializeField] private ReduceCircle reduceCircle;
     [SerializeField] private LineCircleVisualizer lineCircleVisualizer;
-
+    private Coroutine survivorCountUpdater;
+    
     [Header("Visualizer & UI")]
     [SerializeField] private ZoneUI zoneUI;
     [SerializeField] private KillLog killLog;
@@ -26,6 +27,7 @@ public class BGameManager : NetworkBehaviour
     private void Start()
     {
         InitializeGame();
+        survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
     }
 
     /// 게임 시작 시 순서대로 시스템 초기화 및 실행
@@ -34,21 +36,21 @@ public class BGameManager : NetworkBehaviour
         makeCircle.CreateCircles();
         reduceCircle.currentZone = makeCircle.PeekCircle();
         lineCircleVisualizer.reduceCircle = reduceCircle;
-        StartCoroutine(ReduceZoneCoroutine());
+        
+        zoneUI.Init(reduceCircle.reductionTime, reduceCircle.waitTime);
+        
+        reduceCircle.StartZoneSystem();
     }
-
-    private IEnumerator ReduceZoneCoroutine()
+    private IEnumerator UpdateSurvivorCountRoutine()
     {
-        // ReduceCircle 내부 로직 실행 대기
-        yield return StartCoroutine(reduceCircle.ReduceRoutine());
+        WaitForSeconds wait = new WaitForSeconds(1f);
 
-        // 모든 축소 완료 후 처리
-        OnGameCleared();
-    }
+        while (true)
+        {
+            int playerCount = reduceCircle.GetCurrentPlayersOnly().Count;
+            zoneUI.SetSurvivorCount(playerCount);
 
-    private void OnGameCleared()
-    {
-        Debug.Log("모든 자기장 축소 완료 - 게임 클리어 처리");
-        // TODO: 승리 화면 전환, 서버 통신 등
+            yield return wait;
+        }
     }
 }
