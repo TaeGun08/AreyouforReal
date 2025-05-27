@@ -13,6 +13,7 @@ public class MakeCircle : MonoBehaviour
     private Queue<CircleData> circleQueue = new Queue<CircleData>();
 
     public int CircleCount => circleQueue.Count;
+    
     public CircleData DequeueCircle() => circleQueue.Dequeue();
     public CircleData PeekCircle() => circleQueue.Peek();
 

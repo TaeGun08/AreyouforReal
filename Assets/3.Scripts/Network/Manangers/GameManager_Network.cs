@@ -19,6 +19,7 @@ public class GameManager_Network : NetworkBehaviour
 
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
+    
     [Networked] private GameState delayedState { get; set; }
         
     public enum GameState
@@ -58,6 +59,8 @@ public class GameManager_Network : NetworkBehaviour
     {
         if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
         {
+            fakeLoading.SetActive(false);
+            BGameManager.Instance.RPC_InitializeGame();
             state = delayedState;
             delayedState = GameState.None;
         }
@@ -90,7 +93,6 @@ public class GameManager_Network : NetworkBehaviour
         }
             
         DelaySetState(GameState.Play, 5);
-        RPC_FakeLoadingActiveFalse();
     }
 
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
@@ -99,17 +101,10 @@ public class GameManager_Network : NetworkBehaviour
         map.SetActive(true);
         fakeLoading.SetActive(true);
     }
-
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
-    private void RPC_FakeLoadingActiveFalse()
-    {
-        fakeLoading.SetActive(false);
-    }
     
     private void DelaySetState(GameState state, float delayTime)
     {
         Delay = TickTimer.CreateFromSeconds(Runner, delayTime);
-        BGameManager.Instance.RPC_InitializeGame();
         delayedState = state;
     }
 

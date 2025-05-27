@@ -38084,10 +38084,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -40
+  gravity: -20
   jumpImpulse: 8
   acceleration: 10
-  braking: 30
+  braking: 10
   maxSpeed: 1
   rotationSpeed: 10
 --- !u!114 &2146824692807517563
@@ -38145,8 +38145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    WalkSpeed: 1
-    RunSpeed: 2
+    WalkSpeed: 2
+    RunSpeed: 4
 --- !u!114 &7668169826086334591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38195,7 +38195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef592ba8476a0343bc6d3928bf6ffde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkInterval: 1
 --- !u!1 &3503386635920396123
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,16 @@ public class BGameManager : NetworkBehaviour
     [Header("Zone Components")]
     [SerializeField] private MakeCircle makeCircle;
     [SerializeField] private ReduceCircle reduceCircle;
+    public ReduceCircle ReduceCircle => reduceCircle;
     [SerializeField] private LineCircleVisualizer lineCircleVisualizer;
     private Coroutine survivorCountUpdater;
     
     [Header("Visualizer & UI")]
     [SerializeField] private ZoneUI zoneUI;
     [SerializeField] private KillLog killLog;
+
+    [SerializeField] private GameObject zone;
+    public GameObject Zone => zone;
 
     private void Awake()
     {
@@ -37,6 +41,7 @@ public class BGameManager : NetworkBehaviour
         reduceCircle.StartZoneSystem();
         
         survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
+        zone.gameObject.SetActive(true);
     }
     
     private IEnumerator UpdateSurvivorCountRoutine()

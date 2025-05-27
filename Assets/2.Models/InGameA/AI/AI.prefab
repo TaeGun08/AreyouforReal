@@ -226,7 +226,7 @@ MonoBehaviour:
   jumpImpulse: 8
   acceleration: 10
   braking: 10
-  maxSpeed: 1
+  maxSpeed: 2
   rotationSpeed: 10
 --- !u!114 &8118017099306007645
 MonoBehaviour:
@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef592ba8476a0343bc6d3928bf6ffde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkInterval: 1
 --- !u!1 &9201711129107328436
 GameObject:
   m_ObjectHideFlags: 0
