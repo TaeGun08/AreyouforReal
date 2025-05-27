@@ -19,7 +19,7 @@ public class GameManager_Network : NetworkBehaviour
 
     [SerializeField] private GameObject map;
     [Networked] private GameState delayedState { get; set; }
-    
+        
     public enum GameState
     {
         None,
@@ -28,8 +28,12 @@ public class GameManager_Network : NetworkBehaviour
         Play,
         End,
     }
-    
-    public GameState State => state;
+
+    public GameState State
+    {
+        get => state;
+        set => state = value;
+    }
     
     [Networked]
     private GameState state { get; set; }
@@ -37,7 +41,16 @@ public class GameManager_Network : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
-        state = GameState.Wait;
+    }
+
+    public override void Spawned()
+    {
+        base.Spawned();
+
+        if (Runner.IsServer)
+        {
+            State = GameState.Wait;
+        }
     }
 
     public override void FixedUpdateNetwork()
@@ -58,6 +71,8 @@ public class GameManager_Network : NetworkBehaviour
             RPC_MapActive();
             
             state = GameState.Start;
+            
+            // TODO : 로딩페이드
             
             foreach (var player in PlayerRegistry.Instance.playerDic)
             {
@@ -101,15 +116,9 @@ public class GameManager_Network : NetworkBehaviour
         {
             if (AlivePlayers.Count <= 1)
             {
-                EndGame();
+                // TODO : 승리시 나와야하는거, 플레이어 무적
+                DelaySetState(GameState.End, 3);
             }
         }
-    }
-
-    private void EndGame()
-    {
-        state = GameState.End;
-        
-        // TODO : 전적표시
     }
 }

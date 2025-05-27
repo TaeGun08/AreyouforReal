@@ -5,6 +5,7 @@ using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {
@@ -132,19 +133,14 @@ namespace DefaultNamespace
         {
             if (runner.IsServer)
             {
-                if (shutdownReason == ShutdownReason.HostMigration)
-                {
-                    // Debug.Log("호스트 마이그레이션 발생");
-                }
-                else if (shutdownReason == ShutdownReason.DisconnectedByPluginLogic
-                         || shutdownReason == ShutdownReason.Ok
-                         || shutdownReason == ShutdownReason.ServerInRoom)
-                {
-                    // Debug.Log("호스트가 나가거나 방이 종료됨");
-                    _ = FirestoreManager.Instance.DeleteDataAsync(
-                        FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
-                }
+                // TODO : 연결이 끊어졌습니다 등 표시
+                _ = FirestoreManager.Instance.DeleteDataAsync(
+                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
             }
+            
+            Debug.Log("호스트가 나가거나 방이 종료됨");
+            Destroy(NetworkStartBridge.Instance.gameObject);
+            SceneManager.LoadScene(2);
         }
         
         #region INetworkRunnerCallbacks
