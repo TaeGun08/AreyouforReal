@@ -247877,6 +247877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDic:
     _items: []
+  index: 1
 --- !u!114 &1999339478
 MonoBehaviour:
   m_ObjectHideFlags: 0

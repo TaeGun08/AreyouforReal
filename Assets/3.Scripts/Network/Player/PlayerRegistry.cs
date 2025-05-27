@@ -22,6 +22,8 @@ namespace DefaultNamespace
         [Networked, Capacity(CAPACITY)]
         [UnitySerializeField]
         public NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
+
+        [SerializeField] private int index;
         
         public override void Spawned()
         {
@@ -79,7 +81,7 @@ namespace DefaultNamespace
 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState(2 <= playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState(index <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
@@ -107,7 +109,7 @@ namespace DefaultNamespace
                 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState( 2 <= playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState( index <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(

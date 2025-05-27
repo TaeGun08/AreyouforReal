@@ -25,7 +25,7 @@ public class LineCircleVisualizer : MonoBehaviour
     void Update()
     {
         if (reduceCircle == null) return;
-
+        
         Vector3 center = reduceCircle.currentZone.center;
         float   radius = reduceCircle.currentZone.radius;
         DrawCircle(center, radius);
