@@ -79,7 +79,6 @@ public class ChattingSystem : NetworkBehaviour
             bubble.transform.SetAsLastSibling(); // 맨 아래로 이동
             bubble.idText.text = FirebaseMainSession.Instance.FirebaseUser.Username; // 자신 이름
             bubble.chatText.text = message; // 메시지
-            bubble.chatText.text = $"{messageSource == Runner.LocalPlayer}"; // 메시지
             bubble.gameObject.SetActive(true); //활성화
             
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)chatListParent.transform); //레이아웃 갱신
