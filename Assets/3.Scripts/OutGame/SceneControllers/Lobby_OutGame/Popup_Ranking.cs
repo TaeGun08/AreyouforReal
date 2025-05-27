@@ -24,10 +24,10 @@ public class Popup_Ranking : BaseWindow
     
     private void OnEnable()
     {
-        _ = OnRoomInfoPanel();
+        _ = OnRankInfoPanel();
     }
     
-    public async Task OnRoomInfoPanel()
+    public async Task OnRankInfoPanel()
     {
         //비동기로 모든 Rooms를 읽어들임
         Dictionary<string,RankData> rankDataDict  = await FirestoreManager.Instance.GetAllDocumentsWithKeyAsync<RankData>(FirebaseCollections.Ranks);

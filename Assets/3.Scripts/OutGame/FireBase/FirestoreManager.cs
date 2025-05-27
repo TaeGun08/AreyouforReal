@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class FirestoreManager : MonoBehaviour
 {
-    private FirebaseFirestore firestore;
+    public FirebaseFirestore Firestore { get; private set; }
 
     private bool isInitialized = false;
 
@@ -33,7 +33,7 @@ public class FirestoreManager : MonoBehaviour
     // Firebase 초기화
     public void InitializeFirebase(FirebaseApp app)
     {
-        firestore = FirebaseFirestore.GetInstance(app);
+        Firestore = FirebaseFirestore.GetInstance(app);
         isInitialized = true;
         // FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         // {
@@ -62,7 +62,7 @@ public class FirestoreManager : MonoBehaviour
         
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             await docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
             return true;
@@ -85,7 +85,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             docRef.SetAsync(data);
             Debug.Log($"Data written to {collection}/{key}");
             return;
@@ -108,7 +108,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
             if (snapshot.Exists)
             {
@@ -150,7 +150,7 @@ public class FirestoreManager : MonoBehaviour
         
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             await docRef.UpdateAsync(updates);
             Debug.Log($"Data updated at {collection}/{key}");
         }
@@ -171,7 +171,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            DocumentReference docRef = firestore.Collection(collection.ToString()).Document(key);
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             await docRef.DeleteAsync();
             Debug.Log($"Data deleted from {collection}/{key}");
         }
@@ -192,7 +192,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            CollectionReference colRef = firestore.Collection(collection.ToString());
+            CollectionReference colRef = Firestore.Collection(collection.ToString());
             QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
 
             List<T> allDocs = new List<T>();
@@ -224,7 +224,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            CollectionReference colRef = firestore.Collection(collection.ToString());
+            CollectionReference colRef = Firestore.Collection(collection.ToString());
             QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
 
             Dictionary<string, T> allDocs = new Dictionary<string, T>();
@@ -258,7 +258,7 @@ public class FirestoreManager : MonoBehaviour
 
         try
         {
-            CollectionReference colRef = firestore.Collection(collection.ToString());
+            CollectionReference colRef = Firestore.Collection(collection.ToString());
             QuerySnapshot snapshot = await colRef.GetSnapshotAsync();
 
             List<string> keys = new List<string>();
