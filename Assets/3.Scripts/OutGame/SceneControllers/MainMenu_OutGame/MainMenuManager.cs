@@ -47,12 +47,12 @@ public class MainMenuManager : MonoBehaviour
             LoadingSceneManager.LoadScene("Lobby");
         }
         // 1. 로그인 안되어있음 && 이전 로그인 기록이 있음 => 자동 로그인 시도
-        else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
-        {
-            Debug.Log($"자동 로그인 시도 중");
-            // 자동 로그인 시도
-            _ = AutoLogin(PlayerPrefs.GetString(EmailKey), PlayerPrefs.GetString(PasswordKey));
-        }
+        // else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
+        // {
+        //     Debug.Log($"자동 로그인 시도 중");
+        //     // 자동 로그인 시도
+        //     _ = AutoLogin(PlayerPrefs.GetString(EmailKey), PlayerPrefs.GetString(PasswordKey));
+        // }
         // 3. 모두 아니라면 로그인 창을 출력한다.
         else
         {

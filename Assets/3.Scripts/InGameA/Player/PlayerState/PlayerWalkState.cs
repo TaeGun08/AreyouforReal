@@ -18,7 +18,8 @@ public class PlayerWalkState : PlayerState
     {
         if (playerController.Runner.TryGetInputForPlayer(playerController.Object.InputAuthority, out NetworkInputData input))
         {
-            if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0))
+            if (input.Buttons.IsSet(NetworkInputData.MOUSE_BUTTON_0) 
+                && GameManager_Network.Instance.State == GameManager_Network.GameState.Play)
             {
                 playerController.ChangeState(State.Attack);
                 return;

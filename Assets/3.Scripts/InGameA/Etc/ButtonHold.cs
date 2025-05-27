@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public bool IsPressed { get; private set; }
+    
+    [SerializeField]
 
     public void OnPointerDown(PointerEventData eventData)
     {
