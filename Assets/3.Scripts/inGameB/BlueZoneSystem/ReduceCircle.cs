@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ReduceCircle : MonoBehaviour
@@ -7,14 +8,19 @@ public class ReduceCircle : MonoBehaviour
     public float reductionTime = 45f;
     public float waitTime = 45f;
 
+    [Header("Detection Settings")]
+    public LayerMask detectionLayer;         // 감지할 레이어 (Player, AI)
+    public float checkInterval = 1f;         // 생존자 감지 간격 (초)
+
     [SerializeField] private MakeCircle makeCircle;
     public CircleData currentZone;
 
     private Coroutine reduceCoroutine;
+    private Coroutine detectionCoroutine;
 
+    private readonly List<GameObject> currentSurvivors = new List<GameObject>();
     private void Awake()
     {
-        // Inspector에 할당되지 않았다면 씬에서 한 번만 검색
         if (makeCircle == null)
             makeCircle = FindObjectOfType<MakeCircle>();
     }
@@ -28,7 +34,6 @@ public class ReduceCircle : MonoBehaviour
             return;
         }
 
-        
         reduceCoroutine = StartCoroutine(ReduceRoutine());
     }
 
@@ -41,10 +46,15 @@ public class ReduceCircle : MonoBehaviour
             var nextZone = makeCircle.DequeueCircle();
 
             Vector3 startCenter = currentZone.center;
-            float   startRadius = currentZone.radius;
+            float startRadius = currentZone.radius;
 
-            Vector3 endCenter   = nextZone.center;
-            float   endRadius   = nextZone.radius;
+            Vector3 endCenter = nextZone.center;
+            float endRadius = nextZone.radius;
+
+            // 감지 코루틴 시작
+            if (detectionCoroutine != null)
+                StopCoroutine(detectionCoroutine);
+            detectionCoroutine = StartCoroutine(DetectSurvivorsRoutine());
 
             float elapsed = 0f;
             while (elapsed < reductionTime)
@@ -62,9 +72,45 @@ public class ReduceCircle : MonoBehaviour
                 yield return new WaitForSeconds(waitTime);
         }
 
+        if (detectionCoroutine != null)
+            StopCoroutine(detectionCoroutine);
+
         Debug.Log("모든 Zone 축소 완료");
         reduceCoroutine = null;
     }
+
+
+    private IEnumerator DetectSurvivorsRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(checkInterval);
+
+        while (true)
+        {
+            currentSurvivors.Clear();
+
+            foreach (var col in Physics.OverlapSphere(currentZone.center, currentZone.radius, detectionLayer))
+            {
+                Debug.Log($"[감지됨] {col.name}, Layer: {LayerMask.LayerToName(col.gameObject.layer)}");
+
+                currentSurvivors.Add(col.gameObject);
+            }
+
+            Debug.Log($"생존자 수 (Player만 필터링 시): {GetCurrentPlayersOnly().Count}");
+
+            yield return wait;
+        }
+    }
+    public List<GameObject> GetCurrentPlayersOnly()
+    {
+        return currentSurvivors.FindAll(go => go.CompareTag("Player"));
+    }
+    public void StartZoneSystem()
+    {
+        currentZone = makeCircle.DequeueCircle();
+        StartCoroutine(ReduceRoutine());
+        StartCoroutine(DetectSurvivorsRoutine());
+    }
+    
 
     private void OnDrawGizmos()
     {

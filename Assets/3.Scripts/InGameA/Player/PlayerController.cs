@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour, IKnockout
+public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
 {
     private LocalPlayer localPlayer;
     public LocalPlayer LocalPlayer => localPlayer;
@@ -17,7 +17,7 @@ public class PlayerController : NetworkBehaviour, IKnockout
     private Animator animator;
 
     [SerializeField] private PlayerState[] playerStates;
-    private PlayerState currentState;
+    public PlayerState currentState;
 
     private Dictionary<PlayerState.State, PlayerState>
         playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour, IKnockout
 
     // 킬로그용
     public static event Action<PlayerController, PlayerController> OnPlayerKnockoutEvent;
-
+    public bool IsInZone { get; set; }
     private void Awake()
     {
         localPlayer = GetComponent<LocalPlayer>();

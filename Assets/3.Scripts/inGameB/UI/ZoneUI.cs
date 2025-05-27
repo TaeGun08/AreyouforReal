@@ -8,42 +8,42 @@ public class ZoneUI : MonoBehaviour
     public TextMeshProUGUI bzTimerText;
 
     private float elapsedGameTime = 0f;
-    private ReduceCircle reduceCircle;
 
-    // BlZ 타이머
     private float totalBzTime;
     private float remainingBzTime;
 
-    private void Start()
-    {
-        reduceCircle = FindObjectOfType<ReduceCircle>();
-        if (reduceCircle == null)
-        {
-            Debug.LogError("ReduceCircle 컴포넌트를 찾을 수 없습니다.");
-            enabled = false;
-            return;
-        }
+    private bool isInitialized = false;
 
-        // 총 BZ 시간 계산 및 초기화
-        totalBzTime = reduceCircle.reductionTime + reduceCircle.waitTime;
+    public void Init(float reductionTime, float waitTime)
+    {
+        totalBzTime = reductionTime + waitTime;
         remainingBzTime = totalBzTime;
+        isInitialized = true;
     }
 
     private void Update()
     {
+        if (!isInitialized) return;
+
         // 1) 게임 플레이 타이머
         elapsedGameTime += Time.deltaTime;
         inGameTimerText.text = FormatTime(elapsedGameTime);
 
-        // 2) BZ 카운트다운
+        // 2) BZ 타이머
         remainingBzTime -= Time.deltaTime;
         if (remainingBzTime <= 0f)
         {
-            remainingBzTime += totalBzTime; // 0 이하가 되면 다시 총시간만큼 더해서 루프
+            remainingBzTime += totalBzTime;
         }
         bzTimerText.text = remainingBzTime.ToString("F1") + "s";
     }
 
+    public void SetSurvivorCount(int count)
+    {
+        Debug.Log($"[ZoneUI] 생존자 수 설정 요청: {count}명");
+    }
+    // ui 작업은 안했고 이거 가져다가 쓰면됩니당.
+    
     private string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);

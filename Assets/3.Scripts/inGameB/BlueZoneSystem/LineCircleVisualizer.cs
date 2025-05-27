@@ -37,6 +37,9 @@ public class LineCircleVisualizer : MonoBehaviour
         {
             float theta = 2f * Mathf.PI * i / segmentCount;
             float x = Mathf.Cos(theta) * radius + center.x;
+            
+            
+            
             float z = Mathf.Sin(theta) * radius + center.z;
             float y = center.y + heightOffset; // ← Y값에 오프셋 적용
             lr.SetPosition(i, new Vector3(x, y, z));
