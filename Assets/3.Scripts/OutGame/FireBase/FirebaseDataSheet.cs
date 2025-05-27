@@ -45,13 +45,23 @@ public class RoomData  //key : RoomCode
     [FirestoreProperty] public bool IsGameOver { get; set; }
 }
 
+// ToDo :: 영돈님 할일
+// 넘겨줄 데이터 MatchHistoryData 형식 생성
+// MatchHistoryData matchHistoryData = new MatchHistoryData()
+// {
+//     Players = new List<string>(), //참여한 플레이어들
+//     Rank = 1,                     //등수
+//     PlayTime =  "1235",           //12분35초
+//     KillCount = 5,                //킬수
+// };
+
 [FirestoreData]
 public class MatchHistoryData  //key : GUID
 {
-    [FirestoreProperty] public List<string> Players { get; set; } =  new List<string>();
-    [FirestoreProperty] public int Rank { get; set; }
-    [FirestoreProperty] public int KillCount { get; set; }
-    [FirestoreProperty] public string PlayTime { get; set; }
+    [FirestoreProperty] public List<string> Players { get; set; } =  new List<string>(); //참여한 플레이어들
+    [FirestoreProperty] public int Rank { get; set; } //등수
+    [FirestoreProperty] public int KillCount { get; set; } //킬수
+    [FirestoreProperty] public string PlayTime { get; set; } //플레이 시간
 }
 
 [FirestoreData]

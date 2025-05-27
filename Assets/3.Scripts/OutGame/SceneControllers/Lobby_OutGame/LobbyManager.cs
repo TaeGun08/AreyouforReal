@@ -45,15 +45,21 @@ public class LobbyManager : MonoBehaviour
             LobbyUpdate();
         
         // 수신 리스너 설정
-        FirebaseInviteManager.Instance.ListenToInvitations("myUid", (inviteId, data) =>
+        FirebaseInviteManager.Instance.ListenToInvitations(FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, (inviteId, data) =>
         {
+            Debug.Log("받음");
             Debug.Log($"[초대] from: {data.From}, room: {data.RoomId}");
 
             // UI로 수락/거절 버튼 제공
-            FirebaseInviteManager.Instance.RespondToInvitation(inviteId, InvitationStatus.Accepted);
+            //FirebaseInviteManager.Instance.RespondToInvitation(inviteId, InvitationStatus.Accepted);
         });
     }
-
+    
+    void OnDisable()
+    {
+        FirebaseInviteManager.Instance.StopListening();
+    }
+    
     private void LobbyUpdate()
     {
         playerNameText.text = FirebaseMainSession.Instance.FirebaseUser.Username;

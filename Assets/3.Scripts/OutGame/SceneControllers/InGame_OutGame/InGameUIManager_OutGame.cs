@@ -13,6 +13,7 @@ public class InGameUIManager_OutGame : MonoBehaviour
 {
     [Header("Top RoomCode UI")]
     [SerializeField] private TMP_Text roomCode;
+    [SerializeField] private GameObject roomCodePanel;
     
     [Space]
     [Header("PopUps")]
@@ -24,7 +25,6 @@ public class InGameUIManager_OutGame : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject waitingButton;
     [SerializeField] private GameObject exitButton;
-
     
     private NetworkRunner runner;
     
@@ -55,8 +55,12 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void OnClickedStartButton() //게임 시작 버튼
     {
-        startButton.gameObject.SetActive(false);
-        exitButton.gameObject.SetActive(false);
+        startButton.SetActive(false);
+        waitingButton.SetActive(false);
+        exitButton.SetActive(false);
+        roomCodePanel.SetActive(false);
+        Popup_Chat.SetActive(false);
+        Popup_ExitChecking.SetActive(false);
         
         Dictionary<string, object> updateIsGameStarted =  new Dictionary<string, object>{
                 {"IsGameStarted" , true}
@@ -97,7 +101,7 @@ public class InGameUIManager_OutGame : MonoBehaviour
     //초대 보네기
     public void OnClickInviteSureButton() //친구창의 친구 옆에 표시할 초대 버튼으로
     {
-        _ = FirebaseInviteManager.Instance.SendInvitation(
+        FirebaseInviteManager.Instance.SendInvitation(
             FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, //from
             "Friend",   //to (Friend)
             roomCode.text //roomCode

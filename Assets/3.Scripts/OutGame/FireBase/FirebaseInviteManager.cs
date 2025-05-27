@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using ExitGames.Client.Photon.StructWrapping;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using UnityEditor;
@@ -11,16 +13,38 @@ public class FirebaseInviteManager : MonoBehaviour
 {
     public static FirebaseInviteManager Instance;
     private ListenerRegistration invitationListener;
+    private FirebaseFirestore firestore;
+    public bool IsInitialized { get; private set; } = false;
     
     private void Awake()
     {
-        Instance = this;
-    }
-
-    public async Task SendInvitation(string fromUid, string toUid, string roomId)
-    {
-        Debug.Log("초대 메시지 전송 완료");
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         
+        Instance = this;
+        
+        DontDestroyOnLoad(gameObject);
+        
+        if (FirestoreManager.Instance.IsInitialized)
+        {
+            firestore = FirestoreManager.Instance.Firestore;
+            IsInitialized = true;
+        }
+    }
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SendInvitation(FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, "ddaf");
+        }
+    }
+    
+    public void SendInvitation(string fromUid, string toUid, string roomId) //초대 메시지 전송
+    {
         InvitationData invitationData = new InvitationData
         {
             From = fromUid,
@@ -31,36 +55,26 @@ public class FirebaseInviteManager : MonoBehaviour
             Timestamp = Timestamp.GetCurrentTimestamp(),
             Status = InvitationStatus.Pending.ToString()
         };
+        
+        string docId = $"{fromUid}_{toUid}";
 
-        string docId = Guid.NewGuid().ToString();
-
-        await FirestoreManager.Instance.WriteDataAsync(FirebaseCollections.Invitations, docId, invitationData)
-            .ContinueWithOnMainThread(
-                task =>
-                {
-                    if (task.IsFaulted || task.IsCanceled)
-                        Debug.LogError("초대 전송 실패: " + task.Exception);
-                    else
-                        Debug.Log("초대 전송 완료");
-                });
+        _= FirestoreManager.Instance.WriteDataAsync(FirebaseCollections.Invitations, docId, invitationData);
     }
     
 
     /// 초대 수신 리스너
     public void ListenToInvitations(string myUid, Action<string, InvitationData> onInviteReceived)
     {
-        invitationListener = FirestoreManager.Instance.Firestore
-            .Collection(FirebaseCollections.Invitations.ToString())
-            .WhereEqualTo("to", myUid)
-            .WhereEqualTo("status", InvitationStatus.Pending.ToString())
+        invitationListener = firestore.Collection("Invitations")
+            .WhereEqualTo("To", myUid)
             .Listen(snapshot =>
+        {
+            foreach (var doc in snapshot.Documents)
             {
-                foreach (var doc in snapshot.Documents)
-                {
-                    InvitationData invite = doc.ConvertTo<InvitationData>();
-                    onInviteReceived?.Invoke(doc.Id, invite);
-                }
-            });
+                InvitationData invite = doc.ConvertTo<InvitationData>();
+                onInviteReceived?.Invoke(doc.Id, invite);
+            }
+        });
     }
 
     /// 리스너 정리
