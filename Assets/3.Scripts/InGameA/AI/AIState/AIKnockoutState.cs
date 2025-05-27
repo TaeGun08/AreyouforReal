@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class AIKnockoutState : AIState
@@ -10,7 +11,7 @@ public class AIKnockoutState : AIState
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-        this.aiController.GetComponent<CharacterController>().enabled = false;
+        this.aiController.Runner.Despawn(this.aiController.Object);
     }
 
     public override void StateUpdate()

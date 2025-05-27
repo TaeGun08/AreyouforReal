@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Fusion;
+using TMPro;
 using Unity.Services.Authentication;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ public class GameManager_Network : NetworkBehaviour
 
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
+    [SerializeField] private TMP_Text countText;
     
     [Networked] private GameState delayedState { get; set; }
         
@@ -73,7 +75,7 @@ public class GameManager_Network : NetworkBehaviour
         RPC_MapActive();
             
         state = GameState.Start;
-            
+        
         // TODO : 로딩페이드
             
         foreach (var player in PlayerRegistry.Instance.playerDic)
@@ -91,6 +93,8 @@ public class GameManager_Network : NetworkBehaviour
             AIManager.Instance.SpawnAI(
                 TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
         }
+        
+        countText.text = $"남은 인원: {AlivePlayers.Count}";
             
         DelaySetState(GameState.Play, 5);
     }
@@ -112,6 +116,7 @@ public class GameManager_Network : NetworkBehaviour
     {
         if (AlivePlayers.Remove(player))
         {
+            countText.text = $"남은 인원: {AlivePlayers.Count}";
             if (AlivePlayers.Count <= 1)
             {
                 // TODO : 승리시 나와야하는거, 플레이어 무적

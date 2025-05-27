@@ -109,8 +109,11 @@ public class ReduceCircle : MonoBehaviour
     public void StartZoneSystem()
     {
         currentZone = makeCircle.DequeueCircle();
-        StartCoroutine(ReduceRoutine());
-        StartCoroutine(DetectSurvivorsRoutine());
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(ReduceRoutine());
+            StartCoroutine(DetectSurvivorsRoutine());
+        }
     }
     
 
