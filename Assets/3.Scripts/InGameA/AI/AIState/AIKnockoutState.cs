@@ -10,6 +10,7 @@ public class AIKnockoutState : AIState
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
+        this.aiController.GetComponent<CharacterController>().enabled = false;
     }
 
     public override void StateUpdate()

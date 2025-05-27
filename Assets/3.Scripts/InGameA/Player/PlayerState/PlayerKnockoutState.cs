@@ -22,6 +22,7 @@ public class PlayerKnockoutState : PlayerState
 
     private IEnumerator RecordSceneLoadCoroutine()
     {
+        playerController.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(3f);
         playerController.Runner.Shutdown();
         SceneManager.LoadSceneAsync(4);
