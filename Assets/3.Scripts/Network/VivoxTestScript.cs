@@ -11,7 +11,7 @@ public class VivoxTestScript : NetworkBehaviour
     {
         await VivoxManager.Instance.Init();
         await VivoxManager.Instance.Join3DChannel(gameObject, "Global");
-        _ = VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.All);
+        await VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.All);
     }
 
     public override void FixedUpdateNetwork()

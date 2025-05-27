@@ -6,13 +6,17 @@ using UnityEngine;
 
 public class RecordUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text exp;
-    [SerializeField] private TMP_Text gold;
-    // [SerializeField] private TMP_Text gold;
+    [SerializeField] private TMP_Text rankText;
+    [SerializeField] private TMP_Text killCountText;
+    [SerializeField] private TMP_Text playTimeText;
 
-    private void Start()
+    private async void Start()
     {
-        // FirestoreManager.Instance.ReadDataAsync<>()
-        // TODO : 파베 로드 작업
+        MatchHistoryData historyData = await FirestoreManager.Instance.ReadDataAsync<MatchHistoryData>(
+            FirebaseCollections.MatchHistorys, "asd");
+        
+        rankText.SetText(historyData.Rank.ToString());
+        killCountText.SetText(historyData.KillCount.ToString());
+        playTimeText.SetText(historyData.PlayTime);
     }
 }
