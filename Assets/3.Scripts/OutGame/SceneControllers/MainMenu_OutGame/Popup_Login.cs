@@ -75,11 +75,6 @@ public class Popup_Login : BaseWindow
     
     private async Task OnClickedLoginButton()
     {
-        if (FirebaseMainSession.Instance.FirebaseUser != null)
-        {
-            LoadingSceneManager.LoadScene("Lobby");
-        }
-        
         email = emailInputField.text;
         password = passwordInputField.text;
         
