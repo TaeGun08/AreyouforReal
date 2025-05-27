@@ -19,6 +19,7 @@ public class ReduceCircle : MonoBehaviour
     private Coroutine detectionCoroutine;
 
     private readonly List<GameObject> currentSurvivors = new List<GameObject>();
+    
     private void Awake()
     {
         if (makeCircle == null)
@@ -33,6 +34,7 @@ public class ReduceCircle : MonoBehaviour
             enabled = false;
             return;
         }
+        
         currentZone = makeCircle.DequeueCircle();
         reduceCoroutine = StartCoroutine(ReduceRoutine());
     }

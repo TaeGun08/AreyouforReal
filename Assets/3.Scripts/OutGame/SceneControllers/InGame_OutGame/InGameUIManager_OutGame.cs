@@ -54,12 +54,8 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void OnClickedStartButton() //게임 시작 버튼
     {
-        bool isStart = GameManager_Network.Instance.TryStartGame();
-
-        if (isStart)
-        {
-            startButton.gameObject.SetActive(false);
-        }
+        GameManager_Network.Instance.TryStartGame();
+        startButton.gameObject.SetActive(false);
     }
     
     public void OnClickedChatButton()

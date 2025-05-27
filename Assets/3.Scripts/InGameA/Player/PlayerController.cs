@@ -46,6 +46,7 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
 
     public override void FixedUpdateNetwork()
     {
+        if (GameManager_Network.Instance.State == GameManager_Network.GameState.Start) return;
         currentState?.StateUpdate();
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Fusion;
@@ -7,53 +8,77 @@ public class ZoneChecker : NetworkBehaviour
     private IZoneTrackable target;
     private ReduceCircle reduceCircle;
 
-    public float checkInterval = 1f;
+    //public float checkInterval = 1f;
 
-    public override void Spawned()
+    private void Start()
     {
+        reduceCircle = BGameManager.Instance.ReduceCircle;
+        
         target = GetComponent<IZoneTrackable>();
-        reduceCircle = FindObjectOfType<ReduceCircle>();
-
-        bool isPlayer = target is PlayerController;
-
-        // Player는 권한 있는 쪽만 실행, AI는 모두 실행
-        if ((!isPlayer || HasStateAuthority) && target != null && reduceCircle != null)
-        {
-            StartCoroutine(CheckZoneRoutine());
-        }
     }
 
-    private IEnumerator CheckZoneRoutine()
+    public override void FixedUpdateNetwork()
     {
-        WaitForSeconds wait = new WaitForSeconds(checkInterval);
+        if (GameManager_Network.Instance.State != GameManager_Network.GameState.Play
+            && BGameManager.Instance.Zone.activeInHierarchy == false) return;
+        if (reduceCircle == null) return;
 
-        while (true)
+        Vector3 pos = ((MonoBehaviour)target).transform.position;
+        Vector3 center = reduceCircle.currentZone.center;
+        float radius = reduceCircle.currentZone.radius;
+
+        bool inZone = Vector3.Distance(pos, center) <= radius;
+        target.IsInZone = inZone;
+
+        //Debug.Log($"[ZoneChecker] {((MonoBehaviour) target).name} → {(inZone ? "IN" : "OUT")}");
+
+        // Knockout 처리 예시
+        if (!inZone)
         {
-            Vector3 pos = ((MonoBehaviour)target).transform.position;
-            Vector3 center = reduceCircle.currentZone.center;
-            float radius = reduceCircle.currentZone.radius;
-
-            bool inZone = Vector3.Distance(pos, center) <= radius;
-            target.IsInZone = inZone;
-
-            Debug.Log($"[ZoneChecker] {((MonoBehaviour)target).name} → {(inZone ? "IN" : "OUT")}");
-
-            // Knockout 처리 예시
-            if (!inZone)
+            if (target is PlayerController pc
+                && pc.CurrentState.CurrentState != PlayerState.State.Knockout)
             {
-                if (target is PlayerController pc
-                    && pc.CurrentState.CurrentState != PlayerState.State.Knockout)
-                {
-                    pc.ChangeState(PlayerState.State.Knockout);
-                }
-                else if (target is AIController ai 
-                         && ai.CurrentState.CurrentState != AIState.State.Knockout)
-                {
-                    ai.ChangeState(AIState.State.Knockout);
-                }
+                pc.ChangeState(PlayerState.State.Knockout);
             }
-
-            yield return wait;
+            else if (target is AIController ai 
+                     && ai.CurrentState.CurrentState != AIState.State.Knockout)
+            {
+                ai.ChangeState(AIState.State.Knockout);
+            }
         }
     }
+
+    // private IEnumerator CheckZoneRoutine()
+    // {
+    //     WaitForSeconds wait = new WaitForSeconds(checkInterval);
+    //
+    //     while (true)
+    //     {
+    //         Vector3 pos = ((MonoBehaviour)target).transform.position;
+    //         Vector3 center = reduceCircle.currentZone.center;
+    //         float radius = reduceCircle.currentZone.radius;
+    //
+    //         bool inZone = Vector3.Distance(pos, center) <= radius;
+    //         target.IsInZone = inZone;
+    //
+    //         Debug.Log($"[ZoneChecker] {((MonoBehaviour)target).name} → {(inZone ? "IN" : "OUT")}");
+    //
+    //         // Knockout 처리 예시
+    //         if (!inZone)
+    //         {
+    //             if (target is PlayerController pc
+    //                 && pc.CurrentState.CurrentState != PlayerState.State.Knockout)
+    //             {
+    //                 pc.ChangeState(PlayerState.State.Knockout);
+    //             }
+    //             else if (target is AIController ai 
+    //                      && ai.CurrentState.CurrentState != AIState.State.Knockout)
+    //             {
+    //                 ai.ChangeState(AIState.State.Knockout);
+    //             }
+    //         }
+    //
+    //         yield return wait;
+    //     }
+    // }
 }

@@ -27,12 +27,6 @@ public class KillLog : MonoBehaviour
    //      // 예: LocalPlayer.UserName (혹은 PlayerController에 정의된 닉네임 프로퍼티) 사용
    //      string attackerName = attacker.LocalPlayer.UserName;
    
-   
-   
-   
-   
-   
-   
     
    //      string victimName   = victim.LocalPlayer.UserName;
    // 

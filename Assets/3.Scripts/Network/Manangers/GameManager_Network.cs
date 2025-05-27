@@ -19,6 +19,7 @@ public class GameManager_Network : NetworkBehaviour
 
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
+    
     [Networked] private GameState delayedState { get; set; }
         
     public enum GameState
@@ -58,45 +59,40 @@ public class GameManager_Network : NetworkBehaviour
     {
         if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
         {
+            fakeLoading.SetActive(false);
+            BGameManager.Instance.RPC_InitializeGame();
             state = delayedState;
             delayedState = GameState.None;
         }
     }
 
-    public bool TryStartGame()
+    public void TryStartGame()
     {
         Debug.Assert(Runner.IsServer, "서버만 호출가능!");
         
-        if (2 <= PlayerRegistry.Instance.playerDic.Count)
+        RPC_MapActive();
+            
+        state = GameState.Start;
+            
+        // TODO : 로딩페이드
+            
+        foreach (var player in PlayerRegistry.Instance.playerDic)
         {
-            RPC_MapActive();
-            
-            state = GameState.Start;
-            
-            // TODO : 로딩페이드
-            
-            foreach (var player in PlayerRegistry.Instance.playerDic)
-            {
-                Transform trs = TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)];
+            Transform trs = TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)];
                 
-                // 캐싱필요
-                player.Value.GetComponent<NetworkCharacterController>().Teleport(trs.position);
-                AlivePlayers.Add(player.Value);
-            }
-            
-            // TODO : 로딩화면 활성화, 자기장
-            for (int i = 0; i < 20; i++)
-            {
-                AIManager.Instance.SpawnAI(
-                    TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
-            }
-            
-            DelaySetState(GameState.Play, 5);
-            
-            return true;
+            // 캐싱필요
+            player.Value.GetComponent<NetworkCharacterController>().Teleport(trs.position);
+            AlivePlayers.Add(player.Value);
         }
-        
-        return false;
+            
+        // TODO : 로딩화면 활성화, 자기장
+        for (int i = 0; i < 20; i++)
+        {
+            AIManager.Instance.SpawnAI(
+                TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
+        }
+            
+        DelaySetState(GameState.Play, 5);
     }
 
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
@@ -105,18 +101,10 @@ public class GameManager_Network : NetworkBehaviour
         map.SetActive(true);
         fakeLoading.SetActive(true);
     }
-
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
-    private void RPC_FakeLoadingActiveFalse()
-    {
-        fakeLoading.SetActive(false);
-    }
     
     private void DelaySetState(GameState state, float delayTime)
     {
         Delay = TickTimer.CreateFromSeconds(Runner, delayTime);
-        BGameManager.Instance.RPC_InitializeGame();
-        RPC_FakeLoadingActiveFalse();
         delayedState = state;
     }
 

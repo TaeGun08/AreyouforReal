@@ -11,7 +11,7 @@ public class FakeLoading : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text progressText;
-    [SerializeField] private float loadDuration = 2f;
+    [SerializeField] private float loadDuration = 5f;
 
     private void OnEnable()
     {
@@ -28,6 +28,7 @@ public class FakeLoading : MonoBehaviour
             .OnUpdate(UpdateProgressText)
             .OnComplete(() =>
             {
+                gameObject.SetActive(false);
                 progressText.text = "Complete!";
                 tcs.SetResult(true);
             });

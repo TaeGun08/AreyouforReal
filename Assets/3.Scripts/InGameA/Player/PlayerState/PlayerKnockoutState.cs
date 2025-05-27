@@ -15,14 +15,16 @@ public class PlayerKnockoutState : PlayerState
 
         GameManager_Network.Instance.KillEvent(this.playerController.LocalPlayer);
 
-        StartCoroutine(RecordSceneLoadCoroutine());
+        GameResult.Instance.RecordElimination(this.playerController);
         
-        GameResult.Instance.RecordElimination(playerController);
+        StartCoroutine(RecordSceneLoadCoroutine());
     }
 
     private IEnumerator RecordSceneLoadCoroutine()
     {
+        playerController.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(3f);
+        playerController.Runner.Shutdown();
         SceneManager.LoadSceneAsync(4);
     }
 
