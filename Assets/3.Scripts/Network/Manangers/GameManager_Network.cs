@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
+using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
 using TMPro;
 using Unity.Services.Authentication;
@@ -16,12 +18,12 @@ public class GameManager_Network : NetworkBehaviour
     [Networked] TickTimer Delay { get; set; }
     
     [Networked, Capacity(MAX_PLAYER)]
+    [UnitySerializeField]
     public NetworkLinkedList<LocalPlayer> AlivePlayers { get; }
 
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
     [SerializeField] private TMP_Text countText;
-    
     [Networked] private GameState delayedState { get; set; }
         
     public enum GameState
@@ -83,8 +85,10 @@ public class GameManager_Network : NetworkBehaviour
             Transform trs = TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)];
                 
             // 캐싱필요
-            player.Value.GetComponent<NetworkCharacterController>().Teleport(trs.position);
+            // player.Value.GetComponent<NetworkCharacterController>().Teleport(trs.position);
+            RPC_TeleportPlayer(player.Key, trs.position);
             AlivePlayers.Add(player.Value);
+            
         }
             
         // TODO : 로딩화면 활성화, 자기장
@@ -106,22 +110,47 @@ public class GameManager_Network : NetworkBehaviour
         fakeLoading.SetActive(true);
     }
     
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    private void RPC_TeleportPlayer([RpcTarget] PlayerRef playerRef, Vector3 position)
+    {
+
+        Debug.Log("텔레포트!");
+        Player.LocalPlayer.GetComponent<NetworkCharacterController>().Teleport(position);
+        
+    }
+    
     private void DelaySetState(GameState state, float delayTime)
     {
         Delay = TickTimer.CreateFromSeconds(Runner, delayTime);
         delayedState = state;
     }
-
-    public void KillEvent(LocalPlayer player)
+    
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.StateAuthority)]
+    public void RPC_KillEvent(LocalPlayer player)
     {
+        
+        Debug.Log($"남은 인원: {AlivePlayers.Count}");
         if (AlivePlayers.Remove(player))
         {
             countText.text = $"남은 인원: {AlivePlayers.Count}";
+            Debug.Log($"남은 인원: {AlivePlayers.Count}");
             if (AlivePlayers.Count <= 1)
             {
                 // TODO : 승리시 나와야하는거, 플레이어 무적
                 DelaySetState(GameState.End, 3);
+                Debug.Log("승리");
+                // TODO: 카운터는
             }
+        }
+        
+        // 권한이 없는 상태일 경우, 권한 재할당 시도
+        if (player.Runner.IsSharedModeMasterClient)
+        {
+            // 마스터가 아니면서도 권한이 없다면 새 마스터에게 권한 위임
+            LocalPlayer targetPlayer = AlivePlayers.FirstOrDefault((player) => player.Runner.IsSharedModeMasterClient == false);
+            
+            Runner.SetMasterClient(targetPlayer.Runner.LocalPlayer);
+            Debug.Log("StateAuthority가 재할당되었습니다.");
         }
     }
 }

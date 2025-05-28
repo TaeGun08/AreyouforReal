@@ -11,7 +11,7 @@ public class AIKnockoutState : AIState
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-        this.aiController.Runner.Despawn(this.aiController.Object);
+        // this.aiController.Runner.Despawn(this.aiController.Object);
     }
 
     public override void StateUpdate()

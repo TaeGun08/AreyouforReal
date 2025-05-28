@@ -22,8 +22,9 @@ public class PlayerSpawner : MonoBehaviour
         if (player == runner.LocalPlayer)
         {
             Vector3 spawnPosition = new Vector3(0, 2, 0);
-            runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity
+            NetworkObject spawnedPlayer = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity
                 , inputAuthority: player);
+            runner.SetPlayerObject(runner.LocalPlayer, spawnedPlayer);
         }
         
         Debug.Log("Player joined");

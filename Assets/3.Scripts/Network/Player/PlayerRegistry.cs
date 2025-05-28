@@ -144,7 +144,7 @@ namespace DefaultNamespace
             }
             
             Debug.Log("호스트가 나가거나 방이 종료됨");
-            Destroy(NetworkStartBridge.Instance.gameObject);
+            // Destroy(NetworkStartBridge.Instance.gameObject);
             SceneManager.LoadScene(2);
         }
         
