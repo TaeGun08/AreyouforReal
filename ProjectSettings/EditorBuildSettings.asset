@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scenes/DevelopMerge/Lobby.unity
     guid: 311990f37887afa4fa370f0901e47e75
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scenes/DevelopMerge/InGame.unity
     guid: 2be4b9517f2699b49a330893fa2a5304
+  - enabled: 1
+    path: Assets/1.Scenes/inGameB/InGame.unity
+    guid: 2a5e8da10af4f7245b211d431b469282
   - enabled: 1
     path: Assets/1.Scenes/DevelopMerge/Record.unity
     guid: fe9e9c2a7bfb0964db890293f62bd4e7
