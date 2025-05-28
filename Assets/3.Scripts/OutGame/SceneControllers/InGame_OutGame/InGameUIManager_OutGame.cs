@@ -8,6 +8,7 @@ using Fusion;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InGameUIManager_OutGame : NetworkBehaviour
@@ -20,6 +21,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     [Header("PopUps")]
     [SerializeField] private GameObject Popup_Chat;
     [SerializeField] private GameObject Popup_ExitChecking;
+    [SerializeField] private GameObject friendInvitePanel;
     
     [Space]
     [Header("Buttons")]
@@ -30,6 +32,8 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     private NetworkRunner runner;
     
     public static InGameUIManager_OutGame Instance;
+
+
     
     private void Awake()
     {
@@ -53,8 +57,16 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     {
         LoadingSceneManager.LoadScene("Lobby");
     }
+
+    public void OnClickedFriendInviteButton()
+    {
+        friendInvitePanel.SetActive(true);
+    }
     
-    
+    public string GetRoomCode()
+    {
+        return roomCode.text;
+    }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All, HostMode = RpcHostMode.SourceIsServer)]
     private void RPC_DisableStartUI()
@@ -104,15 +116,5 @@ public class InGameUIManager_OutGame : NetworkBehaviour
             startButton.SetActive(false);
             waitingButton.SetActive(true);
         }
-    }
-
-    //초대 보네기
-    public void OnClickInviteSureButton() //친구창의 친구 옆에 표시할 초대 버튼으로
-    {
-        FirebaseInviteManager.Instance.SendInvitation(
-            FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, //from
-            "Friend",   //to (Friend)
-            roomCode.text //roomCode
-            );
     }
 }

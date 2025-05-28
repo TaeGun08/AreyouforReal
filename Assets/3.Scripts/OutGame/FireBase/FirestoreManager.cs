@@ -123,6 +123,7 @@ public class FirestoreManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Failed to read data: {e.Message}");
+            Debug.Log($"No data found at {collection}/{key}");
             return null;
         }
     }

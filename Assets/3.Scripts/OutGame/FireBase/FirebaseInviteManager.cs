@@ -27,14 +27,6 @@ public class FirebaseInviteManager : MonoBehaviour
         }
     }
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SendInvitation(FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, "ddaf");
-        }
-    }
-    
     public void SendInvitation(string fromUid, string toUid, string roomId) //초대 메시지 전송
     {
         InvitationData invitationData = new InvitationData
