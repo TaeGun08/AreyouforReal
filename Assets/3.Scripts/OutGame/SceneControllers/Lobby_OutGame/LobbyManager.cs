@@ -10,6 +10,7 @@ public enum CheckTexts
     Create,
     Join,
     AddFriend,
+    AddFriendSuccess,
 }
 
 public class LobbyManager : MonoBehaviour
@@ -32,6 +33,7 @@ public class LobbyManager : MonoBehaviour
     private const string CANNOT_CREATE_TEXT = "Sorry, you cannot Create the room.";
     private const string CANNOT_JOIN_TEXT = "Sorry, you cannot join the room."; 
     private const string CANNOT_ADD_FRIEND_TEXT = "Sorry, The specified user does not exist."; 
+    private const string SUCCESSFUL_FRIEND_ADD_TEXT = "Successfully added friend.";
     
     public static LobbyManager Instance;
 
@@ -73,6 +75,7 @@ public class LobbyManager : MonoBehaviour
             CheckTexts.Create => CANNOT_CREATE_TEXT,
             CheckTexts.Join => CANNOT_JOIN_TEXT,
             CheckTexts.AddFriend => CANNOT_ADD_FRIEND_TEXT,
+            CheckTexts.AddFriendSuccess => SUCCESSFUL_FRIEND_ADD_TEXT,
             _ => checkText.text
         };
 
