@@ -55,6 +55,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     
     public void OnClickedExitSureButton() //나가기 확인 눌림
     {
+        Player.LocalPlayer.Runner.Shutdown();
         LoadingSceneManager.LoadScene("Lobby");
     }
 

@@ -51,14 +51,15 @@ public class FirebaseInviteManager : MonoBehaviour
     {
         invitationListener = firestore.Collection("Invitations")
             .WhereEqualTo("To", myUid)
+            .WhereEqualTo("Status", InvitationStatus.Pending.ToString())
             .Listen(snapshot =>
-        {
-            foreach (var doc in snapshot.Documents)
             {
-                InvitationData invite = doc.ConvertTo<InvitationData>();
-                onInviteReceived?.Invoke(doc.Id, invite);
-            }
-        });
+                foreach (var doc in snapshot.Documents)
+                {
+                    InvitationData invite = doc.ConvertTo<InvitationData>();
+                    onInviteReceived?.Invoke(doc.Id, invite);
+                }
+            });
     }
 
     /// 리스너 정리
