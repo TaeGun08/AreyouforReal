@@ -6,9 +6,8 @@ using Random = UnityEngine.Random;
 public class MakeCircle : MonoBehaviour
 {
     [Header("Circle Settings")]
-    public float initialRadius = 100f;
+    public float initialRadius = 75f;
     public float reduceFactor = 0.75f;
-    public float mapRange = 100f;
     
     private Queue<CircleData> circleQueue = new Queue<CircleData>();
 
@@ -16,6 +15,8 @@ public class MakeCircle : MonoBehaviour
     
     public CircleData DequeueCircle() => circleQueue.Dequeue();
     public CircleData PeekCircle() => circleQueue.Peek();
+    
+    public List<Transform> startPositions = new List<Transform>();
 
     private void Awake()
     {
@@ -33,7 +34,8 @@ public class MakeCircle : MonoBehaviour
 
             if (i == 0)
             {
-                center = GetRandomPosition(mapRange);
+                int randomIndex = Random.Range(0, startPositions.Count);
+                center = startPositions[randomIndex].position;
                 radius = initialRadius;
             }
             else if (i < 3)
@@ -52,13 +54,13 @@ public class MakeCircle : MonoBehaviour
             last = data;
         }
     }
-
-    private Vector3 GetRandomPosition(float range)
-    {
-        float x = Random.Range(-range, range);
-        float z = Random.Range(-range, range);
-        return new Vector3(x, 0f, z);
-    }
+    
+  ///  private Vector3 GetRandomPosition(float range)
+  ///  {
+  ///      float x = Random.Range(-range, range);
+  ///      float z = Random.Range(-range, range);
+  ///      return new Vector3(x, 0f, z);
+  ///  }
 
     private Vector3 GetRandomPositionWithinCircle(Vector3 origin, float radius, float maxDistanceFactor = 0.25f)
     {
