@@ -9,6 +9,7 @@ public enum CheckTexts
 {
     Create,
     Join,
+    AddFriend,
 }
 
 public class LobbyManager : MonoBehaviour
@@ -28,9 +29,9 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private TMP_Text playerNameText;  //플레이어 이름 표시
     
     // 경고 메시지 캐싱
-    private const string cannotCreateText = "Sorry, you cannot Create the room.";
-    private const string cannotJoinText = "Sorry, you cannot join the room."; 
-
+    private const string CANNOT_CREATE_TEXT = "Sorry, you cannot Create the room.";
+    private const string CANNOT_JOIN_TEXT = "Sorry, you cannot join the room."; 
+    private const string CANNOT_ADD_FRIEND_TEXT = "Sorry, The specified user does not exist."; 
     
     public static LobbyManager Instance;
 
@@ -47,11 +48,11 @@ public class LobbyManager : MonoBehaviour
         // 수신 리스너 설정
         FirebaseInviteManager.Instance.ListenToInvitations(FirebaseMainSession.Instance.FirebaseUser.UserData.UserId, (inviteId, data) =>
         {
-            Debug.Log("받음");
             Debug.Log($"[초대] from: {data.From}, room: {data.RoomId}");
 
             // UI로 수락/거절 버튼 제공
-            //FirebaseInviteManager.Instance.RespondToInvitation(inviteId, InvitationStatus.Accepted);
+            
+            FirebaseInviteManager.Instance.RespondToInvitation(inviteId, InvitationStatus.Accepted);
         });
     }
     
@@ -67,15 +68,13 @@ public class LobbyManager : MonoBehaviour
 
     public void OnPopupChecking( CheckTexts checkEnum )   //경고 팝업 표시
     {
-
-        if (checkEnum == CheckTexts.Create)
+        checkText.text = checkEnum switch
         {
-            checkText.text =  cannotCreateText;
-        }
-        else if (checkEnum == CheckTexts.Join)
-        {
-            checkText.text = cannotJoinText;
-        }
+            CheckTexts.Create => CANNOT_CREATE_TEXT,
+            CheckTexts.Join => CANNOT_JOIN_TEXT,
+            CheckTexts.AddFriend => CANNOT_ADD_FRIEND_TEXT,
+            _ => checkText.text
+        };
 
         popupRoomList.gameObject.SetActive(true);
     }

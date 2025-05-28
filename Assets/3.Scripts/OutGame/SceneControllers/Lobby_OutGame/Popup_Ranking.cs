@@ -27,9 +27,9 @@ public class Popup_Ranking : BaseWindow
         _ = OnRankInfoPanel();
     }
     
-    public async Task OnRankInfoPanel()
+    private async Task OnRankInfoPanel()
     {
-        //비동기로 모든 Rooms를 읽어들임
+        //비동기로 모든 Rank를 읽어들임
         Dictionary<string,RankData> rankDataDict  = await FirestoreManager.Instance.GetAllDocumentsWithKeyAsync<RankData>(FirebaseCollections.Ranks);
 
         // 부족한 개수만큼 풀링 추가

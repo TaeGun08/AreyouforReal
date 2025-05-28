@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuParticle;     // 메인메뉴 파티클 (카메라에 위치)
+    public string nextSceneName = "Lobby";            // 다음 이동할 씬 이름
     
     [Header("UI Components")]
     [SerializeField] private Popup_Login popupLogin;          // 로그인 팝업 창
@@ -44,7 +45,7 @@ public class MainMenuManager : MonoBehaviour
         // 0. 로그인 되어있다면 클릭시 씬이동
         if (FirebaseMainSession.Instance.FirebaseUser.UserData != null)
         {
-            LoadingSceneManager.LoadScene("Lobby");
+            LoadingSceneManager.LoadScene(nextSceneName);
         }
         // 1. 로그인 안되어있음 && 이전 로그인 기록이 있음 => 자동 로그인 시도
         else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
