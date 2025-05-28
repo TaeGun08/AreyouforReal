@@ -10,7 +10,7 @@ public class BGameManager : NetworkBehaviour
     [SerializeField] private MakeCircle makeCircle;
     [SerializeField] private ReduceCircle reduceCircle;
     public ReduceCircle ReduceCircle => reduceCircle;
-    [SerializeField] private LineCircleVisualizer lineCircleVisualizer;
+    [SerializeField] private CircleVisualizer lineCircleVisualizer;
     private Coroutine survivorCountUpdater;
     
     [Header("Visualizer & UI")]

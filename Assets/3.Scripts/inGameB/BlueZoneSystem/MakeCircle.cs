@@ -25,26 +25,36 @@ public class MakeCircle : MonoBehaviour
 
     public void CreateCircles()
     {
-        circleQueue.Clear();    
+        circleQueue.Clear();
         CircleData last = null;
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 5; i++)
         {
             Vector3 center;
             float radius;
 
             if (i == 0)
             {
+                // 1단계: 반지름 300, 시작 위치에서 생성
                 int randomIndex = Random.Range(0, startPositions.Count);
                 center = startPositions[randomIndex].position;
-                radius = initialRadius;
+                radius = 300f;
             }
-            else if (i < 3)
+            else if (i == 1)
             {
+                // 2단계: 반지름 100 고정
+                center = GetRandomPositionWithinCircle(last.center, last.radius);
+                radius = 100f;
+            }
+            else if (i == 2 || i == 3)
+            {
+                // 3~4단계: reduceFactor를 적용한 축소
                 center = GetRandomPositionWithinCircle(last.center, last.radius);
                 radius = last.radius * reduceFactor;
             }
             else
             {
+                // 5단계: 마지막 고정 반지름 15
                 center = GetRandomPositionWithinCircle(last.center, last.radius);
                 radius = 15f;
             }
@@ -54,6 +64,7 @@ public class MakeCircle : MonoBehaviour
             last = data;
         }
     }
+
     
   ///  private Vector3 GetRandomPosition(float range)
   ///  {

@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 98da1cf7fb8f1d44ba82cd60d2d51ec3
+  productGUID: d57d846d134ec6d4082f7fc2e187fc8c
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -162,8 +162,7 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier:
-    Standalone: com.DefaultCompany.AreyouforReal
+  applicationIdentifier: {}
   buildNumber:
     Standalone: 0
     VisionOS: 0
