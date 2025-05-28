@@ -104718,6 +104718,9 @@ MonoBehaviour:
   segmentCount: 128
   lineWidth: 1
   heightOffset: 5
+  verticalSegments: 8
+  domeLineMaterial: {fileID: 0}
+  domeParticle: {fileID: 0}
 --- !u!120 &1069852912
 LineRenderer:
   serializedVersion: 2
@@ -158102,7 +158105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialRadius: 75
   reduceFactor: 0.75
-  mapRange: 0
+  startPositions: []
 --- !u!4 &1588371762
 Transform:
   m_ObjectHideFlags: 0
@@ -215093,7 +215096,7 @@ PrefabInstance:
     - target: {fileID: 6251941761860265781, guid: c3c643aa7dcab994597254aa37c25a59,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0006713867
+      value: 0.0007324219
       objectReference: {fileID: 0}
     - target: {fileID: 7630416633026535241, guid: c3c643aa7dcab994597254aa37c25a59,
         type: 3}

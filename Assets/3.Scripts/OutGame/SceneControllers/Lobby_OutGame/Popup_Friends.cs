@@ -29,21 +29,21 @@ public class Popup_Friends : BaseWindow
         addFriendPanel.SetActive(true);
     }
     
-    public void OnClickedAddFriendEnterButton() //친구 추가 확인 버튼 클릭
-    {
-        //인풋필드에 있는 키(친구의 키)가 존재하는지 확인
-        FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, friendKeyInputField.text).ContinueWithOnMainThread(
-            task =>
-            {
-                if (task.IsFaulted || task.IsCanceled)
-                {
-                    LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend);
-                    return;
-                }
-
-                FirestoreManager.Instance.UpdateDataAsync();
-            });
-    }
+    // public void OnClickedAddFriendEnterButton() //친구 추가 확인 버튼 클릭
+    // {
+    //     //인풋필드에 있는 키(친구의 키)가 존재하는지 확인
+    //     FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, friendKeyInputField.text).ContinueWithOnMainThread(
+    //         task =>
+    //         {
+    //             if (task.IsFaulted || task.IsCanceled)
+    //             {
+    //                 LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend);
+    //                 return;
+    //             }
+    //
+    //             FirestoreManager.Instance.UpdateDataAsync();
+    //         });
+    // }
     
     private void OnEnable()
     {
