@@ -76,6 +76,7 @@ public class RankData  //key : Player GUID
 public class InvitationData  // key: Firestore Document ID (자동 생성 또는 초대ID)
 {
     [FirestoreProperty] public string From { get; set; }              // UID of sender
+    [FirestoreProperty] public string FromName { get; set; }          // sender Name
     [FirestoreProperty] public string To { get; set; }                // UID of receiver
     [FirestoreProperty] public string Type { get; set; }              // 예: "game_invite", "friend_invite"
     [FirestoreProperty] public string RoomId { get; set; }            // 게임방 ID 또는 친구 요청의 경우 null

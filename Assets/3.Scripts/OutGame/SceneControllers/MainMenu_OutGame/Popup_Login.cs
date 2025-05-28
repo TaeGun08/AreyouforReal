@@ -96,7 +96,7 @@ public class Popup_Login : BaseWindow
                 PlayerPrefs.DeleteKey(PasswordKey);
             }
             
-            LoadingSceneManager.LoadScene("Lobby");
+            LoadingSceneManager.LoadScene(MainMenuManager.Instance.nextSceneName);
         }
         else
         {

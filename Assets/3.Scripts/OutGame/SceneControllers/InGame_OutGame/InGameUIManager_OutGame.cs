@@ -70,23 +70,19 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     public void OnClickedStartButton() //게임 시작 버튼
     {
         RPC_DisableStartUI(); // 모든 클라이언트에게 UI 비활성화 전파
+        
+        Dictionary<string, object> updateIsGameStarted = new Dictionary<string, object> {
+            { "IsGameStarted", true }
+        };
 
-        // 호스트만 Firestore 업데이트 및 게임 시작 시도
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Dictionary<string, object> updateIsGameStarted = new Dictionary<string, object> {
-                { "IsGameStarted", true }
-            };
+        //룸 게임 시작 bool 업데이트
+        FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode.text, updateIsGameStarted)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted || task.IsCanceled) return;
 
-            //룸 게임 시작 bool 업데이트
-            FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode.text, updateIsGameStarted)
-                .ContinueWithOnMainThread(task =>
-                {
-                    if (task.IsFaulted || task.IsCanceled) return;
-
-                    GameManager_Network.Instance.TryStartGame();//게임시작
-                });
-        }
+                GameManager_Network.Instance.TryStartGame();//게임시작
+            });
     }
     
     public void OnClickedChatButton()
