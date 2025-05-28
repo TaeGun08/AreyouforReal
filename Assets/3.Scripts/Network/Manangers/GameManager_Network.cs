@@ -42,6 +42,8 @@ public class GameManager_Network : NetworkBehaviour
     [Networked]
     private GameState state { get; set; }
 
+    [Networked] private string CountString { get; set; }
+
     private void Awake()
     {
         Instance = this;
@@ -94,8 +96,7 @@ public class GameManager_Network : NetworkBehaviour
                 TelpoTransform.Instance.TelepoTrs[Random.Range(0, TelpoTransform.Instance.TelepoTrs.Length)].position);
         }
         
-        countText.text = $"남은 인원: {AlivePlayers.Count}";
-            
+        RPC_Count();
         DelaySetState(GameState.Play, 5);
     }
 
@@ -104,6 +105,13 @@ public class GameManager_Network : NetworkBehaviour
     {
         map.SetActive(true);
         fakeLoading.SetActive(true);
+    }
+
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    private void RPC_Count()
+    {
+        CountString = $"남은 인원: {AlivePlayers.Count}";
+        countText.text = CountString;
     }
     
     private void DelaySetState(GameState state, float delayTime)
