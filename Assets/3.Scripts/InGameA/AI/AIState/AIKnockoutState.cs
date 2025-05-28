@@ -11,7 +11,13 @@ public class AIKnockoutState : AIState
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-        this.aiController.Runner.Despawn(this.aiController.Object);
+        StartCoroutine(RecoveryCoroutine());
+    }
+
+    private IEnumerator RecoveryCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        aiController.ChangeState(State.Idle);
     }
 
     public override void StateUpdate()

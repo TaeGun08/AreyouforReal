@@ -222,12 +222,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
+  gravity: -40
   jumpImpulse: 8
-  acceleration: 10
-  braking: 10
-  maxSpeed: 2
-  rotationSpeed: 10
+  acceleration: 20
+  braking: 30
+  maxSpeed: 1.5
+  rotationSpeed: 20
 --- !u!114 &8118017099306007645
 MonoBehaviour:
   m_ObjectHideFlags: 0

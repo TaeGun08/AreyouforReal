@@ -38084,12 +38084,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
+  gravity: -40
   jumpImpulse: 8
-  acceleration: 10
+  acceleration: 20
   braking: 30
   maxSpeed: 1
-  rotationSpeed: 10
+  rotationSpeed: 20
 --- !u!114 &2146824692807517563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38145,8 +38145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    WalkSpeed: 2
-    RunSpeed: 2.5
+    WalkSpeed: 1.5
+    RunSpeed: 2
 --- !u!114 &7668169826086334591
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -68,6 +68,7 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     public void RPC_Knockout()
     {
+        if (currentState.CurrentState == PlayerState.State.Knockout) return;
         ChangeState(PlayerState.State.Knockout);
     }
 
