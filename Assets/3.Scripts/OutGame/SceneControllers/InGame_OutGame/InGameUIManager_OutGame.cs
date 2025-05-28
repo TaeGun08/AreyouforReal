@@ -84,7 +84,7 @@ public class InGameUIManager_OutGame : MonoBehaviour
     
     public void UpdateButtonState(bool isCanStart)  //시작버튼 활성화
     {
-        if(!runner.IsServer) return;  //서버 아니면 날림
+        if(!runner.IsSharedModeMasterClient) return;  //서버 아니면 날림
         
         if (isCanStart)
         {

@@ -51,7 +51,7 @@ public class GameManager_Network : NetworkBehaviour
     {
         base.Spawned();
 
-        if (Runner.IsServer)
+        if (Runner.IsSharedModeMasterClient)
         {
             State = GameState.Wait;
         }
@@ -70,7 +70,7 @@ public class GameManager_Network : NetworkBehaviour
 
     public void TryStartGame()
     {
-        Debug.Assert(Runner.IsServer, "서버만 호출가능!");
+        Debug.Assert(Runner.IsSharedModeMasterClient, "서버만 호출가능!");
         
         RPC_MapActive();
             

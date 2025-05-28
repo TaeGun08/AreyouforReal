@@ -154297,6 +154297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCode: {fileID: 1620822648}
+  roomCodePanel: {fileID: 2375947953855645129}
   Popup_Chat: {fileID: 2047477408}
   Popup_ExitChecking: {fileID: 678281620}
   startButton: {fileID: 1308425706}
@@ -265348,6 +265349,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c32ba220ff0915429c90f53fe448bdf, type: 3}
+--- !u!1 &2375947953855645129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7195435760895957389, guid: 4c32ba220ff0915429c90f53fe448bdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2375947953855645128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4276905393131330177
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ namespace DefaultNamespace
         public void MovePlayer(Vector3 position)
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
-            Debug.Assert(Runner.IsServer);
+            Debug.Assert(Runner.IsSharedModeMasterClient);
             
             foreach (var player in playerDic)
             {
@@ -71,7 +71,7 @@ namespace DefaultNamespace
         public void AddPlayer(NetworkRunner runner, PlayerRef pRef, LocalPlayer localPlayer)
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
-            Debug.Assert(runner.IsServer);
+            Debug.Assert(Runner.IsSharedModeMasterClient);
             // TODO : 유효성 검사
 
             if (playerDic.Add(pRef, localPlayer))
@@ -101,7 +101,7 @@ namespace DefaultNamespace
         public void RemovePlayer(NetworkRunner runner, PlayerRef pRef)
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
-            Debug.Assert(runner.IsServer);
+            Debug.Assert(Runner.IsSharedModeMasterClient);
 
             if (playerDic.Remove(pRef))
             {
@@ -128,7 +128,7 @@ namespace DefaultNamespace
         // Host만 처리
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
-            if (runner.IsServer)
+            if (Runner.IsSharedModeMasterClient)
             {
                 RemovePlayer(runner, player);
             }
@@ -136,7 +136,7 @@ namespace DefaultNamespace
 
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
-            if (runner.IsServer)
+            if (Runner.IsSharedModeMasterClient)
             {
                 // TODO : 연결이 끊어졌습니다 등 표시
                 _ = FirestoreManager.Instance.DeleteDataAsync(

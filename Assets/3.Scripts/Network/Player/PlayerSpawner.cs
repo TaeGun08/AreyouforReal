@@ -19,7 +19,7 @@ public class PlayerSpawner : MonoBehaviour
     // Host만 처리
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer)
+        if (player == runner.LocalPlayer)
         {
             Vector3 spawnPosition = new Vector3(0, 2, 0);
             runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity
@@ -32,7 +32,7 @@ public class PlayerSpawner : MonoBehaviour
     // Host만 처리
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer)
+        if (player == runner.LocalPlayer)
         {
             LocalPlayer leftPlayer = PlayerRegistry.Instance.GetPlayerOrNull(player);
             
