@@ -64,7 +64,7 @@ public class GameManager_Network : NetworkBehaviour
         if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
         {
             fakeLoading.SetActive(false);
-            BGameManager.Instance.RPC_InitializeGame();
+            // BGameManager.Instance.RPC_InitializeGame();
             state = delayedState;
             delayedState = GameState.None;
         }
@@ -125,10 +125,9 @@ public class GameManager_Network : NetworkBehaviour
         delayedState = state;
     }
     
-    [Rpc(sources: RpcSources.All, targets: RpcTargets.StateAuthority)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_KillEvent(LocalPlayer player)
     {
-        
         Debug.Log($"남은 인원: {AlivePlayers.Count}");
         if (AlivePlayers.Remove(player))
         {
@@ -138,19 +137,20 @@ public class GameManager_Network : NetworkBehaviour
             {
                 // TODO : 승리시 나와야하는거, 플레이어 무적
                 DelaySetState(GameState.End, 3);
-                Debug.Log("승리");
+                // TODO : 수정해야함
+                AlivePlayers.First().Runner.LoadScene(SceneRef.FromIndex(2));
                 // TODO: 카운터는
             }
         }
         
         // 권한이 없는 상태일 경우, 권한 재할당 시도
-        if (player.Runner.IsSharedModeMasterClient)
-        {
-            // 마스터가 아니면서도 권한이 없다면 새 마스터에게 권한 위임
-            LocalPlayer targetPlayer = AlivePlayers.FirstOrDefault((player) => player.Runner.IsSharedModeMasterClient == false);
-            
-            Runner.SetMasterClient(targetPlayer.Runner.LocalPlayer);
-            Debug.Log("StateAuthority가 재할당되었습니다.");
-        }
+        // if (player.Runner.IsSharedModeMasterClient)
+        // {
+        //     // 마스터가 아니면서도 권한이 없다면 새 마스터에게 권한 위임
+        //     LocalPlayer targetPlayer = AlivePlayers.FirstOrDefault((player) => player.Runner.IsSharedModeMasterClient == false);
+        //     
+        //     Runner.SetMasterClient(targetPlayer.Runner.LocalPlayer);
+        //     Debug.Log("StateAuthority가 재할당되었습니다.");
+        // }
     }
 }
