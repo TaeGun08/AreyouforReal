@@ -21,6 +21,7 @@ public class GameManager_Network : NetworkBehaviour
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
     [SerializeField] private TMP_Text countText;
+    [SerializeField] private GameObject lounge;
     
     [Networked] private GameState delayedState { get; set; }
         
@@ -105,6 +106,7 @@ public class GameManager_Network : NetworkBehaviour
     {
         map.SetActive(true);
         fakeLoading.SetActive(true);
+        lounge.SetActive(false);
     }
 
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]

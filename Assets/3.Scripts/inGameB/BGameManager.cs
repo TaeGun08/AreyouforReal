@@ -33,15 +33,16 @@ public class BGameManager : NetworkBehaviour
     [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     public void RPC_InitializeGame()
     {
-        makeCircle.CreateCircles();
+        zone.SetActive(true);
+        
+        makeCircle.RPC_CreateCircles();
         reduceCircle.currentZone = makeCircle.PeekCircle();
         lineCircleVisualizer.reduceCircle = reduceCircle;
         
         zoneUI.Init(reduceCircle.reductionTime, reduceCircle.waitTime);
         
-        reduceCircle.StartZoneSystem();
+        reduceCircle.RPC_StartZoneSystem();
         
-        zone.SetActive(true);
         survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
     }
     

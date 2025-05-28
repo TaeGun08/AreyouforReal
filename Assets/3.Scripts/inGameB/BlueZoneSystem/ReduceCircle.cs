@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class ReduceCircle : MonoBehaviour
+public class ReduceCircle : NetworkBehaviour
 {
     [Header("Reduction Settings")]
     public float reductionTime = 45f;
@@ -102,11 +103,14 @@ public class ReduceCircle : MonoBehaviour
             yield return wait;
         }
     }
+    
     public List<GameObject> GetCurrentPlayersOnly()
     {
         return currentSurvivors.FindAll(go => go.CompareTag("Player"));
     }
-    public void StartZoneSystem()
+    
+    [Rpc (RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_StartZoneSystem()
     {
         currentZone = makeCircle.DequeueCircle();
         if (gameObject.activeInHierarchy)

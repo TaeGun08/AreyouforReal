@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MakeCircle : MonoBehaviour
+public class MakeCircle : NetworkBehaviour
 {
     [Header("Circle Settings")]
     public float initialRadius = 75f;
@@ -17,13 +18,9 @@ public class MakeCircle : MonoBehaviour
     public CircleData PeekCircle() => circleQueue.Peek();
     
     public List<Transform> startPositions = new List<Transform>();
-
-    private void Awake()
-    {
-        CreateCircles();
-    }
-
-    public void CreateCircles()
+    
+    [Rpc (RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_CreateCircles()
     {
         circleQueue.Clear();
         CircleData last = null;
@@ -72,7 +69,7 @@ public class MakeCircle : MonoBehaviour
   ///      float z = Random.Range(-range, range);
   ///      return new Vector3(x, 0f, z);
   ///  }
-
+  
     private Vector3 GetRandomPositionWithinCircle(Vector3 origin, float radius, float maxDistanceFactor = 0.25f)
     {
         float angle = Random.Range(0f, Mathf.PI * 2f);
