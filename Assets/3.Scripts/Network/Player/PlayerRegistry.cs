@@ -26,6 +26,7 @@ namespace DefaultNamespace
 
         [SerializeField] private int index;
         [SerializeField] private TMP_Text countText;
+        [Networked] private string CountString { get; set; }
         
         public override void Spawned()
         {
@@ -76,7 +77,8 @@ namespace DefaultNamespace
 
             if (playerDic.Add(pRef, localPlayer))
             {
-                countText.text = $"현재 인원: {playerDic.Count}";
+                RPC_Count();
+                
                 var userCount = new Dictionary<string, object>
                 {
                     { "MembersCount", playerDic.Count }
@@ -96,6 +98,13 @@ namespace DefaultNamespace
             {
                 Debug.LogWarning("PlayerRegistry 추가 못함!");
             }
+        }
+        
+        [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+        private void RPC_Count()
+        {
+            CountString = $"현재 인원: {playerDic.Count}";
+            countText.text = CountString;
         }
         
         public void RemovePlayer(NetworkRunner runner, PlayerRef pRef)

@@ -41,8 +41,8 @@ public class BGameManager : NetworkBehaviour
         
         reduceCircle.StartZoneSystem();
         
+        zone.SetActive(true);
         survivorCountUpdater = StartCoroutine(UpdateSurvivorCountRoutine());
-        zone.gameObject.SetActive(true);
     }
     
     private IEnumerator UpdateSurvivorCountRoutine()
