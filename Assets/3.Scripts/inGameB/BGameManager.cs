@@ -15,6 +15,7 @@ public class BGameManager : NetworkBehaviour
     
     [Header("Visualizer & UI")]
     [SerializeField] private ZoneUI zoneUI;
+    public ZoneUI ZoneUI => zoneUI;
     [SerializeField] private KillLog killLog;
 
     [SerializeField] private GameObject zone;

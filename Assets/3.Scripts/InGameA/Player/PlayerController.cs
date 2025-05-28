@@ -24,6 +24,8 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
         playerStateDic = new Dictionary<PlayerState.State, PlayerState>();
 
     private Dictionary<PlayerState.State, int> playerAnimDic = new Dictionary<PlayerState.State, int>();
+    
+    public int KillCount { get; set; }
 
     // 킬로그용
     public static event Action<PlayerController, PlayerController> OnPlayerKnockoutEvent;
