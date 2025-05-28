@@ -123,6 +123,7 @@ public class FirestoreManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Failed to read data: {e.Message}");
+            Debug.Log($"No data found at {collection}/{key}");
             return null;
         }
     }
@@ -152,6 +153,33 @@ public class FirestoreManager : MonoBehaviour
         {
             DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
             await docRef.UpdateAsync(updates);
+            Debug.Log($"Data updated at {collection}/{key}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to update data: {e.Message}");
+        }
+    }
+    
+    //배열 형식 데이터를 업데이트
+    public async Task UpdateArrayDataAsync(FirebaseCollections collection, string key, string field, object[] values)
+    {
+        if (IsInitialized.Equals(false))
+        {
+            Debug.LogError("Firebase is not initialized.");
+            return;
+        }
+        
+        try
+        {
+            DocumentReference docRef = Firestore.Collection(collection.ToString()).Document(key);
+            DocumentSnapshot snap = await docRef.GetSnapshotAsync();
+            
+            if (snap.Exists)
+            {
+                await docRef.UpdateAsync(field, FieldValue.ArrayUnion(values));
+            }
+            
             Debug.Log($"Data updated at {collection}/{key}");
         }
         catch (Exception e)
