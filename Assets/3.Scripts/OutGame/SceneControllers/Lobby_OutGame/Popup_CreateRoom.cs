@@ -14,27 +14,29 @@ public class Popup_CreateRoom : BaseWindow
     
     private void Start()
     {
-        RoomName.onValueChanged.AddListener(ValidateRoomName);
-        RoomInfo.onValueChanged.AddListener(ValidateRoomInfo);
-        MaxPlayers.onValueChanged.AddListener(ValidateMaxPlayers);
+        //제한없이
+        // RoomName.onEndEdit.AddListener(ValidateRoomName);
+        // RoomInfo.onEndEdit.AddListener(ValidateRoomInfo);
+        MaxPlayers.onValueChanged.AddListener(ValidateMaxPlayers); //숫자만 허용
     }
 
-    private void ValidateRoomName(string input)
-    {
-        // 한글(가-힣) + 영어(대소문자)만 허용
-        string result = Regex.Replace(input, @"[^a-zA-Z가-힣]", "");
-        if (RoomName.text != result)
-            RoomName.text = result;
-    }
-
-    private void ValidateRoomInfo(string input)
-    {
-        // 한글(가-힣) + 영어(대소문자) + 특수기호 허용 (공백 포함)
-        // 특수기호는 정해진 범위를 사용할 수 있음. 예: 기본 특수기호만 허용
-        string result = Regex.Replace(input, @"[^a-zA-Z가-힣\s~`!@#$%^&*()\-_=+\[\]{};:'"",.<>/?\\|]", "");
-        if (RoomInfo.text != result)
-            RoomInfo.text = result;
-    }
+    //제한없이
+    // private void ValidateRoomName(string input)
+    // {
+    //     // 한글(가-힣) + 영어(대소문자)만 허용
+    //     string result = Regex.Replace(input, @"[^a-zA-Z가-힣]", "");
+    //     if (RoomName.text != result)
+    //         RoomName.text = result;
+    // }
+    //
+    // private void ValidateRoomInfo(string input)
+    // {
+    //     // 한글(가-힣) + 영어(대소문자) + 특수기호 허용 (공백 포함)
+    //     // 특수기호는 정해진 범위를 사용할 수 있음. 예: 기본 특수기호만 허용
+    //     string result = Regex.Replace(input, @"[^a-zA-Z가-힣\s~`!@#$%^&*()\-_=+\[\]{};:'"",.<>/?\\|]", "");
+    //     if (RoomInfo.text != result)
+    //         RoomInfo.text = result;
+    // }
 
     private void ValidateMaxPlayers(string input)
     {

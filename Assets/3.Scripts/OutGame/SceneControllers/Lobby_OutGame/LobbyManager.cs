@@ -102,6 +102,6 @@ public class LobbyManager : MonoBehaviour
     
     public void OnClickedSettingButton() // 세팅 팝업 버튼
     {
-        popupRanking.gameObject.SetActive(true);
+        popupSetting.gameObject.SetActive(true);
     }
 }
