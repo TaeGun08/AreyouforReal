@@ -35,8 +35,10 @@ public class Popup_Friends : BaseWindow
     
     public void OnClickedAddFriendEnterButton() //친구 추가 확인 버튼 클릭
     {
+        string friendKeyCache = friendKeyInputField.text;
+        
         //인풋필드에 있는 키(친구의 키)가 존재하는지 확인
-        FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, friendKeyInputField.text).ContinueWithOnMainThread(
+        FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, friendKeyCache).ContinueWithOnMainThread(
             task =>
             {
                 if (task.IsFaulted || task.IsCanceled)
@@ -57,19 +59,34 @@ public class Popup_Friends : BaseWindow
                         PlayerData playerData = task1.Result;
                         
                         //이미 친구인지 검사
-                        if (playerData.Friends.Any(friend => friend == friendKeyInputField.text))
+                        if (playerData.Friends.Any(friend => friend == friendKeyCache))
                         {
                             LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend); //친구추가 실패 팝업
                             return;
                         }
                         
-                        object[] friendObj = { friendKeyInputField.text };
+                        object[] friendIdObj = { friendKeyCache };
                 
-                        //obj형태로 친구 배열을 업데이트 ArrayUnion 사용
-                        FirestoreManager.Instance.UpdateArrayDataAsync(FirebaseCollections.Players, myId, "Friends", friendObj).ContinueWithOnMainThread(
+                        //obj형태로 친구 배열을 업데이트 ArrayUnion 사용 ( 자신의 배열 업데이트 )
+                        FirestoreManager.Instance.UpdateArrayDataAsync(FirebaseCollections.Players, myId, "Friends", friendIdObj).ContinueWithOnMainThread(
                             task2 =>
                             {
                                 if (task2.IsFaulted || task2.IsCanceled)
+                                {
+                                    LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend); //친구추가 실패 팝업
+                                    return;
+                                }
+                                addFriendPanel.SetActive(false);
+                                LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriendSuccess); //친구추가 성공 팝업
+                            });
+                        
+                        object[] myIdObj = { myId };
+                        
+                        //obj형태로 친구 배열을 업데이트 ArrayUnion 사용 ( 친구의 배열 업데이트 )
+                        FirestoreManager.Instance.UpdateArrayDataAsync(FirebaseCollections.Players, friendKeyCache, "Friends", myIdObj).ContinueWithOnMainThread(
+                            task3 =>
+                            {
+                                if (task3.IsFaulted || task3.IsCanceled)
                                 {
                                     LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend); //친구추가 실패 팝업
                                     return;
