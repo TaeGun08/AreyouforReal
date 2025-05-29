@@ -36,6 +36,11 @@ public class Popup_Friends : BaseWindow
     public void OnClickedAddFriendEnterButton() //친구 추가 확인 버튼 클릭
     {
         string friendKeyCache = friendKeyInputField.text;
+        if (myId == friendKeyCache)
+        {
+            LobbyManager.Instance.OnPopupChecking(CheckTexts.AddFriend); //친구추가 실패 팝업
+            return;
+        }
         
         //인풋필드에 있는 키(친구의 키)가 존재하는지 확인
         FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, friendKeyCache).ContinueWithOnMainThread(

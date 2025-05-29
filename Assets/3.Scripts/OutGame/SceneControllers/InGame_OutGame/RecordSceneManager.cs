@@ -47,7 +47,7 @@ public class RecordSceneManager : MonoBehaviour
         getRankingPointText.text = getRankingPoint.ToString();
 
         //유저의 현재 랭크포인트를 읽어옴. 데이터 없었을 경우 예외처리
-        FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, user.UserData.UserId).ContinueWithOnMainThread(
+        await FirestoreManager.Instance.ReadDataAsync<PlayerData>(FirebaseCollections.Players, user.UserData.UserId).ContinueWithOnMainThread(
             task =>
             {
                 PlayerData playerData = task.Result;
