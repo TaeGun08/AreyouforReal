@@ -100666,8 +100666,8 @@ MonoBehaviour:
   - 15
   - 10
   - 5
-  reductionTime: 10
-  waitTime: 10
+  reductionTime: 45
+  waitTime: 15
 --- !u!1001 &1026504907
 PrefabInstance:
   m_ObjectHideFlags: 0

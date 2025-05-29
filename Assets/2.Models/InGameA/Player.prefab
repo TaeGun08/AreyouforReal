@@ -38167,8 +38167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    WalkSpeed: 1.5
-    RunSpeed: 2
+    WalkSpeed: 2
+    RunSpeed: 3
 --- !u!114 &7668169826086334591
 MonoBehaviour:
   m_ObjectHideFlags: 0
