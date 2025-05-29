@@ -7,16 +7,21 @@ public class SoundManager : MonoBehaviour
 
     [Header("Audio Sources")]
     public AudioSource bgmSource;
+    public AudioSource sfxSource;
 
     [Header("Audio Clips")]
     public AudioClip[] bgmClips;
+    public AudioClip[] sfxClips;
 
     private Dictionary<string, AudioClip> bgmDict = new();
+    private Dictionary<string, AudioClip> sfxDict = new();
 
     [Header("Default Volumes")]
     [Range(0f, 1f)] public float defaultBgmVolume = 0.4f;
+    [Range(0f, 1f)] public float defaultSfxVolume = 0.7f;
 
     private const string BgmVolumeKey = "BGM_VOLUME";
+    private const string SfxVolumeKey = "SFX_VOLUME";
 
     void Awake()
     {
@@ -36,8 +41,10 @@ public class SoundManager : MonoBehaviour
     private void LoadVolumes()
     {
         float bgmVol = PlayerPrefs.GetFloat(BgmVolumeKey, defaultBgmVolume);
+        float sfxVol = PlayerPrefs.GetFloat(SfxVolumeKey, defaultSfxVolume);
 
         SetBgmVolume(bgmVol);
+        SetSfxVolume(sfxVol);
     }
 
     private void CacheClips()
@@ -47,6 +54,12 @@ public class SoundManager : MonoBehaviour
             if (clip != null && !bgmDict.ContainsKey(clip.name))
                 bgmDict.Add(clip.name, clip);
         }
+
+        foreach (var clip in sfxClips)
+        {
+            if (clip != null && !sfxDict.ContainsKey(clip.name))
+                sfxDict.Add(clip.name, clip);
+        }
     }
 
     public void SetBgmVolume(float volume)
@@ -54,7 +67,25 @@ public class SoundManager : MonoBehaviour
         bgmSource.volume = volume;
         PlayerPrefs.SetFloat(BgmVolumeKey, volume);
     }
-    
+
+    public void SetSfxVolume(float volume)
+    {
+        sfxSource.volume = volume;
+        PlayerPrefs.SetFloat(SfxVolumeKey, volume);
+    }
+
+    public void PlaySfx(string clipName)
+    {
+        if (sfxDict.TryGetValue(clipName, out var clip))
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"SFX clip not found: {clipName}");
+        }
+    }
+
     public void PlayBgm(string clipName, bool loop = true)
     {
         if (bgmDict.TryGetValue(clipName, out var clip))

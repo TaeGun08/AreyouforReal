@@ -40,7 +40,7 @@ public class PlayerAttackState : PlayerState
                 IKnockout networkObject = collider.GetComponent<IKnockout>();
                 if (networkObject.NetworkObj.Id == playerController.NetworkObj.Id) continue;
                 
-                SoundManager.Instance.PlayBgm("maou_se_battle16", false); //반복 x
+                SoundManager.Instance.PlaySfx("maou_se_battle16"); //반복 x
                 
                 networkObject.RPC_Knockout();
                 // player.RPC_PlayerKnockout(playerController.Object);

@@ -74,6 +74,7 @@ public class GameManager_Network : NetworkBehaviour
     public void TryStartGame()
     {
         Debug.Assert(Runner.IsServer, "서버만 호출가능!");
+        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0050-ゲンゲンゲンキだもん");
         
         RPC_MapActive();
             

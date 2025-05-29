@@ -42,7 +42,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
 
     private void Start()
     {
-        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0050-ゲンゲンゲンキだもん");
+        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0170-すすめベビーゴールデンレトリーバー");
         
         startButton.SetActive(false);
         waitingButton.SetActive(false);
