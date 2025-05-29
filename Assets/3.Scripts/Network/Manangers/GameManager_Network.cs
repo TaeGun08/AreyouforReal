@@ -142,15 +142,5 @@ public class GameManager_Network : NetworkBehaviour
                 // TODO: 카운터는
             }
         }
-        
-        // 권한이 없는 상태일 경우, 권한 재할당 시도
-        // if (player.Runner.IsSharedModeMasterClient)
-        // {
-        //     // 마스터가 아니면서도 권한이 없다면 새 마스터에게 권한 위임
-        //     LocalPlayer targetPlayer = AlivePlayers.FirstOrDefault((player) => player.Runner.IsSharedModeMasterClient == false);
-        //     
-        //     Runner.SetMasterClient(targetPlayer.Runner.LocalPlayer);
-        //     Debug.Log("StateAuthority가 재할당되었습니다.");
-        // }
     }
 }
