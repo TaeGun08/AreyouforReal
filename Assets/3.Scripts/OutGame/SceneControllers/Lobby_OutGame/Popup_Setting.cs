@@ -37,4 +37,13 @@ public class Popup_Setting : BaseWindow
         GUIUtility.systemCopyBuffer = FirebaseMainSession.Instance.FirebaseUser.UserData.UserId;
         LobbyManager.Instance.OnPopupChecking(CheckTexts.CopyMyId);
     }
+
+    public void OnClickedExitGameButton()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }

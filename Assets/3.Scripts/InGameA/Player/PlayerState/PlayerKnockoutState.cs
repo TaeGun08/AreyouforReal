@@ -11,8 +11,6 @@ public class PlayerKnockoutState : PlayerState
     
     public override void StateEnter(PlayerController playerController)
     {
-        SoundManager.Instance.PlayBgm("maou_se_battle16", false); //반복 x
-        
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
 
