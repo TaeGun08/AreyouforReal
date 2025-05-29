@@ -210,7 +210,7 @@ public class FirestoreManager : MonoBehaviour
     }
     
     //콜렉션 내의 모든 문서 읽어오기
-    public async Task<List<T>> GetAllDocumentsAsync<T>(FirebaseCollections collection) where T : class
+    public async Task<List<T>> GetAllDocumentsAsync<T>(FirebaseCollections collection)
     {
         if (IsInitialized.Equals(false))
         {

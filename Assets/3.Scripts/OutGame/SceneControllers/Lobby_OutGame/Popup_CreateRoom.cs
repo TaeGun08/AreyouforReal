@@ -17,7 +17,7 @@ public class Popup_CreateRoom : BaseWindow
         //제한없이
         // RoomName.onEndEdit.AddListener(ValidateRoomName);
         // RoomInfo.onEndEdit.AddListener(ValidateRoomInfo);
-        MaxPlayers.onValueChanged.AddListener(ValidateMaxPlayers); //숫자만 허용
+        MaxPlayers.onEndEdit.AddListener(ValidateMaxPlayers); //숫자만 허용
     }
 
     //제한없이
@@ -43,7 +43,7 @@ public class Popup_CreateRoom : BaseWindow
         // 숫자만 허용하고, 2~10 사이 숫자만 허용
         if (!int.TryParse(input, out int number) || number < 2 || number > 10)
         {
-            MaxPlayers.text = ""; // 잘못된 값이면 비움 또는 이전 값 저장 방식 적용 가능
+            MaxPlayers.text = "10"; // 잘못된 값이면 비움 또는 이전 값 저장 방식 적용 가능
         }
     }
     
