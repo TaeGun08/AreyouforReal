@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 664444912658488772}
   - component: {fileID: 3376682024902584590}
   - component: {fileID: -3013944145018588015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

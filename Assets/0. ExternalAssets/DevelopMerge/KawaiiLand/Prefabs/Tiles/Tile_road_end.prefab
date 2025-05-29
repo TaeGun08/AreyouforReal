@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3201519143419135985}
   - component: {fileID: 7957662375494021264}
   - component: {fileID: 5636027694482133165}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Tile_road_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713933449648955535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6265930063903321669}
   - component: {fileID: 8147567495561419407}
   - component: {fileID: 4308104942239850936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 89676959513588887}
   - component: {fileID: 2764013790450625443}
   - component: {fileID: 7056867755786470155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Folliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

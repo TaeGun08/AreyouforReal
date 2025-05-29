@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4324035996468051759}
   - component: {fileID: 2010567640475110373}
   - component: {fileID: -8324927041132010411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeHollow_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

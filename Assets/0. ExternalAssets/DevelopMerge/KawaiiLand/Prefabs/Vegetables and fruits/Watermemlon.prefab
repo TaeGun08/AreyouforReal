@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 852127113345650959}
   - component: {fileID: 3186202529149134277}
   - component: {fileID: -588981747765083762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Watermemlon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

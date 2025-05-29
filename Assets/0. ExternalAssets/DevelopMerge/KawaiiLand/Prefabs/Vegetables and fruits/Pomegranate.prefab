@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8743436102362253164}
   - component: {fileID: 6823546650438415270}
   - component: {fileID: -6606116080803278455}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pomegranate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

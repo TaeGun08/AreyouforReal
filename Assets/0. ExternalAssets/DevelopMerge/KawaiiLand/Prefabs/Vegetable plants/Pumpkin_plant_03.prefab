@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8709708042601003850}
   - component: {fileID: 859063272173754182}
   - component: {fileID: 3062961395900753018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pumpkin_plant_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

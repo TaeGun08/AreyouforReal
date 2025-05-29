@@ -17897,6 +17897,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64744664385038896, guid: 573cb948bf70e3d4bb6c8151e9a692f8,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 64744664385038896, guid: 573cb948bf70e3d4bb6c8151e9a692f8,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27088,6 +27093,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock_04 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587794588661835050, guid: ff0b489afe2240b4bb2e4cf7de961d42,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7587794588661835050, guid: ff0b489afe2240b4bb2e4cf7de961d42,
         type: 3}
@@ -86021,6 +86031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674317617464386109, guid: e1a0689d46886f144a45c3a21696b11f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7674317617464386109, guid: e1a0689d46886f144a45c3a21696b11f,
         type: 3}
