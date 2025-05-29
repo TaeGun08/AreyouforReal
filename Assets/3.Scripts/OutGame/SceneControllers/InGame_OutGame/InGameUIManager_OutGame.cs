@@ -42,6 +42,8 @@ public class InGameUIManager_OutGame : NetworkBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0050-ゲンゲンゲンキだもん");
+        
         startButton.SetActive(false);
         waitingButton.SetActive(false);
         runner = FindObjectOfType<NetworkRunner>();

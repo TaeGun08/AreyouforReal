@@ -11,6 +11,8 @@ public class PlayerKnockoutState : PlayerState
     
     public override void StateEnter(PlayerController playerController)
     {
+        SoundManager.Instance.PlayBgm("maou_se_battle16");
+        
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
 
@@ -25,6 +27,7 @@ public class PlayerKnockoutState : PlayerState
     {
         MatchHistoryData data = new MatchHistoryData
         {
+            PlayerKey = FirebaseMainSession.Instance.FirebaseUser.UserData.UserId,
             Players = new List<string>(),
             Rank = GameManager_Network.Instance.AlivePlayers.Count,
             KillCount = playerController.KillCount,

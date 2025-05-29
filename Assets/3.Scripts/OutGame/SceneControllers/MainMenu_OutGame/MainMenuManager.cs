@@ -25,7 +25,12 @@ public class MainMenuManager : MonoBehaviour
     {
         Instance = this;
     }
-    
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0170-すすめベビーゴールデンレトリーバー");
+    }
+
     private async Task AutoLogin(string email, string password)
     {
         if(await FirebaseAccountManager.Instance.SignIn(email, password)) //자동 로그인 성공

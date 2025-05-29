@@ -58,6 +58,7 @@ public class RoomData  //key : RoomCode
 [FirestoreData]
 public class MatchHistoryData  //key : GUID
 {
+    [FirestoreProperty] public string PlayerKey { get; set; }
     [FirestoreProperty] public List<string> Players { get; set; } =  new List<string>(); //참여한 플레이어들
     [FirestoreProperty] public int Rank { get; set; } //등수
     [FirestoreProperty] public int KillCount { get; set; } //킬수

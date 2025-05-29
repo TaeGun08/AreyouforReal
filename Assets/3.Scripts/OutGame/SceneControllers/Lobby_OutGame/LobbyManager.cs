@@ -57,6 +57,8 @@ public class LobbyManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0173-冬眠終了！");
+        
         if(FirebaseMainSession.Instance != null)
             LobbyUpdate();
         
