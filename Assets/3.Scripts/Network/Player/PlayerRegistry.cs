@@ -128,10 +128,11 @@ namespace DefaultNamespace
         // Host만 처리
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
-            if (Runner.IsSharedModeMasterClient)
-            {
+            // if (HasStateAuthority)
+            // {
                 RemovePlayer(runner, player);
-            }
+                GameManager_Network.Instance.RPC_KillEvent(GetPlayerOrNull(player));
+            // }
         }
 
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
