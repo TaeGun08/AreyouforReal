@@ -33,7 +33,7 @@ public class RecordSceneManager : MonoBehaviour
         _ = RecordSceneSetup(data);
     }
     
-    public async Task RecordSceneSetup(MatchHistoryData matchHistoryData)
+    private async Task RecordSceneSetup(MatchHistoryData matchHistoryData)
     {
         FirebaseUser user = FirebaseMainSession.Instance.FirebaseUser;
         
@@ -41,6 +41,8 @@ public class RecordSceneManager : MonoBehaviour
         
         userNameText.text = user.Username; //플레이어 이름
         recordRankingText.text = matchHistoryData.Rank.ToString(); //랭크 매겨주기
+        
+        Debug.Log($"Rank : {matchHistoryData.Rank}, PlayersCount {matchHistoryData.Players}");
         
         int getRankingPoint = CalculateRankingPoint(matchHistoryData.Rank, matchHistoryData.Players); //랭킹 포인트 환산
         
@@ -65,7 +67,7 @@ public class RecordSceneManager : MonoBehaviour
 
         Dictionary<string, object> rankingPointUpdate = new Dictionary<string, object>
         {
-            { "RankPoint", FieldValue.Increment(SumRankingPoint) }
+            { "RankPoint", FieldValue.Increment(getRankingPoint) }
         };
         
         await FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Players, user.UserData.UserId, rankingPointUpdate);
@@ -81,7 +83,7 @@ public class RecordSceneManager : MonoBehaviour
         LoadingSceneManager.LoadScene("Lobby");
     }
     
-    public int CalculateRankingPoint(int rank, int totalPlayers)
+    private int CalculateRankingPoint(int rank, int totalPlayers)
     {
         if (totalPlayers <= 1) return 0; // 에러 방지 또는 단독 플레이는 점수 없음
         if (rank < 1 || rank > totalPlayers) return 0; // 유효 범위 체크
@@ -92,7 +94,7 @@ public class RecordSceneManager : MonoBehaviour
         // 등수별 포인트 = maxPoint에서 선형 감소
         float step = (maxPoint - minPoint) / (float)(totalPlayers - 1);
         int point = Mathf.RoundToInt(maxPoint - (rank - 1) * step);
-
-        return point;
+        
+        return Mathf.Max(point, 10); //0 이하 나오지 않도록 보정
     }
 }
