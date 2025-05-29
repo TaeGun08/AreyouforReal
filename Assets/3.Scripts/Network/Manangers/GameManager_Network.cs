@@ -24,12 +24,9 @@ public class GameManager_Network : NetworkBehaviour
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject fakeLoading;
     [SerializeField] private TMP_Text countText;
-<<<<<<< HEAD
     [SerializeField] private GameObject lounge;
     [SerializeField] private GameObject zone;
     
-=======
->>>>>>> Develop_Network_Shared
     [Networked] private GameState delayedState { get; set; }
         
     public enum GameState
@@ -72,11 +69,8 @@ public class GameManager_Network : NetworkBehaviour
         if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
         {
             fakeLoading.SetActive(false);
-<<<<<<< HEAD
             RPC_ZoneOn();
-=======
             // BGameManager.Instance.RPC_InitializeGame();
->>>>>>> Develop_Network_Shared
             state = delayedState;
             delayedState = GameState.None;
         }
@@ -84,12 +78,9 @@ public class GameManager_Network : NetworkBehaviour
 
     public void TryStartGame()
     {
-<<<<<<< HEAD
         Debug.Assert(Runner.IsServer, "서버만 호출가능!");
         SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0050-ゲンゲンゲンキだもん");
-=======
         Debug.Assert(Runner.IsSharedModeMasterClient, "서버만 호출가능!");
->>>>>>> Develop_Network_Shared
         
         RPC_MapActive();
             
@@ -162,11 +153,8 @@ public class GameManager_Network : NetworkBehaviour
         Debug.Log($"남은 인원: {AlivePlayers.Count}");
         if (AlivePlayers.Remove(player))
         {
-<<<<<<< HEAD
-=======
             countText.text = $"남은 인원: {AlivePlayers.Count}";
             Debug.Log($"남은 인원: {AlivePlayers.Count}");
->>>>>>> Develop_Network_Shared
             if (AlivePlayers.Count <= 1)
             {
                 // TODO : 승리시 나와야하는거, 플레이어 무적

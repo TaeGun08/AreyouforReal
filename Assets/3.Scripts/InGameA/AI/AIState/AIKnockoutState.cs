@@ -11,7 +11,6 @@ public class AIKnockoutState : AIState
     {
         this.aiController = aiController;
         this.aiController.ChangeAnimation(CurrentState);
-<<<<<<< HEAD
         StartCoroutine(RecoveryCoroutine());
     }
 
@@ -19,9 +18,7 @@ public class AIKnockoutState : AIState
     {
         yield return new WaitForSeconds(3f);
         aiController.ChangeState(State.Idle);
-=======
         // this.aiController.Runner.Despawn(this.aiController.Object);
->>>>>>> Develop_Network_Shared
     }
 
     public override void StateUpdate()
