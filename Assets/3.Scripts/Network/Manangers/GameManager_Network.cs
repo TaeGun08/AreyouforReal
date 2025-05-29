@@ -5,6 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
+using Newtonsoft.Json;
 using TMPro;
 using Unity.Services.Authentication;
 using UnityEngine;
@@ -166,7 +167,19 @@ public class GameManager_Network : NetworkBehaviour
 
     private IEnumerator EndCoroutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
+        MatchHistoryData data = new MatchHistoryData
+        {
+            PlayerKey = FirebaseMainSession.Instance.FirebaseUser.UserData.UserId,
+            Players = PlayerRegistry.Instance.playerDic.Count,
+            Rank = Instance.AlivePlayers.Count,
+            KillCount = Player.LocalPlayer.GetComponent<PlayerController>().KillCount,
+            PlayTime = $"{ZoneSystem.Instance.PlayingTime}",
+        };
+        
+        PlayerPrefs.SetString("SaveHistoryData", JsonConvert.SerializeObject(data));
+        yield return new WaitForSeconds(1f);
+        
         Runner.Shutdown();
         SceneManager.LoadScene(4);
     }
