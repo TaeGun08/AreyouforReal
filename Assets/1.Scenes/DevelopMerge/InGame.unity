@@ -55542,7 +55542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDic:
     _items: []
-  index: 1
+  index: 2
   countText: {fileID: 373977071}
 --- !u!114 &588884583
 MonoBehaviour:
@@ -150941,6 +150941,7 @@ MonoBehaviour:
   startButton: {fileID: 1785089513}
   waitingButton: {fileID: 1091136667}
   exitButton: {fileID: 1406981967}
+  inviteButton: {fileID: 1374196982}
 --- !u!4 &1497039883
 Transform:
   m_ObjectHideFlags: 0

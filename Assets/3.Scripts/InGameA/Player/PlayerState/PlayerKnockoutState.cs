@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Fusion;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class PlayerKnockoutState : PlayerState
         MatchHistoryData data = new MatchHistoryData
         {
             PlayerKey = FirebaseMainSession.Instance.FirebaseUser.UserData.UserId,
-            Players = new List<string>(),
+            Players = PlayerRegistry.Instance.playerDic.Count,
             Rank = GameManager_Network.Instance.AlivePlayers.Count,
             KillCount = playerController.KillCount,
             PlayTime = $"{ZoneSystem.Instance.PlayingTime}",

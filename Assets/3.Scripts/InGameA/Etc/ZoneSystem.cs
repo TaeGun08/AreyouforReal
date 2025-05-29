@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Fusion;
 using UnityEngine;
 
@@ -41,8 +42,7 @@ public class ZoneSystem : NetworkBehaviour
         nextActionTime    = Time.time;
         isShrinking       = false;
     }
-
-
+    
     private void Update()
     {
         PlayingTime += Time.deltaTime;
@@ -62,8 +62,6 @@ public class ZoneSystem : NetworkBehaviour
         // 마지막 단계 이후엔 waitTime 후 비활성화
         if (currentStepIndex >= scaleSteps.Length)
         {
-            if (Time.time >= nextActionTime)
-                zone.SetActive(false);
             return;
         }
 
