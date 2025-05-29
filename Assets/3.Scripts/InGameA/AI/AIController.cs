@@ -63,7 +63,7 @@ public class AIController : NetworkBehaviour, IKnockout,  IZoneTrackable
         currentState.StateEnter(this);
     }
     
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_Knockout()
     {
         if (currentState.CurrentState == AIState.State.Knockout) return;

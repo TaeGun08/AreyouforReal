@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1463066937
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -3930940639146983354}
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 886427020502453577}
   ApplyTiming: 2
-  SyncSettings: 127
+  SyncSettings: -1
   StateHashes: 000000006bd5a32d398fdc042b1a167c79406955f142e047ebd3daad
   TriggerHashes: 000000002b1a167c6bd5a32d20e23b68f142e047
   TotalWords: 3

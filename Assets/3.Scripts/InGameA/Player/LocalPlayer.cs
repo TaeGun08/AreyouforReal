@@ -10,7 +10,7 @@ public class LocalPlayer : Player
     {
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
         
-        if (Object.HasStateAuthority)
+        if (Runner.IsSharedModeMasterClient)
         {
             PlayerRegistry.Instance.AddPlayer(Runner, Object.InputAuthority, this);
         }

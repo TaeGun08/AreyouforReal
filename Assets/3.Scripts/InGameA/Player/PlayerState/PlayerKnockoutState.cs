@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using DefaultNamespace;
+=======
+using System.Linq;
+>>>>>>> Develop_Network_Shared
 using Fusion;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -14,8 +18,7 @@ public class PlayerKnockoutState : PlayerState
     {
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
-
-        GameManager_Network.Instance.KillEvent(this.playerController.LocalPlayer);
+        GameManager_Network.Instance.RPC_KillEvent(this.playerController.LocalPlayer);
 
         //GameResult.Instance.RecordElimination(this.playerController);
         

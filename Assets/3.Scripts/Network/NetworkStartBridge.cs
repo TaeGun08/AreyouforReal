@@ -57,7 +57,7 @@ public class NetworkStartBridge : MonoBehaviour
         StartGameResult result = await runner.StartGame(new StartGameArgs()
         {
             SessionProperties = sessionProperty,
-            GameMode = GameMode.Host,
+            GameMode = GameMode.Shared,
             SessionName = roomCode,
             Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
@@ -136,7 +136,7 @@ public class NetworkStartBridge : MonoBehaviour
         {
             StartGameResult result = await runner.StartGame(new StartGameArgs()
             {
-                GameMode = GameMode.Client,
+                GameMode = GameMode.Shared,
                 SessionName = roomCode,
                 Scene = SceneRef.FromIndex(sceneIndex),
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
