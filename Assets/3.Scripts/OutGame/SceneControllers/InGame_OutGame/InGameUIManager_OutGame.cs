@@ -28,6 +28,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject waitingButton;
     [SerializeField] private GameObject exitButton;
+    [SerializeField] private GameObject inviteButton;
     
     private NetworkRunner runner;
     
@@ -80,6 +81,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
         roomCodePanel.SetActive(false);
         Popup_Chat.SetActive(false);
         Popup_ExitChecking.SetActive(false);
+        inviteButton.SetActive(false);
     }
     
     public void OnClickedStartButton() //게임 시작 버튼
@@ -107,7 +109,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     
     public void UpdateButtonState(bool isCanStart)  //시작버튼 활성화
     {
-        if(!runner.IsServer) return;  //서버 아니면 날림
+        if(!runner.IsSharedModeMasterClient) return;  //서버 아니면 날림
         
         if (isCanStart)
         {

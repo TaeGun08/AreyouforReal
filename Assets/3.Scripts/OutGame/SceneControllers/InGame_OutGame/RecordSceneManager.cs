@@ -42,7 +42,7 @@ public class RecordSceneManager : MonoBehaviour
         userNameText.text = user.Username; //플레이어 이름
         recordRankingText.text = matchHistoryData.Rank.ToString(); //랭크 매겨주기
         
-        int getRankingPoint = CalculateRankingPoint(matchHistoryData.Rank, matchHistoryData.Players.Count); //랭킹 포인트 환산
+        int getRankingPoint = CalculateRankingPoint(matchHistoryData.Rank, matchHistoryData.Players); //랭킹 포인트 환산
         
         getRankingPointText.text = getRankingPoint.ToString();
 

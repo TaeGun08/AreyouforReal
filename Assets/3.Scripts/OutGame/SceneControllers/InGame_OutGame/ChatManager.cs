@@ -33,7 +33,7 @@
 //     {
 //         if (!string.IsNullOrWhiteSpace(text))
 //         {
-//             ChattingSystem.Instance.RPC_SenderChatWrapper(text);
+//             ChattingSystem.Instance.Runner.IsSharedModeMasterClientSenderChatWrapper(text);
 //             AddMessage(text);
 //             inputField.text = string.Empty;
 //         }
@@ -80,7 +80,7 @@
 //         }
 //     }
 //     
-//     public void RPC_SendChat(string message, string sender)
+//     public void Runner.IsSharedModeMasterClientSendChat(string message, string sender)
 //     {
 //         RPC_ReceiveChat(message, sender);
 //     }

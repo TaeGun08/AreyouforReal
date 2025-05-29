@@ -44,6 +44,7 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
 
         ChangeState(PlayerState.State.Idle);
         animator.ResetTrigger(playerAnimDic[PlayerState.State.Idle]);
+        
     }
 
     public override void FixedUpdateNetwork()
@@ -65,7 +66,7 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
         currentState.StateEnter(this);
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.StateAuthority)]
     public void RPC_Knockout()
     {
         if (currentState.CurrentState == PlayerState.State.Knockout) return;

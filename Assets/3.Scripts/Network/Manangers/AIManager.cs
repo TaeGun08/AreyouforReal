@@ -17,7 +17,7 @@ public class AIManager : NetworkBehaviour
 
     public void SpawnAI(Vector3 pos)
     {
-        Debug.Assert(Runner.IsServer, "서버전용");
+        Debug.Assert(Runner.IsSharedModeMasterClient, "서버전용");
         
         // TODO : AI 안움직이면 InputAuth 한번 체크해봐야할듯
         Runner.Spawn(AIPrefab, pos, Quaternion.identity);
@@ -25,7 +25,7 @@ public class AIManager : NetworkBehaviour
 
     public void DespawnAI(NetworkObject networkObject)
     {
-        Debug.Assert(Runner.IsServer, "서버전용");
+        Debug.Assert(Runner.IsSharedModeMasterClient, "서버전용");
         Runner.Despawn(networkObject);
     }
 }

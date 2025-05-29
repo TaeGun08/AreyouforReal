@@ -18,6 +18,7 @@ public class AIKnockoutState : AIState
     {
         yield return new WaitForSeconds(3f);
         aiController.ChangeState(State.Idle);
+        // this.aiController.Runner.Despawn(this.aiController.Object);
     }
 
     public override void StateUpdate()

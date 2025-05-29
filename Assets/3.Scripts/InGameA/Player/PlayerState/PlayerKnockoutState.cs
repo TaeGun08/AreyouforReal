@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
+using System.Linq;
 using Fusion;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -14,8 +16,6 @@ public class PlayerKnockoutState : PlayerState
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
 
-        GameManager_Network.Instance.KillEvent(this.playerController.LocalPlayer);
-
         //GameResult.Instance.RecordElimination(this.playerController);
         
         StartCoroutine(RecordSceneLoadCoroutine());
@@ -26,11 +26,13 @@ public class PlayerKnockoutState : PlayerState
         MatchHistoryData data = new MatchHistoryData
         {
             PlayerKey = FirebaseMainSession.Instance.FirebaseUser.UserData.UserId,
-            Players = new List<string>(),
+            Players = PlayerRegistry.Instance.playerDic.Count,
             Rank = GameManager_Network.Instance.AlivePlayers.Count,
             KillCount = playerController.KillCount,
             PlayTime = $"{ZoneSystem.Instance.PlayingTime}",
         };
+        
+        GameManager_Network.Instance.RPC_KillEvent(playerController.LocalPlayer);
         
         //ToDo 하랑 할 일 
         PlayerPrefs.SetString("SaveHistoryData", JsonConvert.SerializeObject(data));
