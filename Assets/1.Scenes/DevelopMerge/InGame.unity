@@ -2987,7 +2987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2171038045
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 32142272}
@@ -51605,7 +51605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 3042213136
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 544900912}
@@ -55558,7 +55558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2361146111
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 588884582}
@@ -89916,7 +89916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1258236269
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 927502341}
@@ -100642,7 +100642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 1189145209
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1026293033}
@@ -105263,6 +105263,7 @@ GameObject:
   - component: {fileID: 1076210804}
   - component: {fileID: 1076210805}
   - component: {fileID: 1076210806}
+  - component: {fileID: 1076210807}
   m_Layer: 0
   m_Name: DeadZone
   m_TagString: Untagged
@@ -105319,6 +105320,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkZone: 1
+--- !u!54 &1076210807
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076210803}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1076718882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110312,7 +110340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 4110419049
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1116253489}
@@ -150916,7 +150944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 3288204107
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 1
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1497039882}

@@ -15,7 +15,6 @@ public class PlayerKnockoutState : PlayerState
     {
         this.playerController = playerController;
         this.playerController.ChangeAnimation(CurrentState);
-        GameManager_Network.Instance.RPC_KillEvent(this.playerController.LocalPlayer);
 
         //GameResult.Instance.RecordElimination(this.playerController);
         
@@ -32,6 +31,8 @@ public class PlayerKnockoutState : PlayerState
             KillCount = playerController.KillCount,
             PlayTime = $"{ZoneSystem.Instance.PlayingTime}",
         };
+        
+        GameManager_Network.Instance.RPC_KillEvent(playerController.LocalPlayer);
         
         //ToDo 하랑 할 일 
         PlayerPrefs.SetString("SaveHistoryData", JsonConvert.SerializeObject(data));

@@ -44,6 +44,7 @@ public class PlayerController : NetworkBehaviour, IKnockout, IZoneTrackable
 
         ChangeState(PlayerState.State.Idle);
         animator.ResetTrigger(playerAnimDic[PlayerState.State.Idle]);
+        
     }
 
     public override void FixedUpdateNetwork()

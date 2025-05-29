@@ -147,7 +147,7 @@ public class GameManager_Network : NetworkBehaviour
         delayedState = state;
     }
     
-    // [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_KillEvent(LocalPlayer player)
     {
         Debug.Log($"남은 인원: {AlivePlayers.Count}");
@@ -157,15 +157,17 @@ public class GameManager_Network : NetworkBehaviour
             Debug.Log($"남은 인원: {AlivePlayers.Count}");
             if (AlivePlayers.Count <= 1)
             {
-                // TODO : 승리시 나와야하는거, 플레이어 무적
-                DelaySetState(GameState.End, 3);
-                // TODO : 수정해야함
-                // AlivePlayers.First().Runner.LoadScene(SceneRef.FromIndex(2));
-                SceneManager.LoadScene(4);
-                // TODO: 카운터는
+                StartCoroutine(EndCoroutine());
             }
             
             RPC_Count();
         }
+    }
+
+    private IEnumerator EndCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        Runner.Shutdown();
+        SceneManager.LoadScene(4);
     }
 }
