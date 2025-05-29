@@ -41,7 +41,10 @@ public class PlayerAttackState : PlayerState
                 if (networkObject.NetworkObj.Id == playerController.NetworkObj.Id) continue;
                 
                 SoundManager.Instance.PlaySfx("maou_se_battle16"); //반복 x
-                
+                if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
+                {
+                    playerController.KillCount++;
+                }
                 networkObject.RPC_Knockout();
                 // player.RPC_PlayerKnockout(playerController.Object);
                 break;
