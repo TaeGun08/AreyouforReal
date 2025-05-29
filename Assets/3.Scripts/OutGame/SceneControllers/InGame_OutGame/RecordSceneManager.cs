@@ -15,7 +15,6 @@ public class RecordSceneManager : MonoBehaviour
     [SerializeField] private TMP_Text getRankingPointText;
     [SerializeField] private TMP_Text userRankingPointText;
     
-    private bool isEndRecording = false;
     public static RecordSceneManager Instance;
 
     private void Awake()
@@ -27,7 +26,6 @@ public class RecordSceneManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(PlayerPrefs.GetString("SaveHistoryData")))
         {
-            isEndRecording = true;
             return;
         }
         
@@ -75,18 +73,11 @@ public class RecordSceneManager : MonoBehaviour
         string uuid = Guid.NewGuid().ToString();
         
         //업데이트 없이 덮어쓰기 => MatchHistorys 없는 경우 오류 방지하고 새로쓰기
-        await FirestoreManager.Instance.WriteDataAsync(FirebaseCollections.MatchHistorys, uuid, matchHistoryData)
-            .ContinueWithOnMainThread(task =>
-            {
-                if(task.IsFaulted || task.IsCanceled) return;
-                
-                isEndRecording =  true;
-            });
+        await FirestoreManager.Instance.WriteDataAsync(FirebaseCollections.MatchHistorys, uuid, matchHistoryData);
     }
 
     public void OnClickHomeButton()
     {
-        if(!isEndRecording) return; // RecordSceneSetup 기록이 완료되지 않았음
         LoadingSceneManager.LoadScene("Lobby");
     }
     
