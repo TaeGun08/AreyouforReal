@@ -135,12 +135,13 @@ public class GameManager_Network : NetworkBehaviour
     {
         if (AlivePlayers.Remove(player))
         {
-            countText.text = $"남은 인원: {AlivePlayers.Count}";
             if (AlivePlayers.Count <= 1)
             {
                 // TODO : 승리시 나와야하는거, 플레이어 무적
                 DelaySetState(GameState.End, 3);
             }
+            
+            RPC_Count();
         }
     }
 }

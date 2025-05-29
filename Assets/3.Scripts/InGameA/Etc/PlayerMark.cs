@@ -17,6 +17,7 @@ public class PlayerMark : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = localPlayer.transform.position;
+        Vector3 pos = new Vector3(localPlayer.transform.position.x, 150f, localPlayer.transform.position.z);
+        transform.position = pos;
     }
 }

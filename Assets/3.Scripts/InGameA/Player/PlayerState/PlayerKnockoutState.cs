@@ -29,7 +29,7 @@ public class PlayerKnockoutState : PlayerState
             Players = new List<string>(),
             Rank = GameManager_Network.Instance.AlivePlayers.Count,
             KillCount = playerController.KillCount,
-            PlayTime = $"{BGameManager.Instance.ZoneUI.ElapsedGameTime}",
+            PlayTime = $"{ZoneSystem.Instance.PlayingTime}",
         };
         
         //ToDo 하랑 할 일 
