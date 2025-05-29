@@ -22,6 +22,7 @@ public class GameManager_Network : NetworkBehaviour
     [SerializeField] private GameObject fakeLoading;
     [SerializeField] private TMP_Text countText;
     [SerializeField] private GameObject lounge;
+    [SerializeField] private GameObject zone;
     
     [Networked] private GameState delayedState { get; set; }
         
@@ -65,7 +66,7 @@ public class GameManager_Network : NetworkBehaviour
         if (GameState.None < delayedState && Delay.ExpiredOrNotRunning(Runner))
         {
             fakeLoading.SetActive(false);
-            BGameManager.Instance.RPC_InitializeGame();
+            RPC_ZoneOn();
             state = delayedState;
             delayedState = GameState.None;
         }
@@ -116,6 +117,13 @@ public class GameManager_Network : NetworkBehaviour
         CountString = $"남은 인원: {AlivePlayers.Count}";
         countText.text = CountString;
     }
+    
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    private void RPC_ZoneOn()
+    {
+        zone.SetActive(true);
+    }
+
     
     private void DelaySetState(GameState state, float delayTime)
     {

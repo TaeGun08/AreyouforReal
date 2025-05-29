@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 8118017099306007645}
   - component: {fileID: 2619917897904740092}
   - component: {fileID: 6287550577856165675}
-  - component: {fileID: -7391963740332321873}
   m_Layer: 6
   m_Name: AI
   m_TagString: Untagged
@@ -267,7 +266,6 @@ MonoBehaviour:
   - {fileID: -3930940639146983354}
   - {fileID: 8118017099306007645}
   - {fileID: 6287550577856165675}
-  - {fileID: -7391963740332321873}
   - {fileID: 5332217216341173875}
   - {fileID: 2472227653136732531}
   - {fileID: 787606814091072617}
@@ -290,18 +288,6 @@ MonoBehaviour:
   StateHashes: 000000006bd5a32d398fdc042b1a167c79406955f142e047ebd3daad
   TriggerHashes: 000000002b1a167c6bd5a32d20e23b68f142e047
   TotalWords: 3
---- !u!114 &-7391963740332321873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565495482746354223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef592ba8476a0343bc6d3928bf6ffde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9201711129107328436
 GameObject:
   m_ObjectHideFlags: 0
