@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 852127113345650959}
   - component: {fileID: 3186202529149134277}
   - component: {fileID: -588981747765083762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Watermemlon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5964216318929363951, guid: 747475f356dbfdf4fba705e2db5a41e8, type: 3}

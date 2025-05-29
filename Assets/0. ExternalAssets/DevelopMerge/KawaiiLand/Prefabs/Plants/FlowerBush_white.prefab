@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3047264228011188807}
   - component: {fileID: 2154362462543261154}
   - component: {fileID: 4179659824667253032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlowerBush_white
   m_TagString: Untagged
   m_Icon: {fileID: 0}

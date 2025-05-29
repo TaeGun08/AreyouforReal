@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8874267341827610186}
   - component: {fileID: 1107643395316938753}
   - component: {fileID: 7859943422589515080}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Corn_Plant_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,12 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4727973477585929659}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.5466867, z: 0, w: 0.83733726}
   m_LocalPosition: {x: -0.136, y: 0, z: 0.113}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 39407345894387662}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 66.28, z: 0}
 --- !u!33 &1107643395316938753
 MeshFilter:
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -92,7 +94,7 @@ GameObject:
   - component: {fileID: 4729164033396557739}
   - component: {fileID: 747562756878848071}
   - component: {fileID: 1194670862945998327}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Corn_Plant_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,12 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6044332670605771901}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.124, y: 0, z: 0.108}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 39407345894387662}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &747562756878848071
 MeshFilter:
@@ -132,6 +135,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -171,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 39407345894387662}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Corn_Plant_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,15 +189,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6931439809114832093}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4729164033396557739}
   - {fileID: 8874267341827610186}
   - {fileID: 6219851278496466705}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7748924867647428422
 GameObject:
@@ -206,7 +211,7 @@ GameObject:
   - component: {fileID: 6219851278496466705}
   - component: {fileID: 4365671437218275641}
   - component: {fileID: 7581090096016376190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Corn_Plant_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,12 +225,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7748924867647428422}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.28869754, z: 0, w: 0.9574204}
   m_LocalPosition: {x: 0.009, y: 0, z: -0.104}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 39407345894387662}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -33.56, z: 0}
 --- !u!33 &4365671437218275641
 MeshFilter:
@@ -246,6 +252,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

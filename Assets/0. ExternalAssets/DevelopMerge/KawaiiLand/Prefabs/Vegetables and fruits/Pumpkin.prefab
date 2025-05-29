@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7506270073061468767}
   - component: {fileID: 5750911548363742869}
   - component: {fileID: 5360875607277733122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pumpkin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3339082285309697363, guid: 1955eac4fb5d9d8498baed5d0c27cf10, type: 3}

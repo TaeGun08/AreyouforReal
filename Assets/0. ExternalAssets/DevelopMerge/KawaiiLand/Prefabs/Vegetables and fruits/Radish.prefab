@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 664444912658488772}
   - component: {fileID: 3376682024902584590}
   - component: {fileID: -3013944145018588015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7400456473201126231, guid: 5cc87926fad4ac843946da45fbcaf4f2, type: 3}

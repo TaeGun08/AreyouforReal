@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713933449648955535}
-  - component: {fileID: -6251318812133075460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,28 +33,6 @@ Transform:
   - {fileID: 89676959513588887}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &-6251318812133075460
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5802099779270626521}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &7642895574590208858
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +45,7 @@ GameObject:
   - component: {fileID: 6265930063903321669}
   - component: {fileID: 8147567495561419407}
   - component: {fileID: 4308104942239850936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +136,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5928600108510605930, guid: 24704dd0b7908764f90c40fbeb384836, type: 3}
 --- !u!1 &8251076025048805659
@@ -173,7 +150,7 @@ GameObject:
   - component: {fileID: 89676959513588887}
   - component: {fileID: 2764013790450625443}
   - component: {fileID: 7056867755786470155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Folliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

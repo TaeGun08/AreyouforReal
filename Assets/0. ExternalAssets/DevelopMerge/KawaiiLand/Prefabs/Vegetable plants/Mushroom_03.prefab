@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7011854100685763050}
   - component: {fileID: 5953371526523361962}
   - component: {fileID: 1945638036731854655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mushroom_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7417086475167509107, guid: c3876e73affc5ee45bc60f8256175be6, type: 3}

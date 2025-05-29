@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4535240530080217022}
   - component: {fileID: 1807243564362646388}
   - component: {fileID: 2567399914610290443}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Tile_Grass_plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

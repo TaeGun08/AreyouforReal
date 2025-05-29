@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7325535542384953648}
   - component: {fileID: 8677078337124245757}
   - component: {fileID: -2490079840885996802}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Carrot_plant_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 570022912672736286, guid: 8ff3c44552b2eb54d94827f211e53500, type: 3}

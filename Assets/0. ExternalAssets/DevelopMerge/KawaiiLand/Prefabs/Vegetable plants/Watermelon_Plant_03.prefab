@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6346157723170417185}
   - component: {fileID: 9187126030632535366}
   - component: {fileID: -2153561472413264579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Watermelon_Plant_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6293783548204834876, guid: 62813054be243e94099969d79080ab54, type: 3}

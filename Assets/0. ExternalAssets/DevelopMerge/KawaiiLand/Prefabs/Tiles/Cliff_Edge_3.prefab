@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2074054342155261845}
   - component: {fileID: 4263908457416336223}
   - component: {fileID: -1961926896449800336}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Cliff_Edge_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
