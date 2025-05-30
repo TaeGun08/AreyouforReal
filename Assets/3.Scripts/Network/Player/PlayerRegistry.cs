@@ -148,8 +148,8 @@ namespace DefaultNamespace
             // if (Runner.IsSharedModeMasterClient)
             // {
             //     // TODO : 연결이 끊어졌습니다 등 표시
-            //     _ = FirestoreManager.Instance.DeleteDataAsync(
-            //         FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
+            _ = FirestoreManager.Instance.DeleteDataAsync(
+                FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
             // }
             
             // Debug.Log("호스트가 나가거나 방이 종료됨");

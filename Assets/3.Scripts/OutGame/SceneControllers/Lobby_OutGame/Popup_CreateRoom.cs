@@ -44,8 +44,8 @@ public class Popup_CreateRoom : BaseWindow
 
     private void ValidateMaxPlayers(string input)
     {
-        // 숫자만 허용하고, 2~10 사이 숫자만 허용
-        if (!int.TryParse(input, out int number) || number < 2 || number > 10)
+        // 숫자만 허용하고, 3~10 사이 숫자만 허용
+        if (!int.TryParse(input, out int number) || number < 3 || number > 10)
         {
             MaxPlayers.text = "10"; // 잘못된 값이면 비움 또는 이전 값 저장 방식 적용 가능
         }

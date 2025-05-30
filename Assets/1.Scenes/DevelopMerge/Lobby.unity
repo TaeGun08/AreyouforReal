@@ -259860,6 +259860,7 @@ MonoBehaviour:
     type: 3}
   popupCreateRoom: {fileID: 1651572839}
   popupJoinRoom: {fileID: 229404932}
+  resetButton: {fileID: 404868428}
 --- !u!1 &1537637424
 GameObject:
   m_ObjectHideFlags: 0
@@ -292970,7 +292971,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714677979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -293021,7 +293022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -372883,7 +372884,7 @@ GameObject:
   - component: {fileID: 2073344352}
   - component: {fileID: 2073344351}
   m_Layer: 5
-  m_Name: Text_500
+  m_Name: Text_MaxMin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372928,7 +372929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Min 2 ~ Max 10
+  m_text: Min 3 ~ Max 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
   m_sharedMaterial: {fileID: 3074828514974314926, guid: c2f49fe8c22d94f9a9e6cd06ad490155,

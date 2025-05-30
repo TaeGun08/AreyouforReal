@@ -46,9 +46,9 @@ public class RecordSceneManager : MonoBehaviour
         userNameText.text = user.Username; //플레이어 이름
         recordRankingText.text = matchHistoryData.Rank.ToString(); //랭크 매겨주기
         
-        Debug.Log($"Rank : {matchHistoryData.Rank}, PlayersCount {matchHistoryData.Players}");
+        Debug.Log($"Rank : {matchHistoryData.Rank}, AlivePlayersCount {matchHistoryData.Players}");
         
-        int getRankingPoint = CalculateRankingPoint(matchHistoryData.Rank, matchHistoryData.Players); //랭킹 포인트 환산
+        int getRankingPoint = CalculateRankingPoint(matchHistoryData.Rank); //랭킹 포인트 환산
         
         getRankingPointText.text = getRankingPoint.ToString();
 
@@ -88,16 +88,16 @@ public class RecordSceneManager : MonoBehaviour
         LoadingSceneManager.LoadScene("Lobby");
     }
     
-    private int CalculateRankingPoint(int rank, int totalPlayers)
+    private int CalculateRankingPoint(int rank)
     {
         // if (totalPlayers <= 1) return 0; // 에러 방지 또는 단독 플레이는 점수 없음
-        if (rank < 1 || rank > totalPlayers) return 0; // 유효 범위 체크
+        // if (rank < 1 || rank > totalPlayers) return 0; // 유효 범위 체크
 
         int maxPoint = 100;
         int minPoint = 10;
 
         // 등수별 포인트 = maxPoint에서 선형 감소
-        float step = (maxPoint - minPoint) / (float)(totalPlayers - 1);
+        float step = (maxPoint - minPoint) / (float)(10 - 1);
         int point = Mathf.RoundToInt(maxPoint - (rank - 1) * step);
         
         return Mathf.Max(point, 10); //0 이하 나오지 않도록 보정

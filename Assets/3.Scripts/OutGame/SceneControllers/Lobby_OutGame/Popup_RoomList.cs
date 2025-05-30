@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Firebase.Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Popup_RoomList : BaseWindow
 {
@@ -14,6 +16,8 @@ public class Popup_RoomList : BaseWindow
     [Header("PopUp")]
     [SerializeField] private Popup_CreateRoom popupCreateRoom;
     [SerializeField] private Popup_JoinRoom popupJoinRoom;
+    
+    [SerializeField] private Button resetButton;
     
     private List<LobbyRoom> roomList;
     
@@ -43,7 +47,12 @@ public class Popup_RoomList : BaseWindow
     
     public void OnClickedResetButton()
     {
-        _ = OnRoomInfoPanel();
+        resetButton.interactable = false;
+        
+        OnRoomInfoPanel().ContinueWithOnMainThread(task =>
+        {
+            resetButton.interactable = true;
+        });
     }
     
     public override void OnClickedExitButton() // roomListParent 창이 꺼질 때
