@@ -23,8 +23,7 @@ namespace DefaultNamespace
         [Networked, Capacity(CAPACITY)]
         [UnitySerializeField]
         public NetworkDictionary<PlayerRef, LocalPlayer> playerDic { get; }
-
-        [SerializeField] private int index;
+        
         [SerializeField] private TMP_Text countText;
         [Networked] private string CountString { get; set; }
         
@@ -86,7 +85,7 @@ namespace DefaultNamespace
 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState(index <= playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState(3 <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
@@ -121,7 +120,7 @@ namespace DefaultNamespace
                 
                 if (GameManager_Network.Instance.State == GameManager_Network.GameState.Wait)
                 {
-                    InGameUIManager_OutGame.Instance.UpdateButtonState( index <= playerDic.Count);
+                    InGameUIManager_OutGame.Instance.UpdateButtonState( 3 <= playerDic.Count);
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
@@ -146,12 +145,12 @@ namespace DefaultNamespace
 
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
-            if (Runner.IsSharedModeMasterClient)
-            {
-                // TODO : 연결이 끊어졌습니다 등 표시
-                _ = FirestoreManager.Instance.DeleteDataAsync(
-                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
-            }
+            // if (Runner.IsSharedModeMasterClient)
+            // {
+            //     // TODO : 연결이 끊어졌습니다 등 표시
+            //     _ = FirestoreManager.Instance.DeleteDataAsync(
+            //         FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
+            // }
             
             Debug.Log("호스트가 나가거나 방이 종료됨");
             // Destroy(NetworkStartBridge.Instance.gameObject);

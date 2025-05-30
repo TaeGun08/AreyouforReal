@@ -178,6 +178,10 @@ public class GameManager_Network : NetworkBehaviour
         };
         
         PlayerPrefs.SetString("SaveHistoryData", JsonConvert.SerializeObject(data));
+        
+        _ = FirestoreManager.Instance.DeleteDataAsync(
+            FirebaseCollections.Rooms, Runner.SessionInfo.Properties["RoomId"]);
+        
         yield return new WaitForSeconds(1f);
         
         Runner.Shutdown();
