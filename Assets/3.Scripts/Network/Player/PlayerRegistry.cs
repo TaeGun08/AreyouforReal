@@ -106,8 +106,9 @@ namespace DefaultNamespace
             countText.text = CountString;
         }
         
+        
         [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
-        public void RemovePlayer(NetworkRunner runner, PlayerRef pRef)
+        public void RPC_RemovePlayer(PlayerRef pRef)
         {
             // 서버용 호출인데 서버가 아닌곳에서 호출하면 에러! 디버그때만 잡힘
             Debug.Assert(Runner.IsSharedModeMasterClient);
@@ -125,7 +126,7 @@ namespace DefaultNamespace
                 }
                 
                 _ = FirestoreManager.Instance.UpdateDataAsync(
-                    FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"], userCount);
+                    FirebaseCollections.Rooms, Runner.SessionInfo.Properties["RoomId"], userCount);
             }
             else
             {
@@ -139,7 +140,7 @@ namespace DefaultNamespace
         {
             // if (HasStateAuthority)
             // {
-                RemovePlayer(runner, player);
+                RPC_RemovePlayer(player);
                 GameManager_Network.Instance.RPC_KillEvent(GetPlayerOrNull(player));
             // }
         }
