@@ -152,9 +152,9 @@ namespace DefaultNamespace
             //         FirebaseCollections.Rooms, runner.SessionInfo.Properties["RoomId"]);
             // }
             
-            Debug.Log("호스트가 나가거나 방이 종료됨");
+            // Debug.Log("호스트가 나가거나 방이 종료됨");
             // Destroy(NetworkStartBridge.Instance.gameObject);
-            SceneManager.LoadScene(2);
+            // SceneManager.LoadScene(2);
         }
         
         #region INetworkRunnerCallbacks
