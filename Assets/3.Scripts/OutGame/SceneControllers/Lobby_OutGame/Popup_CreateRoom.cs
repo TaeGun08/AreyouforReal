@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Firebase.Extensions;
 using Fusion;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Popup_CreateRoom : BaseWindow
 {
     [SerializeField] private TMP_InputField RoomName;   //한글 + 영어
     [SerializeField] private TMP_InputField RoomInfo;   //한글 + 영어 + 특수기호
     [SerializeField] private TMP_InputField MaxPlayers; //2~10까지 숫자만 허용
+    
+    [SerializeField] private Button createButton;
     
     private void Start()
     {
@@ -55,7 +59,17 @@ public class Popup_CreateRoom : BaseWindow
             return;
         }
         
+        createButton.interactable = false;
+        
         //방 입장 Host
-        _ = NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text);
+        NetworkStartBridge.Instance.CreateRoom(RoomName.text, RoomInfo.text, MaxPlayers.text).ContinueWithOnMainThread(
+            task =>
+            {
+                if (task.IsFaulted || task.IsCanceled || task.Result == false)//실패
+                {
+                    createButton.interactable = true; //버튼 다시 활성화
+                    LobbyManager.Instance.OnPopupChecking(CheckTexts.Create);
+                } 
+            });
     }
 }

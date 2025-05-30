@@ -25,7 +25,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     
     [Space]
     [Header("Buttons")]
-    [SerializeField] private GameObject startButton;
+    [SerializeField] private Button startButton;
     [SerializeField] private GameObject waitingButton;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject inviteButton;
@@ -75,7 +75,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     [Rpc(RpcSources.StateAuthority, RpcTargets.All, HostMode = RpcHostMode.SourceIsServer)]
     private void RPC_DisableStartUI()
     {
-        startButton.SetActive(false);
+        startButton.gameObject.SetActive(false);
         waitingButton.SetActive(false);
         exitButton.SetActive(false);
         roomCodePanel.SetActive(false);
@@ -86,6 +86,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     
     public void OnClickedStartButton() //게임 시작 버튼
     {
+        startButton.interactable = false;
         RPC_DisableStartUI(); // 모든 클라이언트에게 UI 비활성화 전파
         
         Dictionary<string, object> updateIsGameStarted = new Dictionary<string, object> {
@@ -96,7 +97,11 @@ public class InGameUIManager_OutGame : NetworkBehaviour
         FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode.text, updateIsGameStarted)
             .ContinueWithOnMainThread(task =>
             {
-                if (task.IsFaulted || task.IsCanceled) return;
+                if (task.IsFaulted || task.IsCanceled)
+                {
+                    startButton.interactable = true;
+                    return;
+                }
 
                 GameManager_Network.Instance.TryStartGame();//게임시작
             });
@@ -113,12 +118,12 @@ public class InGameUIManager_OutGame : NetworkBehaviour
         
         if (isCanStart)
         {
-            startButton.SetActive(true);
+            startButton.gameObject.SetActive(true);
             waitingButton.SetActive(false);
         }
         else
         {
-            startButton.SetActive(false);
+            startButton.gameObject.SetActive(false);
             waitingButton.SetActive(true);
         }
     }

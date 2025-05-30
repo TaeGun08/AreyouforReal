@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Popup_SignUp : BaseWindow
 {
@@ -19,7 +20,10 @@ public class Popup_SignUp : BaseWindow
     
     [Space]
     [Header("PopUp Panel")]
+    [SerializeField] private GameObject popUpLoginPanel;
     [SerializeField] private GameObject popupChecking;
+    
+    [SerializeField] private Button signUpButton;
     
     private string email = "";
     private string password = "";
@@ -72,6 +76,7 @@ public class Popup_SignUp : BaseWindow
         email = emailInputField.text;
         password = passwordInputField.text;
         nickname = nickNameInputField.text;
+        signUpButton.interactable = false;
         
         await FirebaseAccountManager.Instance.CreateAccount(email, password, nickname).ContinueWithOnMainThread(task =>
         {
@@ -79,6 +84,7 @@ public class Popup_SignUp : BaseWindow
             {
                 Debug.LogError(task.Exception);
                 popupChecking.SetActive(true);
+                signUpButton.interactable = true;
                 return;
             }
             
@@ -92,5 +98,11 @@ public class Popup_SignUp : BaseWindow
             MainMenuManager.Instance.ReloadMainMenuScene();
             gameObject.SetActive(false);
         });
+    }
+    
+    public void OnClickedAlreadyHasIdButton()
+    {
+        gameObject.SetActive(false);
+        popUpLoginPanel.gameObject.SetActive(true);
     }
 }

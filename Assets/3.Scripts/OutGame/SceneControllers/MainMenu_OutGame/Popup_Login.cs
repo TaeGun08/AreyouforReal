@@ -23,6 +23,8 @@ public class Popup_Login : BaseWindow
     [SerializeField] private Popup_SignUp popupSignUp;
     [SerializeField] private GameObject popupChecking;
     
+    [SerializeField] private Button loginButton;
+    
     //PlayerPrefs Keys
     private const string EmailKey = "UserEmail";
     private const string PasswordKey = "UserPassword";
@@ -77,6 +79,7 @@ public class Popup_Login : BaseWindow
     {
         email = emailInputField.text;
         password = passwordInputField.text;
+        loginButton.interactable = false;
         
         if (await FirebaseAccountManager.Instance.SignIn(email, password)) //return bool
         {
@@ -102,6 +105,7 @@ public class Popup_Login : BaseWindow
         {
             //로그인 실패
             popupChecking.SetActive(true);
+            loginButton.interactable = true;
         }
     }
     
@@ -111,8 +115,8 @@ public class Popup_Login : BaseWindow
         popupSignUp.gameObject.SetActive(true);
     }
     
-    public void OnClickedForgotPasswordButton()
-    {
-        //later...
-    }
+    // public void OnClickedForgotPasswordButton()
+    // {
+    //     //later...
+    // }
 }

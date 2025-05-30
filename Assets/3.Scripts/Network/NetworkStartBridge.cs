@@ -29,7 +29,7 @@ public class NetworkStartBridge : MonoBehaviour
         Instance = this;
     }
     
-    public async Task CreateRoom(string roomName, string roomDescription, string maxPlayers)
+    public async Task<bool> CreateRoom(string roomName, string roomDescription, string maxPlayers)
     {
         runner = Instantiate(runnerPrefab);
         DontDestroyOnLoad(gameObject);
@@ -83,21 +83,26 @@ public class NetworkStartBridge : MonoBehaviour
             bool isSucced = await FirestoreManager.Instance.WriteDataAsync<RoomData>(
                 FirebaseCollections.Rooms, roomCode, roomData);
             
-            if (isSucced == false)
-            {
-                Debug.Log("파이어베이스 저장실패");
-            }
-            else
-            {
-                Debug.Log("생성성공");
-            }
+            return isSucced;
+            // if (isSucced == false)
+            // {
+            //     // Debug.Log("파이어베이스 저장실패");
+            //     return false;
+            // }
+            // else
+            // {
+            //     // Debug.Log("생성성공");
+            //     return true;
+            // }
         }
         else
         {
-            Debug.LogWarning("에러!");
+            // Debug.LogWarning("에러!");
+            return false;
         }
     }
-    public async Task JoinRoom(string roomCode)
+    
+    public async Task<bool> JoinRoom(string roomCode)
     {
         runner = Instantiate(runnerPrefab);
         DontDestroyOnLoad(gameObject);
@@ -150,11 +155,14 @@ public class NetworkStartBridge : MonoBehaviour
                 };
             
                 FirestoreManager.Instance.UpdateDataAsync(FirebaseCollections.Rooms, roomCode ,updateDic);
+                return true;
             }
             else
             {
                 Debug.LogWarning("에러!");
+                return false;
             }
         }
+        return false;
     }
 }

@@ -7,13 +7,17 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RecordSceneManager : MonoBehaviour
 {
+    [Header("Texts")]
     [SerializeField] private TMP_Text userNameText;
     [SerializeField] private TMP_Text recordRankingText;
     [SerializeField] private TMP_Text getRankingPointText;
     [SerializeField] private TMP_Text userRankingPointText;
+    
+    [SerializeField] private Button homeButton;
     
     public static RecordSceneManager Instance;
 
@@ -80,6 +84,7 @@ public class RecordSceneManager : MonoBehaviour
 
     public void OnClickHomeButton()
     {
+        homeButton.interactable = false;
         LoadingSceneManager.LoadScene("Lobby");
     }
     

@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using Firebase.Extensions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,8 +14,8 @@ public class MainMenuManager : MonoBehaviour
     
     [Header("UI Components")]
     [SerializeField] private Popup_Login popupLogin;          // 로그인 팝업 창
-    [SerializeField] private GameObject GameStartButtonPanel; //게임스타트 버튼 (안보이는 화면을 다 덮는 버튼)
-    [SerializeField] private GameObject SignOutButton;        //로그아웃 버튼
+    [SerializeField] private Button GameStartButtonPanel; //게임스타트 버튼 (안보이는 화면을 다 덮는 버튼)
+    [SerializeField] private Button SignOutButton;        //로그아웃 버튼
 
     public static MainMenuManager Instance;
     
@@ -35,7 +37,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if(await FirebaseAccountManager.Instance.SignIn(email, password)) //자동 로그인 성공
         {
-            SignOutButton.SetActive(true); //로그아웃 버튼 활성화
+            SignOutButton.gameObject.SetActive(true); //로그아웃 버튼 활성화
         }
         else // 자동로그인 실패. PlayerPrefs는 있었지만 실제 계정이 없는 경우
         {
@@ -43,25 +45,36 @@ public class MainMenuManager : MonoBehaviour
             PlayerPrefs.DeleteKey(PasswordKey);
             popupLogin.gameObject.SetActive(true);
         }
+        GameStartButtonPanel.interactable = true;
     }
-
+    
     public void OnClickedGameStartButtonPanelButton() //화면을 클릭했을 때
     {
         // 0. 로그인 되어있다면 클릭시 씬이동
         if (FirebaseMainSession.Instance.FirebaseUser.UserData != null)
         {
+            GameStartButtonPanel.interactable = false;
             LoadingSceneManager.LoadScene(nextSceneName);
         }
         // 1. 로그인 안되어있음 && 이전 로그인 기록이 있음 => 자동 로그인 시도
         else if (PlayerPrefs.HasKey(EmailKey) && PlayerPrefs.HasKey(PasswordKey))
         {
+            GameStartButtonPanel.interactable = false;
             Debug.Log($"자동 로그인 시도 중");
             // 자동 로그인 시도
-            _ = AutoLogin(PlayerPrefs.GetString(EmailKey), PlayerPrefs.GetString(PasswordKey));
+            AutoLogin(PlayerPrefs.GetString(EmailKey), PlayerPrefs.GetString(PasswordKey)).ContinueWithOnMainThread(
+                task =>
+                {
+                    if (task.IsFaulted || task.IsCanceled)
+                    {
+                        GameStartButtonPanel.interactable = true;
+                    }
+                });
         }
         // 3. 모두 아니라면 로그인 창을 출력한다.
         else
         {
+            GameStartButtonPanel.interactable = true;
             popupLogin.gameObject.SetActive(true);
             mainMenuParticle.SetActive(false);
         }
@@ -75,16 +88,17 @@ public class MainMenuManager : MonoBehaviour
             
             PlayerPrefs.DeleteKey(EmailKey);
             PlayerPrefs.DeleteKey(PasswordKey);
-            SignOutButton.SetActive(false);
+            SignOutButton.gameObject.SetActive(false);
             popupLogin.gameObject.SetActive(true);
         }
+        GameStartButtonPanel.interactable = true;
     }
-
+    
     public void ReloadMainMenuScene()
     {
         if (FirebaseMainSession.Instance.FirebaseUser.UserData != null)
         {
-            SignOutButton.SetActive(true);
+            SignOutButton.gameObject.SetActive(true);
         }
     }
 }
