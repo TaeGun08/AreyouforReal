@@ -85,7 +85,7 @@ public class RecordSceneManager : MonoBehaviour
     
     private int CalculateRankingPoint(int rank, int totalPlayers)
     {
-        if (totalPlayers <= 1) return 0; // 에러 방지 또는 단독 플레이는 점수 없음
+        // if (totalPlayers <= 1) return 0; // 에러 방지 또는 단독 플레이는 점수 없음
         if (rank < 1 || rank > totalPlayers) return 0; // 유효 범위 체크
 
         int maxPoint = 100;
