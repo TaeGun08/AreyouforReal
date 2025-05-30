@@ -45,7 +45,7 @@ public class InGameUIManager_OutGame : NetworkBehaviour
     {
         SoundManager.Instance.PlayBgm("こんとどぅふぇ素材No.0170-すすめベビーゴールデンレトリーバー");
         
-        startButton.SetActive(false);
+        startButton.gameObject.SetActive(false);
         waitingButton.SetActive(false);
         runner = FindObjectOfType<NetworkRunner>();
         roomCode.SetText(runner.SessionInfo.Name);
